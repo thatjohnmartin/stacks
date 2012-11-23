@@ -1,0 +1,41 @@
+[
+    {
+        "pk": 1,
+        "model": "www.thing",
+        "fields": {
+            "added": "2012-08-10T03:31:02",
+            "title": "The Newsroom",
+            "slug": "the-newsroom",
+            "properties_json": "",
+            "modified": "2012-08-10T03:31:02",
+            "published": "2012-08-10T03:30:19",
+            "type": 20
+        }
+    },
+    {
+        "pk": 2,
+        "model": "www.thing",
+        "fields": {
+            "added": "2012-08-10T03:31:42",
+            "title": "Moonraker",
+            "slug": "moonraker",
+            "properties_json": "",
+            "modified": "2012-08-10T03:31:42",
+            "published": "1962-08-10T03:31:27",
+            "type": 30
+        }
+    },
+    {
+        "pk": 1,
+        "model": "www.post",
+        "fields": {
+            "added": "2012-08-10T03:32:59",
+            "title": "\u201cNewsroom\u201d: Aaron Sorkin does \u201cThe Daily Show\u201d",
+            "slug": "newsroom-aaron-sorkin-does-the-daily-show",
+            "modified": "2012-08-10T03:32:59",
+            "thing": 1,
+            "properties_json": "",
+            "type": 20
+        }
+    }
+]

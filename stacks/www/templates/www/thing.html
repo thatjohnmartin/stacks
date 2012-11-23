@@ -1,0 +1,11 @@
+{% extends "www/base.html" %}
+
+{% block content %}
+    <h1>{{ thing.name }}</h1>
+    <p><a href="http://en.wikipedia.org/wiki/{{ thing.get_node('/type/object/key', '/wikipedia/en').value_str }}">Wikipedia</a> | <a href="http://www.imdb.com/title//">IMDB</a></p>
+    <ul>
+        {% for post in thing.posts.all().order_by('added') %}
+            <li>{{ post.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
