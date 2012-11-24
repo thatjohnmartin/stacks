@@ -1,5 +1,5 @@
-from stacks.www.models import Thing, Post
 from django.shortcuts import render, get_object_or_404
+from stacks.www.models import Thing, Post
 
 def home(request):
     latest_things = Thing.objects.order_by('added')[:10]

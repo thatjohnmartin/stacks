@@ -51,8 +51,8 @@ class Loader(BaseLoader):
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(settings.JINJA2_TEMPLATE_DIRS),
         extensions=(
-#            'django_jinja2.extensions.URLExtension',
-#            'django_jinja2.extensions.CsrfExtension',
+            # 'django_jinja2.extensions.URLExtension',
+            # 'django_jinja2.extensions.CsrfExtension',
         )
     )
     env.template_class = Template

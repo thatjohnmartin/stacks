@@ -9,8 +9,11 @@
 
     <link href="/static/lib/bootstrap-2.1.0/less/bootstrap.less" rel="stylesheet/less">
     <style>
-        body {
+        body.stacks {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+        .stacks .navbar .nav > li > a {
+            padding-top:13px;
         }
     </style>
     <link href="/static/lib/bootstrap-2.1.0/less/responsive.less" rel="stylesheet/less">
@@ -29,9 +32,9 @@
     <link rel="apple-touch-icon-precomposed" href="/static/www/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
+<body class="stacks">
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -39,11 +42,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/">Stacks</a>
+            <a class="brand" href="/"><img src="/static/www/img/logo.png" alt="Stacks" /></a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/admin/">Admin</a></li>
+                    {% if user.is_authenticated() %}
+                        <li><a href="/{{ user.username }}/">You</a></li>
+                        <li><a href="/upload/">Upload</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav pull-right"">
+                    {% if user.is_authenticated() %}
+                        {% if user.is_staff %}
+                            <li><a href="/admin/">Admin</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Log in</a></li>
+                    {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
