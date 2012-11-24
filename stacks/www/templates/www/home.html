@@ -1,13 +1,11 @@
 {% extends "www/base.html" %}
 
 {% block content %}
-    <h2>Latest things:</h2>
     <ul>
         {% for thing in latest_things %}
             <li><a href="{{ url_for('thing', kwargs={'slug': thing.slug}) }}">{{ thing.name }}</a></li>
         {% endfor %}
     </ul>
-    <h2>Latest posts:</h2>
     <ul>
         {% for post in latest_posts %}
             <li>{{ post.title }}</li>

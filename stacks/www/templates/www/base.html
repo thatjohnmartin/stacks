@@ -13,7 +13,27 @@
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
         .stacks .navbar .nav > li > a {
-            padding-top:13px;
+            margin-top:6px;
+        }
+        .stacks .navbar .brand {
+            background-image:url('/static/www/img/logo.png');
+            background-repeat:no-repeat;
+            background-position:center;
+            width:93px;
+            height:26px;
+            margin-bottom:1px;
+        }
+        .stacks .navbar .brand:hover {
+            background-image:url('/static/www/img/logo-hover.png');
+        }
+        .stacks .navbar .nav > .active > a, .stacks .navbar .nav > .active > a:hover, .stacks .navbar .nav > .active > a:focus {
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            color:#111;
+        }
+        .stacks .navbar .nav a:hover, .stacks .navbar .nav a:focus {
+            color:#111;
         }
     </style>
     <link href="/static/lib/bootstrap-2.1.0/less/responsive.less" rel="stylesheet/less">
@@ -34,7 +54,7 @@
 
 <body class="stacks">
 
-<div class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -42,15 +62,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/"><img src="/static/www/img/logo.png" alt="Stacks" /></a>
+            <a class="brand" href="/"></a>
             <div class="nav-collapse">
-                <ul class="nav">
+                <ul class="nav nav-pills">
                     {% if user.is_authenticated() %}
-                        <li><a href="/{{ user.username }}/">You</a></li>
+                        <li class="active"><a href="/{{ user.username }}/">You</a></li>
                         <li><a href="/upload/">Upload</a></li>
                     {% endif %}
                 </ul>
-                <ul class="nav pull-right"">
+                <ul class="nav nav-pills pull-right">
                     {% if user.is_authenticated() %}
                         {% if user.is_staff %}
                             <li><a href="/admin/">Admin</a></li>
