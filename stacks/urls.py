@@ -13,8 +13,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # authentication
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'www/login.html'}),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^signin/$', 'django.contrib.auth.views.login', {'template_name': 'www/signin.html'}),
+    url(r'^signout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^join/$', 'stacks.www.views.join', name='join'),
 
     # everything URL
     url(r'^(?P<slug>[\w-]+)/$', 'stacks.www.views.thing', name='thing'),

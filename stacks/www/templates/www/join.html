@@ -1,0 +1,28 @@
+{% extends "www/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Something wasn't right. Please try again.
+        </div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('join') }}">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
+        <fieldset>
+            {{ form.email.label_tag() }}
+            {{ form.email }}
+            {{ form.username.label_tag() }}
+            {{ form.username }}
+            {{ form.password1.label_tag() }}
+            {{ form.password1 }}
+            {{ form.password2.label_tag() }}
+            {{ form.password2 }}
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Create my account</button>
+    </form>
+
+{% endblock %}
