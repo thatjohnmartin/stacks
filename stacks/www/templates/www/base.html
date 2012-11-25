@@ -43,8 +43,9 @@
                     <li {% if request.path == '/ui/' %}class="active"{% endif %}><a href="/ui/">/ui</a></li>
                     <li class="divider-vertical"></li>
                     {% if user.is_authenticated() %}
-                        <li {% if request.path == '/%s/' % request.user.username %}class="active"{% endif %}><a href="/{{ user.username }}/">You</a></li>
-                        <li {% if request.path == url_for('upload') %}class="active"{% endif %}><a href="{{ url_for('upload') }}">Upload</a></li>
+                        <li {% if request.path == '/%s/' % request.user.username %}class="active"{% endif %}><a href="/{{ user.username }}/"><i class="icon-user"></i> You</a></li>
+                        <li {% if request.path == url_for('upload') %}class="active"{% endif %}><a href="{{ url_for('upload') }}"><i class="icon-upload"></i> Upload</a></li>
+                        <li {% if request.path == url_for('create') %}class="active"{% endif %}><a href="{{ url_for('create') }}"><i class="icon-plus"></i> Create</a></li>
                     {% endif %}
                 </ul>
                 {% if not user.is_authenticated() %}
@@ -57,7 +58,7 @@
                         <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>
                     {% endif %}
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </div>
 </div>

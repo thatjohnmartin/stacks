@@ -32,6 +32,9 @@ def join(request):
 def upload(request):
     return render(request, 'www/upload.html')
 
+def create(request):
+    return render(request, 'www/create.html')
+
 def user_home(request, username):
     return render(request, 'www/user_home.html')
 

@@ -20,8 +20,9 @@ urlpatterns += patterns('stacks.www.views',
     # authentication
     url(r'^join/$', 'join', name='join'),
 
-    # uploader
+    # uploader + creation
     url(r'^upload/$', 'upload', name='upload'),
+    url(r'^create/$', 'create', name='create'),
 
     # topic home
     url(r'^(?P<topic>astro|auto|ui)/$', 'topic_home', name='topic_home'),

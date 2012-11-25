@@ -1,7 +1,16 @@
+@bootstrapPath: "../../lib/bootstrap-2.1.0/less";
+
+/* !! unfortunately there is no way to include variables in import statements right now... */
+
+@import "../../lib/bootstrap-2.1.0/less/variables.less";
+@import "../../lib/bootstrap-2.1.0/less/mixins.less";
+
+/* make room for the navbar */
 body {
   padding-top: 64px;
 }
 
+/* lots of navbar customizations */
 .stacks .navbar {
   .btn {
     margin-top:8px;
@@ -21,9 +30,7 @@ body {
     margin-top:6px;
   }
   .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
-    -webkit-box-shadow:none;
-    -moz-box-shadow:none;
-    box-shadow:none;
+    .box-shadow(~"none");
     color:#111;
   }
   .nav a:hover, .nav a:focus {
@@ -43,5 +50,11 @@ body {
     height:22px;
     margin-top:12px;
     border-left-color:#ddd;
+  }
+
+  /* remove the white-on-active behavior */
+  .nav > .active > a > [class^="icon-"],
+  .nav > .active > a > [class*=" icon-"] {
+    background-image: url("@{bootstrapPath}/@{iconSpritePath}");
   }
 }
