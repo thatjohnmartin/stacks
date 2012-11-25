@@ -1,4 +1,4 @@
-@bootstrapPath: "../../lib/bootstrap-2.1.0/less";
+@bootstrapPath:"../../lib/bootstrap-2.1.0/less";
 
 /* !! unfortunately there is no way to include variables in import statements right now... */
 
@@ -7,54 +7,59 @@
 
 /* make room for the navbar */
 body {
-  padding-top: 64px;
+    padding-top:64px;
 }
 
 /* lots of navbar customizations */
 .stacks .navbar {
-  .btn {
-    margin-top:8px;
-  }
-  .brand {
-    background-image:url('/static/www/img/logo.png');
-    background-repeat:no-repeat;
-    background-position:center;
-    width:93px;
-    height:26px;
-    margin-bottom:1px;
-  }
-  .brand:hover {
-    background-image:url('/static/www/img/logo-hover.png');
-  }
-  .nav > li > a {
-    margin-top:6px;
-  }
-  .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
-    .box-shadow(~"none");
-    color:#111;
-  }
-  .nav a:hover, .nav a:focus {
-    color:#111;
-  }
-  .nav > li > a:focus, .nav > li > a:hover {
-    background-color:#f1f1f1;
-  }
-  .nav > li.active > a:focus, .nav > li.active > a:hover {
-    background-color:#e5e5e5;
-  }
-  .navbar-inner {
-    background-image:url('/static/www/img/bg/debut_light.png');
-    background-repeat:repeat;
-  }
-  .divider-vertical {
-    height:22px;
-    margin-top:12px;
-    border-left-color:#ddd;
-  }
+    .btn {
+        margin-top:8px;
+    }
+    .brand {
+        background-image:url('/static/www/img/logo.png');
+        background-repeat:no-repeat;
+        background-position:center;
+        width:93px;
+        height:26px;
+        margin-bottom:1px;
+    }
+    .brand:hover {
+        background-image:url('/static/www/img/logo-hover.png');
+    }
+    .nav > li > a {
+        margin-top:6px;
+    }
+    .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
+        .box-shadow(~"none");
+        color:#111;
+    }
+    .nav a:hover, .nav a:focus {
+        color:#111;
+    }
+    .nav > li > a:focus, .nav > li > a:hover {
+        background-color:#f1f1f1;
+    }
+    .nav > li.active > a:focus, .nav > li.active > a:hover {
+        background-color:#e5e5e5;
+    }
+    .navbar-inner {
+        background-image:url('/static/www/img/bg/debut_light.png');
+        background-repeat:repeat;
+    }
+    .divider-vertical {
+        height:22px;
+        margin-top:12px;
+        border-left-color:#ddd;
+    }
 
-  /* remove the white-on-active behavior */
-  .nav > .active > a > [class^="icon-"],
-  .nav > .active > a > [class*=" icon-"] {
-    background-image: url("@{bootstrapPath}/@{iconSpritePath}");
-  }
+    /* remove the white-on-active behavior */
+    .nav > .active > a > [class^="icon-"],
+    .nav > .active > a > [class*=" icon-"] {
+        background-image:url("@{bootstrapPath}/@{iconSpritePath}");
+    }
+}
+
+/* file uploader styles */
+.preview img {
+    max-height:50px;
 }
