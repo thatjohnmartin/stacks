@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from stacks.www.models import Thing, Post
 
 def home(request):
@@ -12,10 +11,12 @@ def home(request):
 
 def thing(request, slug):
     thing = get_object_or_404(Thing, slug=slug)
-    return render(request, 'www/thing.html', {'thing': thing})
+    return render(request, 'www/thing.html', {'thing': thing,})
 
 class JoinForm(UserCreationForm):
     email = forms.EmailField()
+    # !! fix error messages. need one for email and to make them display properly on the page
+    # !! also, add a stopword list for URLs that the system needs, e.g. signin, signout, upload, organize, etc
 
 def join(request):
     if request.method == 'POST':
@@ -27,3 +28,12 @@ def join(request):
         form = JoinForm()
 
     return render(request, 'www/join.html', {'form': form,})
+
+def upload(request):
+    return render(request, 'www/upload.html')
+
+def user_home(request, username):
+    return render(request, 'www/user_home.html')
+
+def topic_home(request, topic):
+    return render(request, 'www/topic_home.html', {'topic': topic})
