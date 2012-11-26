@@ -1,13 +1,9 @@
 from django.contrib import admin
-from stacks.www.models import Thing, Predicate, Node, Post
+from stacks.www.models import Page, Layout, MediaItem
 
-class ThingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'mid', 'added')
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'layout', 'added')
 
-class NodeAdmin(admin.ModelAdmin):
-    list_display = ('object', 'predicate', 'subject', 'context', 'value_str')
-
-admin.site.register(Thing, ThingAdmin)
-admin.site.register(Predicate)
-admin.site.register(Node, NodeAdmin)
-admin.site.register(Post)
+admin.site.register(Page, PageAdmin)
+admin.site.register(Layout)
+admin.site.register(MediaItem)
