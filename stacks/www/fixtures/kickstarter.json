@@ -1,41 +1,57 @@
 [
     {
-        "pk": 1,
-        "model": "www.thing",
+        "pk":10,
+        "model":"auth.user",
         "fields": {
-            "added": "2012-08-10T03:31:02",
-            "title": "The Newsroom",
-            "slug": "the-newsroom",
-            "properties_json": "",
-            "modified": "2012-08-10T03:31:02",
-            "published": "2012-08-10T03:30:19",
-            "type": 20
+            "username": "bruce",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-11-26T02:41:37",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "email": "bruce@foo.com",
+            "date_joined": "2012-11-26T02:41:37"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "www.layout",
+        "fields": {
+            "name": "Singularity",
+            "description": "An image page to end all image pages.",
+            "template_file": "layouts/singularity.html",
+            "template_source": "",
+            "added": "2012-11-10T03:31:02",
+            "properties_json": ""
         }
     },
     {
         "pk": 2,
-        "model": "www.thing",
+        "model": "www.layout",
         "fields": {
-            "added": "2012-08-10T03:31:42",
-            "title": "Moonraker",
-            "slug": "moonraker",
-            "properties_json": "",
-            "modified": "2012-08-10T03:31:42",
-            "published": "1962-08-10T03:31:27",
-            "type": 30
+            "name": "Juxtapose",
+            "description": "The Brad Pitt and Edward Norton of image pages.",
+            "template_file": "layouts/juxtapose.html",
+            "template_source": "",
+            "added": "2012-11-10T03:31:02",
+            "properties_json": ""
         }
     },
     {
         "pk": 1,
-        "model": "www.post",
+        "model": "www.page",
         "fields": {
-            "added": "2012-08-10T03:32:59",
-            "title": "\u201cNewsroom\u201d: Aaron Sorkin does \u201cThe Daily Show\u201d",
-            "slug": "newsroom-aaron-sorkin-does-the-daily-show",
-            "modified": "2012-08-10T03:32:59",
-            "thing": 1,
-            "properties_json": "",
-            "type": 20
+            "user": 10,
+            "title": "NGC 7293, The Helix Nebula in Aquarius",
+            "slug": "ngc-7293-the-helix-nebula-in-aquarius",
+            "layout": 1,
+            "added": "2012-11-10T03:31:02",
+            "modified": "2012-11-10T03:31:02",
+            "properties_json": ""
         }
     }
 ]

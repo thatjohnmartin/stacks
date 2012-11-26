@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # authentication
-    url(r'^signin/$', 'django.contrib.auth.views.login', {'template_name': 'www/signin.html'}),
-    url(r'^signout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^signin/$', 'django.contrib.auth.views.login', {'template_name': 'www/signin.html'}, name="sign_in"),
+    url(r'^signout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="sign_out"),
 
 
     # served uploaded media
@@ -24,8 +24,8 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^$', 'home', name='home'),
 
     # external uploader
-    url(r'^upload/new/$', MediaItemCreateView.as_view(), name='upload-new'),
-    url(r'^upload/delete/(?P<pk>\d+)$', MediaItemDeleteView.as_view(), name='upload-delete'),
+    url(r'^upload/new/$', MediaItemCreateView.as_view(), name='upload_new'),
+    url(r'^upload/delete/(?P<pk>\d+)$', MediaItemDeleteView.as_view(), name='upload_delete'),
 
     # authentication
     url(r'^join/$', 'join', name='join'),
@@ -38,4 +38,7 @@ urlpatterns += patterns('stacks.www.views',
 
     # user home
     url(r'^(?P<username>[\w-]+)/$', 'user_home', name='user_home'),
+
+    # pages
+    url(r'^(?P<username>[\w-]+)/(?P<slug>[\w-]+)/$', 'page', name='page'),
 )

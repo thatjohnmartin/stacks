@@ -109,9 +109,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'stacks.urls'
 
-TEMPLATE_DIRS = (
-    os.path.join(STACKS_ROOT, "stacks/fileupload/templates"),
-)
+TEMPLATE_DIRS = ()
 
 JINJA2_TEMPLATE_DIRS = (
     os.path.join(STACKS_ROOT, "stacks/www/templates"),
@@ -128,7 +126,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.markup',
     'stacks.www',
-    'stacks.fileupload',
 )
 
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')

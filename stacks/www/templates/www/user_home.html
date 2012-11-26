@@ -3,5 +3,12 @@
 {% block title %}{{ user.username }}'s Stacks{% endblock %}
 
 {% block content %}
-    <p>This is the user home.</p>
+    <p>You have created the following pages:</p>
+    {% if user.pages.all().exists() %}
+        <ul>
+            {% for page in user.pages.all() %}
+                <li><a href="{{ url_for('page', kwargs={'username': user.username, 'slug': page.slug}) }}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

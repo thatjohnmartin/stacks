@@ -2,18 +2,18 @@ from django.views.generic import CreateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings
-from stacks.www.models import MediaItem
+from stacks.www.models import MediaItem, Page
 
 def home(request):
     return render(request, 'www/home.html', {})
 
-#def thing(request, slug):
-#    thing = get_object_or_404(Thing, slug=slug)
-#    return render(request, 'www/thing.html', {'thing': thing,})
+def page(request, username, slug):
+    page = get_object_or_404(Page, user=request.user, slug=slug)
+    return render(request, 'www/page.html', {'page': page,})
 
 class JoinForm(UserCreationForm):
     email = forms.EmailField()
@@ -25,7 +25,7 @@ def join(request):
         form = JoinForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return HttpResponseRedirect('/') # !! should redirect to user page
+            return HttpResponseRedirect(reverse("sign_in")) # !! should redirect to user page
     else:
         form = JoinForm()
 
@@ -59,7 +59,7 @@ class MediaItemCreateView(CreateView):
             'name': f.name,
             'url': settings.MEDIA_URL + "images/" + f.name.replace(" ", "_"),
             'thumbnail_url': settings.MEDIA_URL + "images/" + f.name.replace(" ", "_"),
-            'delete_url': reverse('upload-delete', args=[self.object.id]),
+            'delete_url': reverse('upload_delete', args=[self.object.id]),
             'delete_type': "DELETE"
         }]
         response = JSONResponse(data, {}, response_mimetype(self.request))

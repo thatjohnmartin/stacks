@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 from stacks.www.models.utils import PropertiesMixin
 
 class Page(PropertiesMixin, models.Model):
+    user = models.ForeignKey(User, related_name="pages")
     title = models.CharField(max_length=255, db_index=True)
     slug = models.CharField(max_length=255, db_index=True)
     layout = models.ForeignKey("Layout", related_name="pages")
@@ -15,6 +17,6 @@ class Page(PropertiesMixin, models.Model):
         app_label = 'www'
 
 class PageMediaItem(models.Model):
-    page = models.ForeignKey("Page", related_name="items")
+    page = models.ForeignKey(Page, related_name="items")
     placement = models.CharField(max_length=64, db_index=True)
     item = models.ForeignKey("MediaItem", related_name="pages")
