@@ -7,18 +7,26 @@
         <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">×</button>
             Something wasn't right. Please try again.
+            {{ form.errors }}
         </div>
     {% endif %}
 
     <form method="post" action=".">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+        <input type="hidden" name="user" value="{{ request.user.id }}" />
         <fieldset>
             {{ form.title.label_tag() }}
             {{ form.title }}
-            {{ form.topic.label_tag() }}
-            {{ form.topic }}
             {{ form.slug.label_tag() }}
             {{ form.slug }}
+            {{ form.layout.label_tag() }}
+            {{ form.layout }}
+            {% for topic in constants.TOPICS %}
+                <label class="radio">
+                    <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}">
+                    {{ constants.TOPIC_LABELS[topic] }}
+                </label>
+            {% endfor %}
         </fieldset>
         <button type="submit" class="btn btn-primary">Create page</button>
     </form>

@@ -8,4 +8,4 @@ TOPIC_CHOICES = (
     ('ui', 'UI'),
 )
 
-TOPIC_NAMES = dict((s, n) for s, n in TOPIC_CHOICES)
+TOPIC_LABELS = dict((s, n) for s, n in TOPIC_CHOICES)

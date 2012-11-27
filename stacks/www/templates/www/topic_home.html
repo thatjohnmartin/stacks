@@ -3,7 +3,7 @@
 {% block title %}/{{ topic }} Stacks{% endblock %}
 
 {% block content %}
-    <p>This is the home for <strong>{{ constants.TOPIC_NAMES[topic] }}</strong> stacks.</p>
+    <p>This is the home for <strong>{{ constants.TOPIC_LABELS[topic] }}</strong> stacks.</p>
     {% if latest_pages %}
         <ul>
             {% for page in latest_pages %}
