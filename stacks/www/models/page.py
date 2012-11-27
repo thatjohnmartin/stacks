@@ -4,6 +4,7 @@ from stacks.www.models.utils import PropertiesMixin
 
 class Page(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="pages")
+    topic = models.CharField(max_length=32, db_index=True)
     title = models.CharField(max_length=255, db_index=True)
     slug = models.CharField(max_length=255, db_index=True)
     layout = models.ForeignKey("Layout", related_name="pages")

@@ -1,5 +1,23 @@
 [
     {
+        "pk":1,
+        "model":"auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-11-26T02:41:37",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "email": "stacks@lonepixel.com",
+            "date_joined": "2012-11-26T02:41:37"
+        }
+    },
+    {
         "pk":10,
         "model":"auth.user",
         "fields": {
@@ -18,12 +36,49 @@
         }
     },
     {
+        "pk":11,
+        "model":"auth.user",
+        "fields": {
+            "username": "johnw",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-11-26T02:41:37",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "email": "johnw@lyric.com",
+            "date_joined": "2012-11-26T02:41:37"
+        }
+    },
+    {
+        "pk":10,
+        "model":"auth.user",
+        "fields": {
+            "username": "johnm",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-11-26T02:41:37",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "email": "john@lonepixel.com",
+            "date_joined": "2012-11-26T02:41:37"
+        }
+    },
+    {
         "pk": 1,
         "model": "www.layout",
         "fields": {
             "name": "Singularity",
+            "topic": "",
             "description": "An image page to end all image pages.",
-            "template_file": "layouts/singularity.html",
+            "template_file": "singularity.html",
             "template_source": "",
             "added": "2012-11-10T03:31:02",
             "properties_json": ""
@@ -34,8 +89,9 @@
         "model": "www.layout",
         "fields": {
             "name": "Juxtapose",
+            "topic": "",
             "description": "The Brad Pitt and Edward Norton of image pages.",
-            "template_file": "layouts/juxtapose.html",
+            "template_file": "juxtapose.html",
             "template_source": "",
             "added": "2012-11-10T03:31:02",
             "properties_json": ""
@@ -46,6 +102,7 @@
         "model": "www.page",
         "fields": {
             "user": 10,
+            "topic": "astro",
             "title": "NGC 7293, The Helix Nebula in Aquarius",
             "slug": "ngc-7293-the-helix-nebula-in-aquarius",
             "layout": 1,

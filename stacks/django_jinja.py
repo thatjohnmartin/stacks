@@ -23,6 +23,7 @@ from django.template.loader import BaseLoader
 from django.template import TemplateDoesNotExist, Origin
 from django.core import urlresolvers
 from django.conf import settings
+from stacks import constants
 
 class Template(jinja2.Template):
     def render(self, context):
@@ -59,7 +60,7 @@ class Loader(BaseLoader):
     
     # These are available to all templates.
     env.globals['url_for'] = urlresolvers.reverse
-    env.globals['MEDIA_URL'] = settings.MEDIA_URL
+    env.globals['constants'] = constants
     
     def load_template(self, template_name, template_dirs=None):
         try:

@@ -3,6 +3,7 @@ from stacks.www.models.utils import PropertiesMixin
 
 class Layout(PropertiesMixin, models.Model):
     name = models.CharField(max_length=255, db_index=True)
+    topic = models.CharField(max_length=32, db_index=True)
     description = models.TextField(blank=True)
     template_file = models.CharField(max_length=255, null=True, blank=True, db_index=True)
     template_source = models.TextField(null=True, blank=True)

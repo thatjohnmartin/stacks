@@ -3,5 +3,14 @@
 {% block title %}/{{ topic }} Stacks{% endblock %}
 
 {% block content %}
-    <p>This is the home for <strong>{{ topic }}</strong> stacks.</p>
+    <p>This is the home for <strong>{{ constants.TOPIC_NAMES[topic] }}</strong> stacks.</p>
+    {% if latest_pages %}
+        <ul>
+            {% for page in latest_pages %}
+                <li><a href="{{ url_for('page', kwargs={'username': page.user.username, 'slug': page.slug}) }}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stacks.</p>
+    {% endif %}
 {% endblock %}
