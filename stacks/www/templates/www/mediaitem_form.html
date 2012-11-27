@@ -1,48 +1,51 @@
-{% extends "www/upload_base.html" %}
+{% extends "www/base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/www/css/bootstrap-image-gallery.min.css">
+    <link rel="stylesheet" href="/static/www/css/jquery.fileupload-ui.css">
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <p style="margin-bottom:20px;"><a href="/">&laquo; Back to Stacks</a></p>
-
-        <form id="fileupload" method="post" action="." enctype="multipart/form-data">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-            <input type="hidden" name="type" value="10" />
-            <div class="row fileupload-buttonbar">
-                <div class="span7">
-                    <span class="btn btn-primary fileinput-button">
-                        <i class="icon-plus icon-white"></i>
-                        <span>Add files...</span>
-                        <input type="file" name="image_file" multiple>
-                    </span>
-                    <button type="submit" class="btn btn-success start">
-                        <i class="icon-upload icon-white"></i>
-                        <span>Start upload</span>
-                    </button>
-                    <button type="reset" class="btn btn-warning cancel">
-                        <i class="icon-ban-circle icon-white"></i>
-                        <span>Cancel upload</span>
-                    </button>
-                    <button type="button" class="btn btn-danger delete">
-                        <i class="icon-trash icon-white"></i>
-                        <span>Delete files</span>
-                    </button>
-                    <input type="checkbox" class="toggle">
-                </div>
-                <div class="span5 fileupload-progress fade">
-                    <div class="progress progress-success progres-striped active">
-                        <div class="bar" style="width:0%"></div>
-                    </div>
-                    <div class="progress-extended">&nbsp;</div>
-                </div>
+    <form id="fileupload" method="post" action="." enctype="multipart/form-data" style="margin-top:20px;">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+        <input type="hidden" name="type" value="10" />
+        <input type="hidden" name="user" value="{{ request.user.id }}" />
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <span class="btn btn-primary fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="image_file" multiple>
+                </span>
+                <button type="submit" class="btn btn-success start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="icon-ban-circle icon-white"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="icon-trash icon-white"></i>
+                    <span>Delete files</span>
+                </button>
+                <input type="checkbox" class="toggle">
             </div>
-            <div class="fileupload-loading"></div>
-            <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
-        </form>
-        <div class="fileupload-content">
-            <table class="files"></table>
-            <div class="fileupload-progressbar"></div>
+            <div class="span5 fileupload-progress fade">
+                <div class="progress progress-success progres-striped active">
+                    <div class="bar" style="width:0%"></div>
+                </div>
+                <div class="progress-extended">&nbsp;</div>
+            </div>
         </div>
+        <div class="fileupload-loading"></div>
+        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+    </form>
+    <div class="fileupload-content">
+        <table class="files"></table>
+        <div class="fileupload-progressbar"></div>
     </div>
+
     <!-- modal-gallery is the modal dialog used for the image gallery -->
     <div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
         <div class="modal-header">
@@ -133,13 +136,16 @@
             {% } %}
         </script>
     {% endraw %}
+{% endblock %}
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+{% block extra_scripts_before_bootstrap %}
     <script src="/static/lib/jquery.fileupload/js/jquery.ui.widget.js"></script>
     <script src="/static/lib/jquery.fileupload/js/tmpl.min.js"></script>
     <script src="/static/lib/jquery.fileupload/js/load-image.min.js"></script>
     <script src="/static/lib/jquery.fileupload/js/canvas-to-blob.min.js"></script>
-    <script src="/static/lib/jquery.fileupload/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block extra_scripts_after_bootstrap %}
     <script src="/static/lib/jquery.fileupload/js/bootstrap-image-gallery.min.js"></script>
     <script src="/static/lib/jquery.fileupload/js/jquery.iframe-transport.js"></script>
     <script src="/static/lib/jquery.fileupload/js/jquery.fileupload.js"></script>

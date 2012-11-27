@@ -3,5 +3,24 @@
 {% block title %}Create stacks{% endblock %}
 
 {% block content %}
-    <p>Go on, create some shit.</p>
+    {% if form.errors %}
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Something wasn't right. Please try again.
+        </div>
+    {% endif %}
+
+    <form method="post" action=".">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+        <fieldset>
+            {{ form.title.label_tag() }}
+            {{ form.title }}
+            {{ form.topic.label_tag() }}
+            {{ form.topic }}
+            {{ form.slug.label_tag() }}
+            {{ form.slug }}
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Create page</button>
+    </form>
+
 {% endblock %}

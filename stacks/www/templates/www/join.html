@@ -9,7 +9,7 @@
         </div>
     {% endif %}
 
-    <form method="post" action="{{ url_for('join') }}">
+    <form method="post" action=".">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
         <fieldset>
             {{ form.email.label_tag() }}

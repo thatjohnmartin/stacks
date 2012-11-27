@@ -1,3 +1,4 @@
+import os
 from django.views.generic import CreateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -17,13 +18,14 @@ class MediaItemCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         f = self.request.FILES.get('image_file')
+        url = settings.MEDIA_URL + str(self.object.image_file)
         data = [{
-                    'name': f.name,
-                    'url': settings.MEDIA_URL + "images/" + f.name.replace(" ", "_"),
-                    'thumbnail_url': settings.MEDIA_URL + "images/" + f.name.replace(" ", "_"),
-                    'delete_url': reverse('upload_delete', args=[self.object.id]),
-                    'delete_type': "DELETE"
-                }]
+            'name': f.name,
+            'url': url,
+            'thumbnail_url': url,
+            'delete_url': reverse('upload_delete', args=[self.object.id]),
+            'delete_type': "DELETE"
+        }]
         response = JSONResponse(data, {}, response_mimetype(self.request))
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
@@ -32,10 +34,6 @@ class MediaItemDeleteView(DeleteView):
     model = MediaItem
 
     def delete(self, request, *args, **kwargs):
-        """
-        This does not actually delete the file, only the database record.  But
-        that is easy to implement.
-        """
         self.object = self.get_object()
         self.object.delete()
         if request.is_ajax():
@@ -43,7 +41,7 @@ class MediaItemDeleteView(DeleteView):
             response['Content-Disposition'] = 'inline; filename=files.json'
             return response
         else:
-            return HttpResponseRedirect('/upload/new')
+            return HttpResponseRedirect(reverse('upload_new'))
 
 class JSONResponse(HttpResponse):
     """JSON response class."""

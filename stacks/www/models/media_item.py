@@ -18,7 +18,7 @@ class MediaItem(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="items")
     title = models.CharField(max_length=255, null=True, blank=True)
     type = models.IntegerField(choices=MEDIA_ITEM_TYPE_CHOICES, default=MEDIA_ITEM_TYPE_IMAGE, db_index=True)
-    image_file = models.ImageField(upload_to="images", null=True, blank=True)
+    image_file = models.ImageField(upload_to="images/%Y/%m/%d", null=True, blank=True)
     video_embed = models.TextField(null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True, db_index=True)
 
