@@ -71,12 +71,12 @@
     </div>
 
     <div id="create-modal" class="modal hide fade create-modal">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Create a new page</h3>
-        </div>
-        <div class="modal-body">
-            <form method="post" action="{{ url_for('create') }}" class="form-horizontal">
+        <form method="post" action="{{ url_for('create') }}" class="form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Create a new page</h3>
+            </div>
+            <div class="modal-body">
                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
                 <input type="hidden" name="user" value="{{ request.user.id }}" />
 
@@ -102,21 +102,21 @@
                 <div class="control-group">
                     <label class="control-label">Layout:</label>
                     <div class="controls">
-                        {% for topic in constants.TOPICS %}
+                        {% for layout in models.Layout.objects.all() %}
                             <label class="radio">
-                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}">
-                                {{ constants.TOPIC_LABELS[topic] }}
+                                <input type="radio" name="layout" id="id_layout_{{ layout.id }}" value="{{ layout.id }}">
+                                {{ layout.name }}
                             </label>
                         {% endfor %}
                     </div>
                 </div>
 
-            </form>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-            <a href="#" class="btn btn-primary">Create page</a>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+                <a href="#" type="submit" class="btn btn-primary">Create page</a>
+            </div>
+        </form>
     </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
