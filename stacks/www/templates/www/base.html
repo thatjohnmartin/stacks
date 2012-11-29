@@ -9,7 +9,6 @@
 
     <link href="/static/lib/bootstrap-2.1.0/less/bootstrap.less" rel="stylesheet/less">
     <link href="/static/www/less/core.less" rel="stylesheet/less">
-{#    <link href="/static/lib/bootstrap-2.1.0/less/responsive.less" rel="stylesheet/less">#}
 
     {% block css %}{% endblock %}
 
@@ -48,7 +47,7 @@
                         {% if user.is_authenticated() %}
                             <li class="divider-vertical"></li>
                             <li {% if request.path.startswith('/%s/' % request.user.username) %}class="active"{% endif %}><a href="/{{ user.username }}/"><i class="icon-user"></i> /{{ user.username }}</a></li>
-                            <li {% if request.path == url_for('create') %}class="active"{% endif %}><a href="{{ url_for('create') }}"><i class="icon-plus"></i> Create</a></li>
+                            <li><a id="create-button" href="#create-modal" data-toggle="modal"><i class="icon-plus"></i> Create</a></li>
                             <li {% if request.path == url_for('upload_new') %}class="active"{% endif %}><a href="{{ url_for('upload_new') }}"><i class="icon-upload"></i> Upload</a></li>
                         {% endif %}
                     </ul>
@@ -69,6 +68,55 @@
 
     <div class="container">
         {% block content %}Empty{% endblock %}
+    </div>
+
+    <div id="create-modal" class="modal hide fade create-modal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Create a new page</h3>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{ url_for('create') }}" class="form-horizontal">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                <input type="hidden" name="user" value="{{ request.user.id }}" />
+
+                <div class="control-group">
+                    <label class="control-label" for="title">Page title:</label>
+                    <div class="controls">
+                        <input type="text" id="title" class="page-title" placeholder="My New Page">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Topic:</label>
+                    <div class="controls">
+                        {% for topic in constants.TOPICS %}
+                            <label class="radio">
+                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}">
+                                {{ constants.TOPIC_LABELS[topic] }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Layout:</label>
+                    <div class="controls">
+                        {% for topic in constants.TOPICS %}
+                            <label class="radio">
+                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}">
+                                {{ constants.TOPIC_LABELS[topic] }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+            <a href="#" class="btn btn-primary">Create page</a>
+        </div>
     </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
