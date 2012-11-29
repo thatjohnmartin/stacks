@@ -39,5 +39,5 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
     # pages
-    url(r'^(?P<username>[\w-]+)/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
+    url(r'^(?P<topic>astro|auto|ui)/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
 )

@@ -17,6 +17,7 @@ class Page(PropertiesMixin, models.Model):
 
     class Meta:
         app_label = 'www'
+        unique_together = (("slug", "topic"),)
 
 class PageMediaItem(models.Model):
     page = models.ForeignKey(Page, related_name="items")

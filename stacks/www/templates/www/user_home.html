@@ -7,7 +7,7 @@
     {% if user.pages.all().exists() %}
         <ul>
             {% for page in user.pages.all() %}
-                <li><a href="{{ url_for('page', kwargs={'username': user.username, 'slug': page.slug}) }}">{{ page.title }}</a></li>
+                <li><a href="{{ url_for('page', kwargs={'topic': page.topic, 'slug': page.slug}) }}">{{ page.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
