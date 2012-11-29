@@ -1,6 +1,31 @@
 {% extends "www/base.html" %}
 
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block css %}
+    <link href="/static/lib/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %}page{% endblock %}
+
 {% block content %}
-    <h1>{{ page.title}}</h1>
+    <h1 id="title" data-type="text" data-pk="{{ page.id }}" data-url="." data-original-title="Enter title" data-placement="bottom">{{ page.title}}</h1>
     {{ content }}
 {% endblock %}
+
+{% block extra_scripts_after_bootstrap %}
+    <script src="/static/lib/bootstrap-editable/js/bootstrap-editable.js"></script>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript">
+        $('#title').editable({inputclass:'page-title', send:'never'});
+        $('#rhcol').editable({inputclass:'rhcol', send:'never'});
+    </script>
+{% endblock %}
+
+{#<p>This is a page.</p>#}
+{##}
+{#<h1>Hello, this is a title.</h1>#}
+{##}
+{#<input style="font-weight:bold; border:none; font-size:32px; font-family:serif;" value="Hello, this is a title." />#}

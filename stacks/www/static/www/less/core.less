@@ -43,7 +43,7 @@ body {
         background-color:#e5e5e5;
     }
     .navbar-inner {
-        background-image:url('/static/www/img/bg/debut_light.png');
+        background-image:url('/static/www/img/bg/subtle_dots.png');
         background-repeat:repeat;
     }
     .divider-vertical {
@@ -62,4 +62,36 @@ body {
 /* file uploader styles */
 .preview img {
     max-height:50px;
+}
+
+/* remove the dashed border from edit-in-line elements */
+.editable-click, a.editable-click, a.editable-click:hover {
+    border-bottom:none;
+}
+
+/* remove bolded text on unsaved fields */
+.editable-unsaved {
+    font-weight:normal;
+}
+
+.page {
+    h1 {
+        border-bottom:1px dotted #ccc;
+        padding-bottom:10px;
+        margin-bottom:15px;
+    }
+
+    .image-placeholder {
+        border:1px dashed #ccc;
+        background:#f3f3f3 url('/static/www/img/bg/subtlenet2.png') repeat;
+        width:870px;
+        height:500px;
+        text-align:center;
+        vertical-align:middle;
+        display:table-cell;
+        color:#aaa;
+    }
+
+    input.page-title { width:360px; }
+    textarea.rhcol { height:200px; }
 }
