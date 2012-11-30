@@ -4,6 +4,7 @@
 
 {% block css %}
     <link href="/static/lib/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="/static/lib/jquery.fineuploader/fineuploader.css" rel="stylesheet">
 {% endblock %}
 
 {% block body_class %}page{% endblock %}
@@ -20,19 +21,31 @@
 
 {% block extra_scripts_after_bootstrap %}
     <script src="/static/lib/bootstrap-editable/js/bootstrap-editable.js"></script>
+    <script src="/static/lib/jquery.fineuploader/jquery.fineuploader-3.0.js"></script>
 {% endblock %}
 
 {% block page_scripts %}
     <script type="text/javascript">
-        $('#title').editable({
-            inputclass: 'input-xlarge',
-            placement: 'bottom',
-            pk: {{ page.id }},
-            url: '{{ url_for("page.edit") }}',
-            type: 'text',
-            originaltitle: 'Enter title',
-            params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
+        $(document).ready(function () {
+            $('#title').editable({
+                inputclass: 'input-xlarge2',
+                placement: 'bottom',
+                pk: {{ page.id }},
+                url: '{{ url_for("page.edit") }}',
+                type: 'text',
+                title: 'Enter title',
+                params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
+            });
+
+            $('#rhcol').editable({inputclass:'rhcol', send:'never'});
+
+            $('#image-1').fineUploader({
+                request: {
+                    endpoint: 'server/handleUploads'
+                },
+                debug: true
+            });
         });
-        $('#rhcol').editable({inputclass:'rhcol', send:'never'});
+
     </script>
 {% endblock %}

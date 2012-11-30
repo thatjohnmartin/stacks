@@ -1,4 +1,4 @@
-@bootstrapPath:"../../lib/bootstrap-2.1.0/less";
+@bootstrapPath: "../../lib/bootstrap-2.1.0/less";
 
 /* !! unfortunately there is no way to include variables in import statements right now... */
 
@@ -7,108 +7,109 @@
 
 /* make room for the navbar */
 body {
-    padding-top:68px;
+    padding-top: 68px;
 }
+
+/* more form sizing */
+.input-xlarge2     { width: 380px; }
 
 /* lots of navbar customizations */
 .stacks .navbar {
     .btn {
-        margin-top:8px;
+        margin-top: 8px;
     }
     .brand {
-        background-image:url('/static/www/img/logo.png');
-        background-repeat:no-repeat;
-        background-position:center;
-        width:93px;
-        height:26px;
-        margin-bottom:1px;
-    }
-    .brand:hover {
-        background-image:url('/static/www/img/logo-hover.png');
+        background-image: url('/static/www/img/logo.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 93px;
+        height: 26px;
+        margin-bottom: 1px;
+        &:hover { background-image: url('/static/www/img/logo-hover.png'); }
     }
     .nav > li > a {
-        margin-top:6px;
+        margin-top: 6px;
     }
     .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
         .box-shadow(~"none");
-        color:#111;
+        color: #111;
     }
     .nav a:hover, .nav a:focus {
-        color:#111;
+        color: #111;
     }
     .nav > li > a:focus, .nav > li > a:hover {
-        background-color:#f1f1f1;
+        background-color: #f1f1f1;
     }
     .nav > li.active > a:focus, .nav > li.active > a:hover {
-        background-color:#e5e5e5;
+        background-color: #e5e5e5;
     }
     .navbar-inner {
-        background-image:url('/static/www/img/bg/subtle_dots.png');
-        background-repeat:repeat;
+        background-image: url('/static/www/img/bg/subtle_dots.png');
+        background-repeat: repeat;
     }
     .divider-vertical {
-        height:22px;
-        margin-top:12px;
-        border-left-color:#ddd;
+        height: 22px;
+        margin-top: 12px;
+        border-left-color: #ddd;
     }
 
     /* remove the white-on-active behavior */
     .nav > .active > a > [class^="icon-"],
     .nav > .active > a > [class*=" icon-"] {
-        background-image:url("@{bootstrapPath}/@{iconSpritePath}");
+        background-image: url("@{bootstrapPath}/@{iconSpritePath}");
     }
 }
 
 /* file uploader styles */
 .preview img {
-    max-height:50px;
+    max-height: 50px;
 }
 
 /* remove the dashed border from edit-in-line elements */
 .editable-click, a.editable-click, a.editable-click:hover {
-    border-bottom:none;
+    border-bottom: none;
 }
 
 /* remove bolded text on unsaved fields */
 .editable-unsaved {
-    font-weight:normal;
+    font-weight: normal;
 }
 
 /* the create modal */
 .create-modal {
-    width:520px;
-    margin-left:-260px;
+    width: 520px;
+    margin-left: -260px;
 
     form {
-        margin-bottom:0;
-        .control-label { width:90px; }
-        .controls { margin-left:110px; }
-        input.page-title { width:280px; }
+        margin-bottom: 0;
+        .control-label { width: 90px; }
+        .controls { margin-left: 110px; }
+        input.page-title { width: 280px; }
     }
 }
 
 /* generic page render styles */
 .page {
     h1 {
-        border-bottom:1px dotted #ccc;
-        padding-bottom:10px;
-        margin-bottom:15px;
-        font-weight:normal;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        font-weight: normal;
     }
 
     .image-placeholder {
-        border:1px dashed #ccc;
-        background:#f3f3f3 url('/static/www/img/bg/subtlenet2.png') repeat;
-        width:870px;
-        height:500px;
-        text-align:center;
-        vertical-align:middle;
-        display:table-cell;
-        color:#aaa;
+        border: 1px dashed #ccc;
+        background: #f3f3f3 url('/static/www/img/bg/subtlenet2.png') repeat;
+        width: 870px;
+        height: 500px;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+        color: #aaa;
+        &:hover { border: 1px dashed #333; }
     }
 
     .editable-container {
-        input.page-title { width:360px; }
-        textarea.rhcol { height:200px; }
+        textarea.rhcol { height: 200px; }
     }
 }
