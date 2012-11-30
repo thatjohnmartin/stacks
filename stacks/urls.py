@@ -29,15 +29,16 @@ urlpatterns += patterns('stacks.www.views',
     # authentication
     url(r'^join/$', 'join.join', name='join'),
 
-    # uploader + creation
-    url(r'^create/$', 'create.create', name='create'),
-
     # topic home
     url(r'^(?P<topic>astro|auto|ui)/$', 'listing.topic_home', name='topic_home'),
 
     # user home
     url(r'^(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
-    # pages
+    # browse pages
     url(r'^(?P<topic>astro|auto|ui)/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
+
+    # create and edit page
+    url(r'^create/$', 'page.create', name='page.create'),
+    url(r'^ajax/edit-page/$', 'page.edit', name='page.edit'),
 )

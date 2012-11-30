@@ -9,7 +9,7 @@
 {% block body_class %}page{% endblock %}
 
 {% block content %}
-    <h1 id="page-title" data-type="text" data-pk="{{ page.id }}" data-url="." data-original-title="Enter title" data-placement="bottom">{{ page.title}}</h1>
+    <h1 id="title">{{ page.title}}</h1>
     {{ content }}
 {#    <div class="row" style="margin-top:20px;">#}
 {#        <div class="span9">#}
@@ -24,7 +24,15 @@
 
 {% block page_scripts %}
     <script type="text/javascript">
-        $('#page-title').editable({inputclass:'page-title', send:'never'});
+        $('#title').editable({
+            inputclass: 'input-xlarge',
+            placement: 'bottom',
+            pk: {{ page.id }},
+            url: '{{ url_for("page.edit") }}',
+            type: 'text',
+            originaltitle: 'Enter title',
+            params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
+        });
         $('#rhcol').editable({inputclass:'rhcol', send:'never'});
     </script>
 {% endblock %}
