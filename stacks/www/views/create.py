@@ -13,7 +13,7 @@ def create(request):
         form = PageForm(request.POST)
         if form.is_valid():
             page = form.save()
-            return HttpResponseRedirect(reverse('page', args=[page.user, page.slug]))
+            return HttpResponseRedirect(reverse('page', args=[page.topic, page.slug]))
     else:
         form = PageForm()
 

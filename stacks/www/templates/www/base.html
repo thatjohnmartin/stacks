@@ -83,7 +83,17 @@
                 <div class="control-group">
                     <label class="control-label" for="title">Page title:</label>
                     <div class="controls">
-                        <input type="text" id="title" class="page-title" placeholder="My New Page">
+                        <input type="text" id="title" name="title" class="input-xlarge" placeholder="My New Page">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="slug">URL:</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on">/astro/</span>
+                            <input class="input-xlarge" id="slug" name="slug" type="text" placeholder="my-new-page">
+                        </div>
                     </div>
                 </div>
 
@@ -91,8 +101,8 @@
                     <label class="control-label">Topic:</label>
                     <div class="controls">
                         {% for topic in constants.TOPICS %}
-                            <label class="radio">
-                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}" {% if topic == 'astro' %}checked{% endif %}>
+                            <label class="radio {% if topic != 'astro' %}muted{% endif %}">
+                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}" {% if topic == 'astro' %}checked{% else %}disabled{% endif %}>
                                 {{ constants.TOPIC_LABELS[topic] }}
                             </label>
                         {% endfor %}
@@ -114,7 +124,7 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-                <a href="#" type="submit" class="btn btn-primary">Create page</a>
+                <button type="submit" class="btn btn-primary">Create page</button>
             </div>
         </form>
     </div>
@@ -125,6 +135,8 @@
     {% else %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     {% endif %}
+
+    <script src="/static/lib/jquery.slugify.js"></script>
 
     {% block extra_scripts_before_bootstrap %}{% endblock %}
 
@@ -143,14 +155,15 @@
 
     {% block extra_scripts_after_bootstrap %}{% endblock %}
 
-    {% block page_scripts %}
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#create-modal').on('show', function () {
-                    $('#title').focus();
-                });
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#create-modal').on('shown', function () {
+                $('#title').focus();
             });
-        </script>
-    {% endblock %}
+            $('#slug').slugify('#title');
+        });
+    </script>
+
+    {% block page_scripts %}{% endblock %}
 </body>
 </html>
