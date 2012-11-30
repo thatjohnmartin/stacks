@@ -92,7 +92,7 @@
                     <div class="controls">
                         {% for topic in constants.TOPICS %}
                             <label class="radio">
-                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}">
+                                <input type="radio" name="topic" id="id_topic_{{ topic }}" value="{{ topic }}" {% if topic == 'astro' %}checked{% endif %}>
                                 {{ constants.TOPIC_LABELS[topic] }}
                             </label>
                         {% endfor %}
@@ -104,7 +104,7 @@
                     <div class="controls">
                         {% for layout in models.Layout.objects.all() %}
                             <label class="radio">
-                                <input type="radio" name="layout" id="id_layout_{{ layout.id }}" value="{{ layout.id }}">
+                                <input type="radio" name="layout" id="id_layout_{{ layout.id }}" value="{{ layout.id }}" {% if layout.name == 'Singularity' %}checked{% endif %}>
                                 {{ layout.name }}
                             </label>
                         {% endfor %}
@@ -143,6 +143,14 @@
 
     {% block extra_scripts_after_bootstrap %}{% endblock %}
 
-    {% block page_scripts %}{% endblock %}
+    {% block page_scripts %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#create-modal').on('show', function () {
+                    $('#title').focus();
+                });
+            });
+        </script>
+    {% endblock %}
 </body>
 </html>
