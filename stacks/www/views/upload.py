@@ -52,34 +52,40 @@ class JSONResponse(HttpResponse):
 
 @csrf_exempt
 def upload(request):
-    allowedExtension = [".jpg",".png",".ico",".*"]
-    sizeLimit = 10240000
-    uploader = FileUploader(allowedExtension, sizeLimit)
-    return HttpResponse(uploader.handleUpload(request, settings.MEDIA_ROOT + "images/"))
+    allowed_extensions = [".jpg", ".png", ".ico", ".*"]
+    size_limit = 1024 * 1000 * 10 # 10mb
+    uploader = FileUploader(allowed_extensions, size_limit)
+    result = uploader.handle_upload(request, settings.MEDIA_ROOT + "images/")
+    if result == 'bad':
+        return 'bad'
+    else:
+        # create media item
+        pass
+    return HttpResponse()
 
 class FileUploader(object):
 
-    def __init__(self, allowedExtensions=None, sizeLimit=None):
-        self.allowedExtensions = allowedExtensions or []
-        self.sizeLimit = sizeLimit or settings.FILE_UPLOAD_MAX_MEMORY_SIZE
+    def __init__(self, allowed_extensions=None, size_limit=None):
+        self.allowed_extensions = allowed_extensions or []
+        self.size_limit = size_limit or settings.FILE_UPLOAD_MAX_MEMORY_SIZE
 
-    def handleUpload(self, request, uploadDirectory):
-        #read file info from stream
+    def handle_upload(self, request, upload_directory):
+        # read file info from stream
         uploaded = request.read
-        #get file size
-        fileSize = int(uploaded.im_self.META["CONTENT_LENGTH"])
-        #get file name
-        fileName = uploaded.im_self.META["HTTP_X_FILE_NAME"]
-        #check first for allowed file extensions
-        #read the file content, if it is not read when the request is multi part then the client get an error
-        fileContent = uploaded(fileSize)
-        if self._getExtensionFromFileName(fileName) in self.allowedExtensions or ".*" in self.allowedExtensions:
-            #check file size
-            if fileSize <= self.sizeLimit:
-                #upload file
-                #write file
-                file = open(os.path.join(uploadDirectory, fileName), "wb+")
-                file.write(fileContent)
+        # get file size
+        file_size = int(uploaded.im_self.META["CONTENT_LENGTH"])
+        # get file name
+        file_name = uploaded.im_self.META["HTTP_X_FILE_NAME"]
+        # check first for allowed file extensions
+        # read the file content, if it is not read when the request is multi part then the client get an error
+        file_content = uploaded(file_size)
+        if self._get_extension(file_name) in self.allowed_extensions or ".*" in self.allowed_extensions:
+            # check file size
+            if file_size <= self.size_limit:
+                # upload file
+                # write file
+                file = open(os.path.join(upload_directory, file_name), "wb+")
+                file.write(file_content)
                 file.close()
                 return simplejson.dumps({"success": True})
             else:
@@ -87,6 +93,6 @@ class FileUploader(object):
         else:
             return simplejson.dumps({"error": "File has an invalid extension."})
 
-    def _getExtensionFromFileName(self, fileName):
-        filename, extension = os.path.splitext(fileName)
+    def _get_extension(self, file_name):
+        name, extension = os.path.splitext(file_name)
         return extension.lower()
