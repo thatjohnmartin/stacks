@@ -26,6 +26,9 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^upload/new/$', MediaItemCreateView.as_view(), name='upload_new'),
     url(r'^upload/delete/(?P<pk>\d+)$', MediaItemDeleteView.as_view(), name='upload_delete'),
 
+    # new uploader
+    url(r'^upload/$', 'upload.upload', name='upload'),
+
     # authentication
     url(r'^join/$', 'join.join', name='join'),
 
