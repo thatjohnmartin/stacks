@@ -4,6 +4,7 @@
 
 @import "../../lib/bootstrap-2.1.0/less/variables";
 @import "../../lib/bootstrap-2.1.0/less/mixins";
+@import "../../lib/bootstrap-2.1.0/less/buttons";
 
 /* make room for the navbar */
 body {
@@ -106,7 +107,27 @@ body {
         vertical-align: middle;
         display: table-cell;
         color: #aaa;
-        &:hover { border: 1px dashed #333; }
+
+        .qq-upload-button {
+            .btn;
+            margin-left: auto;
+            margin-right: auto;
+            width: auto;
+        }
+
+        &.active {
+            background: white;
+            border-width: 3px;
+
+            &.qq-upload-drop-area-active {
+                background: #f6f6f6;
+                border-color: #999;
+            }
+
+            .qq-upload-button {
+                display:none;
+            }
+        }
     }
 
     .editable-container {

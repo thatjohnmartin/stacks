@@ -15,6 +15,7 @@ var qq = function(element) {
 
     return {
         hide: function() {
+            console.log('hiding');
             element.style.display = 'none';
             return this;
         },
@@ -1125,7 +1126,6 @@ qq.extend(qq.FineUploader.prototype, {
     },
     _setupDragDrop: function(){
         var self, dropArea;
-
         self = this;
 
         if (!this._options.dragAndDrop.disableDefaultDropzone) {
@@ -1139,11 +1139,13 @@ qq.extend(qq.FineUploader.prototype, {
             this._setupDropzone(dropzones[i]);
         }
 
+        console.log('before setup');
         // IE <= 9 does not support the File API used for drag+drop uploads
         if (!this._options.dragAndDrop.disableDefaultDropzone && (!qq.ie() || qq.ie10())) {
+            console.log('about to attach');
             this._attach(document, 'dragenter', function(e){
+                console.log('attached, now inside');
                 if (qq(dropArea).hasClass(self._classes.dropDisabled)) return;
-
                 dropArea.style.display = 'block';
                 for (i=0; i < dropzones.length; i++){ dropzones[i].style.display = 'block'; }
 

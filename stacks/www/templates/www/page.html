@@ -26,6 +26,33 @@
 
 {% block page_scripts %}
     <script type="text/javascript">
+        // The plugin code
+        $.fn.draghover = function(options) {
+            return this.each(function() {
+
+                var collection = $(),
+                        self = $(this);
+
+                self.on('dragenter', function(e) {
+                    if (collection.size() === 0) {
+                        self.trigger('draghoverstart');
+                    }
+                    collection = collection.add(e.target);
+                });
+
+                self.on('dragleave', function(e) {
+                    // timeout is needed because Firefox 3.6 fires the dragleave event on
+                    // the previous element before firing dragenter on the next one
+                    setTimeout( function() {
+                        collection = collection.not(e.target);
+                        if (collection.size() === 0) {
+                            self.trigger('draghoverend');
+                        }
+                    }, 1);
+                });
+            });
+        };
+
         $(document).ready(function () {
             $('#title').editable({
                 inputclass: 'input-xlarge2',
@@ -43,9 +70,51 @@
                 request: {
                     endpoint: '/upload/'
                 },
+                text: {
+                    uploadButton: '<i class="icon-upload"></i> Upload'
+                },
+                dragAndDrop: {
+                    extraDropzones: [$('#image-1')],
+                    hideDropzones: false,
+                    disableDefaultDropzone: true
+                },
                 debug: true
+            }).on('complete', function(event, id, filename, responseJSON){
+                console.log('Got the thing!');
             });
-        });
 
+{#            this._attach(document, 'dragenter', function(e)#}
+
+            $(document.body).bind('dragenter', function(e) {
+                console.log('GOT IT!');
+                $('#image-1').addClass('active');
+                console.log(e);
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            $(document.body).bind('dragleave', function(e) {
+                console.log('LEAVE IT!');
+                $('#image-1').removeClass('active');
+                console.log(e);
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+{#            // Now that we have a plugin, we can listen for the new events#}
+{#            $(window).draghover().on({#}
+{#                'draghoverstart': function(e) {#}
+{#                    console.log('A file has been dragged into the window.');#}
+{#                    e.stopPropagation();#}
+{#                    e.preventDefault();#}
+{#                },#}
+{#                'draghoverend': function(e) {#}
+{#                    console.log('A file has been dragged out of window.');#}
+{#                    e.stopPropagation();#}
+{#                    e.preventDefault();#}
+{#                }#}
+{#            });#}
+
+        });
     </script>
 {% endblock %}
