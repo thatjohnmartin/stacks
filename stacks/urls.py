@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from stacks.www.views.upload import MediaItemCreateView, MediaItemDeleteView
 
 admin.autodiscover()
 
@@ -22,12 +21,8 @@ urlpatterns += patterns('stacks.www.views',
     # homepage
     url(r'^$', 'listing.home', name='home'),
 
-    # external uploader
-    url(r'^upload/new/$', MediaItemCreateView.as_view(), name='upload_new'),
-    url(r'^upload/delete/(?P<pk>\d+)$', MediaItemDeleteView.as_view(), name='upload_delete'),
-
     # new uploader
-    url(r'^upload/$', 'upload.upload', name='upload'),
+    url(r'^upload/$', 'upload.upload_image', name='upload_image'),
 
     # authentication
     url(r'^join/$', 'join.join', name='join'),
