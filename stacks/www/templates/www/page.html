@@ -27,7 +27,7 @@
 {% block page_scripts %}
     <script type="text/javascript">
 
-        var pendingInactiveDrops = false;
+        var dragTimeout = null;
 
         $(document).ready(function () {
             $('#title').editable({
@@ -75,6 +75,22 @@
                     || e.originalEvent.pageY >= $(window).scrollTop() + $(window).height()) {
                     $('#image-1').removeClass('active');
                 }
+                console.log('dragleave dragexit');
+            });
+
+            $(document.body).on('drop', function(e) {
+                console.log('drop');
+                $('#image-1').removeClass('active');
+            });
+
+            $(document.body).on('dragover', function(e) {
+                clearTimeout(dragTimeout);
+                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)
+            });
+
+            $('#image-1').on('dragover', function(e) {
+                clearTimeout(dragTimeout);
+                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)
             });
 
         });

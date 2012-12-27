@@ -3,8 +3,8 @@
 {% block title %}Stacks{% endblock %}
 
 {% block content %}
-    <p>Welcome to Stacks.</p>
     {% if latest_pages %}
+        <p>Latest pages:</p>
         <ul>
             {% for page in latest_pages %}
                 <li><a href="{{ url_for('page', kwargs={'topic': page.topic, 'slug': page.slug}) }}">{{ page.title }}</a></li>
