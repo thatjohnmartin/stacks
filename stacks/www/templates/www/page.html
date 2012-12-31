@@ -12,11 +12,6 @@
 {% block content %}
     <h1 id="title">{{ page.title}}</h1>
     {{ content }}
-{#    <div class="row" style="margin-top:20px;">#}
-{#        <div class="span9">#}
-{#            {% include "www/inc/comments.html" %}#}
-{#        </div>#}
-{#    </div>#}
 {% endblock %}
 
 {% block extra_scripts_after_bootstrap %}
@@ -55,13 +50,15 @@
                     disableDefaultDropzone: true
                 },
                 debug: true
-            }).on('complete', function(event, id, filename, responseJSON){
-                console.log('Got the thing!');
+            }).on('complete', function(event, id, filename, responseJSON) {
+                console.log(responseJSON);
+                $('#image-1').empty().addClass('has-image').append('<img src="' + responseJSON.path + '" />');
             });
+
+            $('#image-1').append('<span class="drag-message">Drag images here</span>');
 
             $(document.body).on('dragenter', function(e) {
                 $('#image-1').addClass('active');
-                console.log('enter');
             });
 
             $('#image-1').on('dragenter', function(e) {
@@ -75,7 +72,6 @@
                     || e.originalEvent.pageY >= $(window).scrollTop() + $(window).height()) {
                     $('#image-1').removeClass('active');
                 }
-                console.log('dragleave dragexit');
             });
 
             $(document.body).on('drop', function(e) {

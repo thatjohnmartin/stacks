@@ -1,4 +1,5 @@
 import os
+import datetime
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.conf import settings
@@ -16,13 +17,19 @@ def _get_extension(name):
 def upload_image(request):
     uploaded = request.read
     name = uploaded.im_self.META["HTTP_X_FILE_NAME"]
-    path_from_media_root = os.path.join("images", name)
-    full_path = os.path.join(settings.MEDIA_ROOT , path_from_media_root)
+
+    # create a directory path with today's date and make sure it exists
+    directory_path_from_media_root = os.path.join("images", datetime.datetime.now().strftime('%Y/%m/%d'))
+    full_directory_path = os.path.join(settings.MEDIA_ROOT, directory_path_from_media_root)
+    if not os.path.exists(full_directory_path):
+        os.makedirs(full_directory_path)
+
+    file_path_from_media_root = os.path.join(directory_path_from_media_root, name)
     size = int(uploaded.im_self.META["CONTENT_LENGTH"])
     file_content = uploaded(size)
     if _get_extension(name) in ALLOWED_EXTENSIONS or ".*" in ALLOWED_EXTENSIONS:
         if size <= SIZE_LIMIT:
-            file = open(full_path, "wb+")
+            file = open(os.path.join(settings.MEDIA_ROOT , file_path_from_media_root), "wb+")
             file.write(file_content)
             file.close()
         else:
@@ -33,6 +40,6 @@ def upload_image(request):
     item = MediaItem.objects.create(
         user = request.user,
         title = name,
-        image_path = path_from_media_root,
+        image_path = file_path_from_media_root,
     )
-    return HttpResponse(simplejson.dumps({'success': True, 'path': full_path}))
+    return HttpResponse(simplejson.dumps({'success': True, 'path': settings.MEDIA_URL + file_path_from_media_root}))

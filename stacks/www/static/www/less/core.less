@@ -115,18 +115,38 @@ body {
             width: auto;
         }
 
+        .drag-message {
+            display: none;
+            font-size: 32px;
+            color: #ccc;
+        }
+
         &.active {
             background: white;
             border-width: 3px;
 
-            &.qq-upload-drop-area-active {
-                background: #f6f6f6;
-                border-color: #999;
+            .drag-message {
+                display: inline-block;
             }
 
             .qq-upload-button {
                 display:none;
             }
+
+            &.qq-upload-drop-area-active {
+                background: #f6f6f6;
+                border-color: #999;
+
+                .drag-message {
+                    color: #999;
+                }
+            }
+        }
+
+        &.has-image {
+            border: none;
+            background: none;
+            height: auto;
         }
     }
 
