@@ -19,6 +19,12 @@ class Page(PropertiesMixin, models.Model):
         unique_together = (("slug", "topic"),)
 
 class PageMediaItem(models.Model):
-    page = models.ForeignKey(Page, related_name="items")
+    page = models.ForeignKey("Page", related_name="items")
     placement = models.CharField(max_length=64, db_index=True)
     item = models.ForeignKey("MediaItem", related_name="pages")
+
+    def __unicode__(self):
+        return '%s for %s' % (self.placement, self.page)
+
+    class Meta:
+        app_label = 'www'

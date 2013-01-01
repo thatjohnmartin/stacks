@@ -1,6 +1,29 @@
+{#<div class="row">#}
+{#    <div class="span9">#}
+{#        <div id="main-image" class="image-placeholder"><span class="drag-message">Drag images here</span></div>#}
+{#    </div>#}
+{#    <div id="rhcol" class="span3" id="title" data-type="textarea" data-pk="12" data-url="." data-original-title="Enter column text" data-placement="left">This is the {{ person }} column and the quick brown fox jumps over the lazy dog. This is the span8 column and the quick brown fox jumps over the lazy dog. This is the span8 column and the quick brown fox jumps over the lazy dog.</div>#}
+{#</div>#}
+
+{#<div class="row">#}
+{#    <div class="span9">#}
+{#        <div id="image" class="image-placeholder"></div>#}
+{#        <div id="under-picture-text" class="text-placeholder"></div>#}
+{#    </div>#}
+{#    <div class="span3">#}
+{#        <div id="image-stats" class="stats-placeholder" data-type="textarea" data-pk="12" data-url="." data-original-title="Enter column text" data-placement="left">#}
+{#            Some text here.#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
 <div class="row">
     <div class="span9">
-        <div id="image-1" class="image-placeholder"><span class="drag-message">Drag images here</span></div>
+        <div id="image" class="image-placeholder">{{ image }}</div>
+        <div id="under_image_text" class="text-placeholder">{{ under_image_text }}</div>
     </div>
-    <div id="rhcol" class="span3" id="title" data-type="textarea" data-pk="12" data-url="." data-original-title="Enter column text" data-placement="left">This is the {{ person }} column and the quick brown fox jumps over the lazy dog. This is the span8 column and the quick brown fox jumps over the lazy dog. This is the span8 column and the quick brown fox jumps over the lazy dog.</div>
+    <div class="span3">
+        <div id="page_stats" class="stats-placeholder">{{ page_stats }}</div>
+    </div>
 </div>
+

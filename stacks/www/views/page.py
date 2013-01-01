@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
+from django.conf import settings
 from jinja2 import Environment, PackageLoader
 from stacks.www.models import Page
 
@@ -9,7 +10,23 @@ def page(request, topic, slug):
     page = get_object_or_404(Page, topic=topic, slug=slug)
     env = Environment(loader=PackageLoader('stacks.www', 'templates/layouts'))
     template = env.get_template(page.layout.template_file)
-    content = template.render({'foo': 'bar', 'person': 'Isaac Newton'})
+
+    layout_context = {}
+
+    # special items
+    layout_context['title'] = page.title
+    layout_context['page_stats'] = '... stats ...'
+
+    # grab all of the media items and render
+    for page_media_item in page.items.all():
+        layout_context[page_media_item.placement] = '<img src="%s%s" />' % (settings.MEDIA_URL, page_media_item.item.image_path)
+
+    # grab all of the text items and render
+    for placement, text in page.get_prop('text_items').iteritems():
+        layout_context[placement] = text
+
+    # render the layout then render the page
+    content = template.render(layout_context)
     return render(request, 'www/page.html', {'page': page, 'content': content})
 
 class PageForm(ModelForm):
