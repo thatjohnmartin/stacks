@@ -10,7 +10,7 @@
 {% block body_class %}page{% endblock %}
 
 {% block content %}
-    <h1 id="title">{{ page.title}}</h1>
+    <h1 id="title" class="text-placeholder">{{ page.title}}</h1>
     {{ content }}
 {% endblock %}
 
@@ -25,69 +25,71 @@
         var dragTimeout = null;
 
         $(document).ready(function () {
-            $('#title').editable({
-                inputclass: 'input-xlarge2',
-                placement: 'bottom',
-                pk: {{ page.id }},
-                url: '{{ url_for("page.edit") }}',
-                type: 'text',
-                title: 'Enter title',
-                params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
+
+            $('.text-placeholder').each(function() {
+                var placement = $(this).attr('id');
+                var displayName = $(this).attr('data-display-name') || placement;
+                $(this).editable({
+                    inputclass: 'input-xlarge2',
+                    placement: 'bottom',
+                    pk: {{ page.id }},
+                    url: '{{ url_for("page.edit") }}',
+                    type: 'text',
+                    title: 'Enter ' + displayName,
+                    params: {csrfmiddlewaretoken': '{{ csrf_token }}'}
+                });
             });
 
-            $('#rhcol').editable({inputclass:'rhcol', send:'never'});
+{#            $('#image-1').fineUploader({#}
+{#                request: {#}
+{#                    endpoint: '/upload/'#}
+{#                },#}
+{#                text: {#}
+{#                    uploadButton: '<i class="icon-upload"></i> Upload'#}
+{#                },#}
+{#                dragAndDrop: {#}
+{#                    extraDropzones: [$('#image-1')],#}
+{#                    hideDropzones: false,#}
+{#                    disableDefaultDropzone: true#}
+{#                },#}
+{#                debug: true#}
+{#            }).on('complete', function(event, id, filename, responseJSON) {#}
+{#                console.log(responseJSON);#}
+{#                $('#image-1').empty().addClass('has-image').append('<img src="' + responseJSON.path + '" />');#}
+{#            });#}
 
-            $('#image-1').fineUploader({
-                request: {
-                    endpoint: '/upload/'
-                },
-                text: {
-                    uploadButton: '<i class="icon-upload"></i> Upload'
-                },
-                dragAndDrop: {
-                    extraDropzones: [$('#image-1')],
-                    hideDropzones: false,
-                    disableDefaultDropzone: true
-                },
-                debug: true
-            }).on('complete', function(event, id, filename, responseJSON) {
-                console.log(responseJSON);
-                $('#image-1').empty().addClass('has-image').append('<img src="' + responseJSON.path + '" />');
-            });
+{#            $('#image-1').append('<span class="drag-message">Drag images here</span>');#}
 
-            $('#image-1').append('<span class="drag-message">Drag images here</span>');
-
-            $(document.body).on('dragenter', function(e) {
-                $('#image-1').addClass('active');
-            });
-
-            $('#image-1').on('dragenter', function(e) {
-                $('#image-1').addClass('active');
-            });
-
-            $(document.body).on('dragleave dragexit', function(e) {
-                if (e.originalEvent.pageX <= $(window).scrollLeft()
-                    || e.originalEvent.pageY <= $(window).scrollTop()
-                    || e.originalEvent.pageX >= $(window).scrollLeft() + $(window).width()
-                    || e.originalEvent.pageY >= $(window).scrollTop() + $(window).height()) {
-                    $('#image-1').removeClass('active');
-                }
-            });
-
-            $(document.body).on('drop', function(e) {
-                console.log('drop');
-                $('#image-1').removeClass('active');
-            });
-
-            $(document.body).on('dragover', function(e) {
-                clearTimeout(dragTimeout);
-                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)
-            });
-
-            $('#image-1').on('dragover', function(e) {
-                clearTimeout(dragTimeout);
-                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)
-            });
+{#            $(document.body).on('dragenter', function(e) {#}
+{#                $('#image-1').addClass('active');#}
+{#            });#}
+{##}
+{#            $('#image-1').on('dragenter', function(e) {#}
+{#                $('#image-1').addClass('active');#}
+{#            });#}
+{##}
+{#            $(document.body).on('dragleave dragexit', function(e) {#}
+{#                if (e.originalEvent.pageX <= $(window).scrollLeft()#}
+{#                    || e.originalEvent.pageY <= $(window).scrollTop()#}
+{#                    || e.originalEvent.pageX >= $(window).scrollLeft() + $(window).width()#}
+{#                    || e.originalEvent.pageY >= $(window).scrollTop() + $(window).height()) {#}
+{#                    $('#image-1').removeClass('active');#}
+{#                }#}
+{#            });#}
+{##}
+{#            $(document.body).on('drop', function(e) {#}
+{#                $('#image-1').removeClass('active');#}
+{#            });#}
+{##}
+{#            $(document.body).on('dragover', function(e) {#}
+{#                clearTimeout(dragTimeout);#}
+{#                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)#}
+{#            });#}
+{##}
+{#            $('#image-1').on('dragover', function(e) {#}
+{#                clearTimeout(dragTimeout);#}
+{#                dragTimeout = setTimeout(function() { $('#image-1').removeClass('active'); }, 100)#}
+{#            });#}
 
         });
     </script>

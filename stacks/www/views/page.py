@@ -1,3 +1,4 @@
+import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -23,7 +24,7 @@ def page(request, topic, slug):
 
     # grab all of the text items and render
     for placement, text in page.get_prop('text_items').iteritems():
-        layout_context[placement] = text
+        layout_context[placement] = markdown.markdown(text)
 
     # render the layout then render the page
     content = template.render(layout_context)
@@ -47,13 +48,21 @@ def create(request):
 def edit(request):
     if request.method == 'POST':
         try:
-            name = request.POST.get('name')
+            name = request.POST.get('name') # this is the ID of the element, which is also the placement name
             value = request.POST.get('value')
             id = request.POST.get('pk')
             page = Page.objects.get(id=id)
-            setattr(page, name, value)
+
+            # special case for real schema items
+            if name in ('title',):
+                setattr(page, name, value)
+            # otherwise set properties
+            else:
+                page.set_path_prop('text_items.' + name, value)
+
             page.save()
             return HttpResponse()
+
         except:
             return HttpResponse('There was a problem with saving the attribute.')
 
