@@ -36,7 +36,7 @@
                     url: '{{ url_for("page.edit") }}',
                     type: 'text',
                     title: 'Enter ' + displayName,
-                    params: {csrfmiddlewaretoken': '{{ csrf_token }}'}
+                    params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
                 });
             });
 
