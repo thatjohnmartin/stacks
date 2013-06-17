@@ -7,7 +7,7 @@
         <p>Latest pages:</p>
         <ul>
             {% for page in latest_pages %}
-                <li><a href="{{ url_for('page', kwargs={'topic': page.topic, 'slug': page.slug}) }}">{{ page.title }}</a></li>
+                <li><a href="{{ url_for('page', kwargs={'slug': page.slug}) }}">{{ page.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

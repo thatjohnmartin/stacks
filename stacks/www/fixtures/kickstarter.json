@@ -12,7 +12,7 @@
             "last_login": "2012-11-26T02:41:37",
             "groups": [],
             "user_permissions": [],
-            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "password": "pbkdf2_sha256$10000$iG1noFOlRBfJ$jm2aQesdYz8/wBS8LdocBEdI19aovProE+eOSM/7Rfo=",
             "email": "stacks@lonepixel.com",
             "date_joined": "2012-11-26T02:41:37"
         }
@@ -30,7 +30,7 @@
             "last_login": "2012-11-26T02:41:37",
             "groups": [],
             "user_permissions": [],
-            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "password": "pbkdf2_sha256$10000$iG1noFOlRBfJ$jm2aQesdYz8/wBS8LdocBEdI19aovProE+eOSM/7Rfo=",
             "email": "bruce@foo.com",
             "date_joined": "2012-11-26T02:41:37"
         }
@@ -48,7 +48,7 @@
             "last_login": "2012-11-26T02:41:37",
             "groups": [],
             "user_permissions": [],
-            "password": "pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=",
+            "password": "pbkdf2_sha256$10000$iG1noFOlRBfJ$jm2aQesdYz8/wBS8LdocBEdI19aovProE+eOSM/7Rfo=",
             "email": "johnw@lyric.com",
             "date_joined": "2012-11-26T02:41:37"
         }
@@ -102,7 +102,6 @@
         "model": "www.page",
         "fields": {
             "user": 10,
-            "topic": "astro",
             "title": "NGC 7293, The Helix Nebula in Aquarius",
             "slug": "ngc-7293-the-helix-nebula-in-aquarius",
             "layout": 1,

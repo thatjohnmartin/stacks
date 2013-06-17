@@ -1,6 +1,13 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
+from tastypie.api import Api
+from stacks.www.api import PageResource, UserResource
+
+# configure the Rest API with tastypie
+api = Api(api_name='1.0')
+api.register(PageResource())
+api.register(UserResource())
 
 admin.autodiscover()
 
@@ -15,6 +22,9 @@ urlpatterns = patterns('',
 
     # served uploaded media
     (r'^media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+
+    # api methods
+    (r'^api/', include(api.urls)),
 )
 
 urlpatterns += patterns('stacks.www.views',
@@ -27,14 +37,11 @@ urlpatterns += patterns('stacks.www.views',
     # authentication
     url(r'^join/$', 'join.join', name='join'),
 
-    # topic home
-    url(r'^(?P<topic>astro|auto|ui)/$', 'listing.topic_home', name='topic_home'),
-
     # user home
     url(r'^(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
     # browse pages
-    url(r'^(?P<topic>astro|auto|ui)/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
+    url(r'^(?P<slug>[\w-]+)/$', 'page.page', name='page'),
 
     # create and edit page
     url(r'^create/$', 'page.create', name='page.create'),

@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from stacks.www.models.utils import PropertiesMixin
 
 class Page(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="pages")
-    topic = models.CharField(max_length=32, db_index=True)
+    # site = models.ForeignKey(Site, related_name="pages")
     title = models.CharField(max_length=255, db_index=True)
-    slug = models.CharField(max_length=255, db_index=True)
+    slug = models.CharField(max_length=255, unique=True, db_index=True)
     layout = models.ForeignKey("Layout", related_name="pages")
     added = models.DateTimeField(auto_now_add=True, db_index=True) # the date the item was added to the db
     modified = models.DateTimeField(auto_now=True, db_index=True)
@@ -16,7 +17,7 @@ class Page(PropertiesMixin, models.Model):
 
     class Meta:
         app_label = 'www'
-        unique_together = (("slug", "topic"),)
+        # unique_together = (("slug", "site"),)
 
 class PageMediaItem(models.Model):
     page = models.ForeignKey("Page", related_name="items")

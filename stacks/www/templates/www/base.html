@@ -96,17 +96,17 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label">Topic:</label>
-                        <div class="controls">
-                            {% for topic in constants.TOPICS %}
-                                <label class="radio {% if topic != 'astro' %}muted{% endif %}">
-                                    <input type="radio" name="topic" value="{{ topic }}" {% if topic == 'astro' %}checked{% else %}disabled{% endif %}>
-                                    {{ constants.TOPIC_LABELS[topic] }}
-                                </label>
-                            {% endfor %}
-                        </div>
-                    </div>
+{#                    <div class="control-group">#}
+{#                        <label class="control-label">Topic:</label>#}
+{#                        <div class="controls">#}
+{#                            {% for topic in constants.TOPICS %}#}
+{#                                <label class="radio {% if topic != 'astro' %}muted{% endif %}">#}
+{#                                    <input type="radio" name="topic" value="{{ topic }}" {% if topic == 'astro' %}checked{% else %}disabled{% endif %}>#}
+{#                                    {{ constants.TOPIC_LABELS[topic] }}#}
+{#                                </label>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
 
                     <div class="control-group">
                         <label class="control-label">Layout:</label>
