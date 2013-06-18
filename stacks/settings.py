@@ -1,13 +1,9 @@
 import os
 
 STACKS_ROOT = os.environ['STACKS_ROOT']
+IS_LOCAL = 'STACKS_LOCAL' in os.environ
 
-SITES = [
-    'www.astrostacks.com',
-    'www.climbingstacks.com',
-]
-
-DEBUG = True
+DEBUG = int(os.environ.get('STACKS_DEBUG', IS_LOCAL))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -135,12 +131,9 @@ INSTALLED_APPS = (
 )
 
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')
+ENABLE_SQL_LOGGING = os.environ.get('STACKS_ENABLE_SQL_LOGGING', False)
+ENABLE_CACHE_LOGGING = os.environ.get('STACKS_ENABLE_CACHE_LOGGING', False)
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -154,7 +147,12 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'null': {
+            'level': 'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
+
     },
     'loggers': {
         'django.request': {
@@ -164,3 +162,10 @@ LOGGING = {
         },
     }
 }
+
+if not ENABLE_SQL_LOGGING:
+    LOGGING['loggers']['django.db.backends'] = {
+        'handlers': ['null'],  # Quiet by default!
+        'propagate': False,
+        'level':'DEBUG',
+    }

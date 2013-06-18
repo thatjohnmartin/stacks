@@ -41,9 +41,10 @@
                     <a class="brand" href="/"></a>
                     <div class="nav-collapse">
                         <ul class="nav nav-pills">
-                            <li {% if request.path.startswith('/astro/') %}class="active"{% endif %}><a href="/astro/">/astro</a></li>
-                            <li {% if request.path.startswith('/auto/') %}class="active"{% endif %}><a href="/auto/" onclick="alert('Coming soon...'); return false">/auto</a></li>
-                            <li {% if request.path.startswith('/ui/') %}class="active"{% endif %}><a href="/ui/" onclick="alert('Coming soon...'); return false">/ui</a></li>
+                            <li>{{ request.site.name }}</li>
+{#                            <li {% if request.path.startswith('/astro/') %}class="active"{% endif %}><a href="/astro/">/astro</a></li>#}
+{#                            <li {% if request.path.startswith('/auto/') %}class="active"{% endif %}><a href="/auto/" onclick="alert('Coming soon...'); return false">/auto</a></li>#}
+{#                            <li {% if request.path.startswith('/ui/') %}class="active"{% endif %}><a href="/ui/" onclick="alert('Coming soon...'); return false">/ui</a></li>#}
                             {% if user.is_authenticated() %}
                                 <li class="divider-vertical"></li>
                                 <li {% if request.path.startswith('/%s/' % request.user.username) %}class="active"{% endif %}><a href="/{{ user.username }}/"><i class="icon-user"></i> /{{ user.username }}</a></li>

@@ -1,6 +1,28 @@
 [
     {
         "pk":1,
+        "model":"www.site",
+        "fields": {
+            "name": "Astro Stacks",
+            "short_name": "astro",
+            "domain_local": "local.astrostacks.com:8000",
+            "domain_prod": "www.astrostacks.com",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk":2,
+        "model":"www.site",
+        "fields": {
+            "name": "Climbing Stacks",
+            "short_name": "climbing",
+            "domain_local": "local.climbingstacks.com:8000",
+            "domain_prod": "www.climbingstacks.com",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk":1,
         "model":"auth.user",
         "fields": {
             "username": "admin",
@@ -102,6 +124,7 @@
         "model": "www.page",
         "fields": {
             "user": 10,
+            "site": 1,
             "title": "NGC 7293, The Helix Nebula in Aquarius",
             "slug": "ngc-7293-the-helix-nebula-in-aquarius",
             "layout": 1,
