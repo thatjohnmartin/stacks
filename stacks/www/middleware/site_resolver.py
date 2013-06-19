@@ -1,6 +1,5 @@
 from django.http import Http404
 from django.contrib.sites.models import RequestSite
-from django.conf import settings
 from stacks.www.models.site import Site
 
 class SiteResolverMiddleware(object):

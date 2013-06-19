@@ -20,13 +20,12 @@ body {
         margin-top: 8px;
     }
     .brand {
-        background-image: url('/static/www/img/logo.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 93px;
         height: 26px;
         margin-bottom: 1px;
-        &:hover { background-image: url('/static/www/img/logo-hover.png'); }
+        color: #555555;
+        font-size: 18px;
+        padding-top: 12px;
+        padding-bottom: 7px;
     }
     .nav > li > a {
         margin-top: 6px;
@@ -58,6 +57,10 @@ body {
     .nav > .active > a > [class^="icon-"],
     .nav > .active > a > [class*=" icon-"] {
         background-image: url("@{bootstrapPath}/@{iconSpritePath}");
+    }
+
+    .nav.next-to-join-button {
+        margin-right: 8px;
     }
 }
 
