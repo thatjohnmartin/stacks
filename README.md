@@ -9,6 +9,8 @@ Recommended env vars:
 
 	STACKS_ROOT=/Users/johnm/Projects/stacks
 	STACKS_LOCAL=1
+    STACKS_CACHE_BACKEND=django.core.cache.backends.memcached.MemcachedCache
+    STACKS_CACHE_LOCATION=127.0.0.1:11211
 
 Recommended /etc/hosts:
 

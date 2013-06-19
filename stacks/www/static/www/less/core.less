@@ -2,7 +2,7 @@
 
 /* !! unfortunately there is no way to include variables in import statements right now... */
 
-@import "../../lib/bootstrap-2.3.2/less/variables";
+@import "variables";
 @import "../../lib/bootstrap-2.3.2/less/mixins";
 @import "../../lib/bootstrap-2.3.2/less/buttons";
 
@@ -12,7 +12,9 @@ body {
 }
 
 /* more form sizing */
-.input-xlarge2     { width: 380px; }
+.input-xlarge2 {
+    width: 380px;
+}
 
 /* lots of navbar customizations */
 .stacks .navbar {
@@ -22,7 +24,7 @@ body {
     .brand {
         height: 26px;
         margin-bottom: 1px;
-        color: #555555;
+        color: #232323;
         font-size: 18px;
         padding-top: 12px;
         padding-bottom: 7px;
@@ -46,6 +48,7 @@ body {
     .navbar-inner {
         background-image: url('/static/www/img/bg/subtle_dots.png');
         background-repeat: repeat;
+        box-shadow: none;
     }
     .divider-vertical {
         height: 22px;
@@ -59,8 +62,8 @@ body {
         background-image: url("@{bootstrapPath}/@{iconSpritePath}");
     }
 
-    .nav.next-to-join-button {
-        margin-right: 8px;
+    .nav.join-button {
+        margin-left: 8px;
     }
 }
 

@@ -3,6 +3,9 @@ from django.conf import settings
 from stacks.www.models.utils import PropertiesMixin, CacheMixin
 from stacks.www.utils.cache import incr_version, version_key, get_from_cache
 
+ASTRO_SITE_ID = 1
+CLIMBING_SITE_ID = 2
+
 class Site(PropertiesMixin, CacheMixin, models.Model):
     name = models.CharField(max_length=255, db_index=True)
     short_name = models.CharField(max_length=255, db_index=True)
@@ -40,3 +43,11 @@ class Site(PropertiesMixin, CacheMixin, models.Model):
                 return get_from_cache(
                     version_key('site-domain-prod-' + domain),
                     lambda: cls.objects.get(domain_prod=domain))
+
+    @property
+    def is_astro(self):
+        return self.id == ASTRO_SITE_ID
+
+    @property
+    def is_climbing(self):
+        return self.id == CLIMBING_SITE_ID
