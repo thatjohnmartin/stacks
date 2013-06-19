@@ -138,6 +138,12 @@
 
         <script src="/static/lib/jquery.slugify.js"></script>
 
+        {% if debug %}
+            <script src="/static/lib/d3.v3.js"></script>
+        {% else %}
+            <script src="/status/lib/d3.v3.min.js"></script>
+        {% endif %}
+
         {% block extra_scripts_before_bootstrap %}{% endblock %}
 
         <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-transition.js"></script>

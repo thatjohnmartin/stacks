@@ -6,3 +6,4 @@ wsgiref==0.1.2
 Pillow==1.7.8
 Markdown==2.2.1
 django-tastypie==0.9.15
+scrapy=0.16.5
