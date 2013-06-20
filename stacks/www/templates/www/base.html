@@ -52,7 +52,7 @@
                             {% endif %}
                             {% if user.is_authenticated() %}
                                 <li class="divider-vertical"></li>
-                                <li {% if request.path.startswith('/%s/' % request.user.username) %}class="active"{% endif %}><a href="/{{ user.username }}/">/{{ user.username }}</a></li>
+                                <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">/{{ user.username }}</a></li>
                                 <li><a id="create-button" href="#create-modal" data-toggle="modal"><i class="icon-plus"></i> Create</a></li>
                             {% endif %}
                         </ul>

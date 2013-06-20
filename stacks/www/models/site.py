@@ -18,9 +18,6 @@ class Site(PropertiesMixin, CacheMixin, models.Model):
     class Meta:
         app_label = 'www'
 
-    def get_domain(self):
-        return self.domain_local if settings.IS_LOCAL else self.domain_prod
-
     def invalidate_cache(self):
         # invalidate collections and individual by ID
         incr_version('sites')
@@ -43,6 +40,11 @@ class Site(PropertiesMixin, CacheMixin, models.Model):
                 return get_from_cache(
                     version_key('site-domain-prod-' + domain),
                     lambda: cls.objects.get(domain_prod=domain))
+
+    @property
+    def domain(self):
+        "Returns the appropriate domain based on current settings, local or prod."
+        return self.domain_local if settings.IS_LOCAL else self.domain_prod
 
     @property
     def is_astro(self):

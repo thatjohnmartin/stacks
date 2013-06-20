@@ -1,6 +1,9 @@
 import logging
+import re
+import hashlib
 from django.core.cache import cache
 from django.conf import settings
+from django.utils.encoding import smart_str
 
 log = logging.getLogger('utils.cache')
 
@@ -33,6 +36,28 @@ log = logging.getLogger('utils.cache')
 #        def invalidate_cache(self):
 #            incr_version('segments', self.account)
 #            incr_version('segment-' + self.id, self.account)
+
+def safe_cache_key(key, no_limit=False):
+    ''' Returns a safe cache key
+    (esp. for memcache which has restrictions on what keys are valid).
+
+    Replaces invalid memcache control characters with an underscore.
+    If len is > 240 will return part of the value plus an md5 hexdigest of value.
+
+    (set to 240 and not 250 because Django can prepend prefix and version numbers)
+    '''
+    # force to bytestring to make any unicode safe for memcached
+    cache_key = smart_str(key, encoding='ascii', errors='ignore')
+    if len(cache_key) > 240:
+        if no_limit == False:
+            # use a subset of data to form the cache key
+            cache_key = cache_key[:200] + '-' + hashlib.md5(cache_key[:500]).hexdigest()
+        else:
+            cache_key = hashlib.md5(cache_key).hexdigest()
+
+    # remove any characters not between ascii 33 and 127 for memcached
+    cache_key = re.sub(ur'[^\u0021-\u007F]', '-', cache_key, re.UNICODE)
+    return cache_key
 
 def _version_number_key(key):
     return key + '.version'

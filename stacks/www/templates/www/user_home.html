@@ -6,8 +6,8 @@
     <p>You have created the following pages:</p>
     {% if user.pages.all().exists() %}
         <ul>
-            {% for page in user.pages.all() %}
-                <li><a href="{{ url_for('page', kwargs={'topic': page.topic, 'slug': page.slug}) }}">{{ page.title }}</a></li>
+            {% for page in user.pages.filter(site=request.site) %}
+                <li><a href="{{ url_for('page', kwargs={'slug': page.slug}) }}">{{ page.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

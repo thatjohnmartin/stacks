@@ -26,19 +26,19 @@
 
         $(document).ready(function () {
 
-            $('.text-placeholder').each(function() {
-                var placement = $(this).attr('id');
-                var displayName = $(this).attr('data-display-name') || placement;
-                $(this).editable({
-                    inputclass: 'input-xlarge2',
-                    placement: 'bottom',
-                    pk: {{ page.id }},
-                    url: '{{ url_for("page.edit") }}',
-                    type: 'text',
-                    title: 'Enter ' + displayName,
-                    params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}
-                });
-            });
+{#            $('.text-placeholder').each(function() {#}
+{#                var placement = $(this).attr('id');#}
+{#                var displayName = $(this).attr('data-display-name') || placement;#}
+{#                $(this).editable({#}
+{#                    inputclass: 'input-xlarge2',#}
+{#                    placement: 'bottom',#}
+{#                    pk: {{ page.id }},#}
+{#                    url: '{{ url_for("page.edit") }}',#}
+{#                    type: 'text',#}
+{#                    title: 'Enter ' + displayName,#}
+{#                    params: {'csrfmiddlewaretoken': '{{ csrf_token }}'}#}
+{#                });#}
+{#            });#}
 
 {#            $('#image-1').fineUploader({#}
 {#                request: {#}

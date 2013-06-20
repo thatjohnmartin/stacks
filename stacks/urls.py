@@ -38,12 +38,12 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^join/$', 'join.join', name='join'),
 
     # user home
-    url(r'^(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
+    url(r'^users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
     # browse pages
-    url(r'^(?P<slug>[\w-]+)/$', 'page.page', name='page'),
+    url(r'^stacks/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
 
     # create and edit page
     url(r'^create/$', 'page.create', name='page.create'),
-    url(r'^ajax/edit-page/$', 'page.edit', name='page.edit'),
+    url(r'^ajax/edit-stack/$', 'page.edit', name='page.edit'),
 )

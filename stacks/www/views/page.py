@@ -1,14 +1,17 @@
 import markdown
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django.conf import settings
 from jinja2 import Environment, PackageLoader
 from stacks.www.models import Page
 
-def page(request, topic, slug):
-    page = get_object_or_404(Page, topic=topic, slug=slug)
+def page(request, slug):
+    page = Page.get_from_cache(site=request.site, slug=slug)
+    if not page:
+        raise Http404
+
     env = Environment(loader=PackageLoader('stacks.www', 'templates/layouts'))
     template = env.get_template(page.layout.template_file)
 
@@ -23,8 +26,10 @@ def page(request, topic, slug):
         layout_context[page_media_item.placement] = '<img src="%s%s" />' % (settings.MEDIA_URL, page_media_item.item.image_path)
 
     # grab all of the text items and render
-    for placement, text in page.get_prop('text_items').iteritems():
-        layout_context[placement] = markdown.markdown(text)
+    text_items = page.get_prop('text_items')
+    if text_items:
+        for placement, text in text_items.iteritems():
+            layout_context[placement] = markdown.markdown(text)
 
     # render the layout then render the page
     content = template.render(layout_context)
