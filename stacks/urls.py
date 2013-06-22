@@ -46,4 +46,7 @@ urlpatterns += patterns('stacks.www.views',
     # create and edit page
     url(r'^create/$', 'page.create', name='page.create'),
     url(r'^ajax/edit-stack/$', 'page.edit', name='page.edit'),
+
+    # test page
+    url(r'^test/$', 'listing.test')
 )

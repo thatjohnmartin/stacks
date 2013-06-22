@@ -7,3 +7,6 @@ def home(request):
 
 def user_home(request, username):
     return render(request, 'www/user_home.html')
+
+def test(request):
+    return render(request, 'www/test.html')

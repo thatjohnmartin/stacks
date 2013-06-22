@@ -8,7 +8,7 @@
 
 /* make room for the navbar */
 body {
-    padding-top: 68px;
+    padding-top: 66px;
 }
 
 /* more form sizing */
@@ -18,53 +18,63 @@ body {
 
 /* lots of navbar customizations */
 .stacks .navbar {
-    .btn {
-        margin-top: 8px;
-    }
+    font-family: @sansFontFamily;
+    font-size: 12px;
+    font-weight:500;
+    text-transform: uppercase;
+
+//    .btn {
+//        margin-top: 18px;
+//    }
     .brand {
-        height: 26px;
-        margin-bottom: 1px;
-        color: #232323;
-        font-size: 18px;
-        padding-top: 12px;
-        padding-bottom: 7px;
+////        background-image: url('/static/www/img/bg/subtlenet2.png') repeat;
+////
+////        height: 26px;
+////        margin-bottom: 1px;
+////        color: #232323;
+////        font-size: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+////        padding-bottom: 7px;
     }
-    .nav > li > a {
-        margin-top: 6px;
+    .nav-pills > li > a {
+        margin-top: 7px;
+        text-shadow: none;
     }
-    .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
-        .box-shadow(~"none");
-        color: #111;
-    }
-    .nav a:hover, .nav a:focus {
-        color: #111;
-    }
-    .nav > li > a:focus, .nav > li > a:hover {
-        background-color: #f1f1f1;
-    }
-    .nav > li.active > a:focus, .nav > li.active > a:hover {
-        background-color: #e5e5e5;
-    }
+//    .nav > li > a {
+//        margin-top: 6px;
+//    }
+//    .nav > .active > a, .nav > .active > a:hover, .nav > .active > a:focus {
+////        .box-shadow(~"none");
+////        color: #111;
+//    }
+//    .nav a:hover, .nav a:focus {
+////        color: #111;
+//    }
+//    .nav > li > a:focus, .nav > li > a:hover {
+//        background-color: #f1f1f1;
+//    }
+//    .nav > li.active > a:focus, .nav > li.active > a:hover {
+//        background-color: #e5e5e5;
+//    }
     .navbar-inner {
-        background-image: url('/static/www/img/bg/subtle_dots.png');
-        background-repeat: repeat;
         box-shadow: none;
     }
-    .divider-vertical {
-        height: 22px;
-        margin-top: 12px;
-        border-left-color: #ddd;
-    }
-
-    /* remove the white-on-active behavior */
-    .nav > .active > a > [class^="icon-"],
-    .nav > .active > a > [class*=" icon-"] {
-        background-image: url("@{bootstrapPath}/@{iconSpritePath}");
-    }
-
-    .nav.join-button {
-        margin-left: 8px;
-    }
+//    .divider-vertical {
+//        height: 22px;
+//        margin-top: 12px;
+//        border-left-color: #ddd;
+//    }
+//
+//    /* remove the white-on-active behavior */
+//    .nav > .active > a > [class^="icon-"],
+//    .nav > .active > a > [class*=" icon-"] {
+//        background-image: url("@{bootstrapPath}/@{iconSpritePath}");
+//    }
+//
+//    .nav.join-button {
+//        margin-left: 8px;
+//    }
 }
 
 /* file uploader styles */
@@ -97,12 +107,12 @@ body {
 
 /* generic page render styles */
 .page {
-    h1 {
-        border-bottom: 1px dotted #ccc;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-        font-weight: normal;
-    }
+//    h1 {
+//        border-bottom: 1px dotted #ccc;
+//        padding-bottom: 10px;
+//        margin-bottom: 15px;
+//        font-weight: normal;
+//    }
 
     .image-placeholder {
         border: 1px dashed #ccc;
