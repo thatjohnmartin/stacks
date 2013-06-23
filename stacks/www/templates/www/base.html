@@ -43,7 +43,9 @@
                         <a class="brand {{ request.site.short_name }}" href="/"></a>
                         <div class="nav-collapse">
                             <ul class="nav nav-pills">
-                                <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
+                                {% if user.is_authenticated() %}
+                                    <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
+                                {% endif %}
                                 <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
                                 {% if user.is_authenticated() %}
                                     <li class="divider-vertical"></li>
@@ -52,13 +54,14 @@
                                 {% endif %}
                             </ul>
                             {% if not user.is_authenticated() %}
-                                <a class="pull-right btn join-button" href="{{ url_for('join') }}">Join</a>
+{#                                <a class="pull-right btn join-button" href="{{ url_for('join') }}">Join</a>#}
                             {% endif %}
                             <ul class="nav nav-pills pull-right">
                                 {% if user.is_authenticated() %}
                                     <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Sign out</a></li>
                                 {% else %}
                                     <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>
+                                    <li><a href="{{ url_for('join') }}">Join</a></li>
                                 {% endif %}
                             </ul>
                         </div>

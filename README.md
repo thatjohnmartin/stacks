@@ -18,12 +18,12 @@ Recommended /etc/hosts:
 
 Create the environment:
 
-	virtualenv stacks-env
-	stacks-env/bin/pip install -r requirements.txt
+	virtualenv env
+	source env/bin/activate
+	pip install -r requirements.txt
 
-Activate the virtualenv, and run the rebuild script to sync and add fixtures to the database:
+Run the rebuild script to sync and add fixtures to the database:
 
-	stacks-env/bin/activate
 	./rebuild.sh
 
 Start the Django development server:
