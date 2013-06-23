@@ -40,6 +40,12 @@ urlpatterns += patterns('stacks.www.views',
     # user home
     url(r'^users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
+    # tags home - tag directory
+    url(r'^tags/$', 'listing.tag_home', name='tag_home'),
+
+    # single tag listing page
+    url(r'^tags/(?P<tag>[\w-]+)/$', 'listing.tag_list', name='tag_list'),
+
     # browse pages
     url(r'^stacks/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
 

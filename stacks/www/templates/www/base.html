@@ -40,21 +40,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="/"><img src="/static/www/img/{{ request.site.short_name }}/logo.png"/></a>
+                        <a class="brand {{ request.site.short_name }}" href="/"></a>
                         <div class="nav-collapse">
                             <ul class="nav nav-pills">
-                                {% if request.site.is_astro %}
-                                    <li {% if request.path.startswith('/stars/') %}class="active"{% endif %}><a href="/stars/" onclick="alert('Coming soon...'); return false">/stars</a></li>
-                                    <li {% if request.path.startswith('/galaxies/') %}class="active"{% endif %}><a href="/galaxies/" onclick="alert('Coming soon...'); return false">/galaxies</a></li>
-                                    <li {% if request.path.startswith('/nebulae/') %}class="active"{% endif %}><a href="/nebulae/" onclick="alert('Coming soon...'); return false">/nebulae</a></li>
-                                {% else %}
-                                    <li {% if request.path.startswith('/rock/') %}class="active"{% endif %}><a href="/rock/" onclick="alert('Coming soon...'); return false">You</a></li>
-                                    <li {% if request.path.startswith('/alpine/') %}class="active"{% endif %}><a href="/alpine/" onclick="alert('Coming soon...'); return false">Explore</a></li>
-                                {% endif %}
+                                <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
+                                <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
                                 {% if user.is_authenticated() %}
                                     <li class="divider-vertical"></li>
-{#                                    <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">/{{ user.username }}</a></li>#}
-                                    <li><a id="create-button" href="#create-modal" data-toggle="modal">New</a></li>
+                                    <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
+                                    <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
                                 {% endif %}
                             </ul>
                             {% if not user.is_authenticated() %}

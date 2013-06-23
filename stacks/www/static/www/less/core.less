@@ -27,15 +27,27 @@ body {
 //        margin-top: 18px;
 //    }
     .brand {
-////        background-image: url('/static/www/img/bg/subtlenet2.png') repeat;
-////
-////        height: 26px;
-////        margin-bottom: 1px;
-////        color: #232323;
-////        font-size: 18px;
+        height: 38px;
+        width: 85px;
         padding-top: 4px;
         padding-bottom: 4px;
-////        padding-bottom: 7px;
+        margin-left: 0px;
+        background-position: 0 3px;
+        background-repeat: no-repeat;
+        &.astro {
+            background-image: url('/static/www/img/astro/logo.png');
+        }
+        &.climbing {
+            background-image: url('/static/www/img/climbing/logo.png');
+        }
+        &:hover {
+            &.astro {
+                background-image: url('/static/www/img/astro/logo-hover.png');
+            }
+            &.climbing {
+                background-image: url('/static/www/img/climbing/logo-hover.png');
+            }
+        }
     }
     .nav-pills > li > a {
         margin-top: 7px;
@@ -60,11 +72,11 @@ body {
     .navbar-inner {
         box-shadow: none;
     }
-//    .divider-vertical {
-//        height: 22px;
-//        margin-top: 12px;
-//        border-left-color: #ddd;
-//    }
+    .divider-vertical {
+        height: 22px;
+        margin-top: 12px;
+        border-left-color: #ddd;
+    }
 //
 //    /* remove the white-on-active behavior */
 //    .nav > .active > a > [class^="icon-"],

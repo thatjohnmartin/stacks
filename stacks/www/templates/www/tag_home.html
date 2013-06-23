@@ -1,0 +1,12 @@
+{% extends "www/base.html" %}
+
+{% block title %}All tags{% endblock %}
+
+{% block content %}
+    <p>Here are all of the tags:</p>
+    <ul>
+        <li>{{ url_for('tag_listing', args=['foo']) }}</li>
+        <li>{{ url_for('tag_listing', args=['purple']) }}</li>
+        <li>{{ url_for('tag_listing', args=['green']) }}</li>
+    </ul>
+{% endblock %}
