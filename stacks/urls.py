@@ -47,7 +47,7 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^tags/(?P<tag>[\w-]+)/$', 'listing.tag_list', name='tag_list'),
 
     # browse pages
-    url(r'^stacks/(?P<slug>[\w-]+)/$', 'page.page', name='page'),
+    url(r'^stacks/(?P<slug>[\w-]+)/$', 'stack.stack', name='stack'),
 
     # create and edit page
     url(r'^create/$', 'page.create', name='page.create'),

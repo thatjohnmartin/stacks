@@ -1,0 +1,13 @@
+{% extends "www/base.html" %}
+
+{% block title %}{{ stack.title }}{% endblock %}
+
+{% block body_class %}stack{% endblock %}
+
+{% block content %}
+    <h1 id="title">{{ stack.title}}</h1>
+    {% for rendered_block in rendered_blocks %}
+        <!-- BLOCK: {{ rendered_block.block.name }} -->
+        {{ rendered_block.content }}
+    {% endfor %}
+{% endblock %}

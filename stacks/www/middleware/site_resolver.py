@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.contrib.sites.models import RequestSite
-from stacks.www.models.site import Site
+from stacks.www.models import Site
 
 class SiteResolverMiddleware(object):
     "Figure out which site the request is for based on domain."

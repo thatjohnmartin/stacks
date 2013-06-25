@@ -97,10 +97,9 @@
         "pk": 1,
         "model": "www.layout",
         "fields": {
-            "name": "Singularity",
-            "topic": "",
-            "description": "An image page to end all image pages.",
-            "template_file": "singularity.html",
+            "name": "Text",
+            "description": "A block of text.",
+            "template_file": "text.html",
             "template_source": "",
             "added": "2012-11-10T03:31:02",
             "properties_json": ""
@@ -110,10 +109,10 @@
         "pk": 2,
         "model": "www.layout",
         "fields": {
-            "name": "Juxtapose",
+            "name": "Image",
             "topic": "",
-            "description": "The Brad Pitt and Edward Norton of image pages.",
-            "template_file": "juxtapose.html",
+            "description": "An image.",
+            "template_file": "image.html",
             "template_source": "",
             "added": "2012-11-10T03:31:02",
             "properties_json": ""
@@ -121,13 +120,51 @@
     },
     {
         "pk": 1,
-        "model": "www.page",
+        "model": "www.stack",
         "fields": {
             "user": 10,
             "site": 1,
-            "title": "NGC 7293, The Helix Nebula in Aquarius",
-            "slug": "ngc-7293-the-helix-nebula-in-aquarius",
+            "title": "Weekend at Red Rock, NV",
+            "slug": "weekend-at-red-rock-nv",
+            "added": "2012-11-10T03:31:02",
+            "modified": "2012-11-10T03:31:02",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk": 1,
+        "model": "www.block",
+        "fields": {
+            "stack": 1,
+            "name": "1",
             "layout": 1,
+            "order": 0,
+            "added": "2012-11-10T03:31:02",
+            "modified": "2012-11-10T03:31:02",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk": 2,
+        "model": "www.block",
+        "fields": {
+            "stack": 1,
+            "name": "2",
+            "layout": 2,
+            "order": 1,
+            "added": "2012-11-10T03:31:02",
+            "modified": "2012-11-10T03:31:02",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk": 3,
+        "model": "www.block",
+        "fields": {
+            "stack": 1,
+            "name": "3",
+            "layout": 1,
+            "order": 2,
             "added": "2012-11-10T03:31:02",
             "modified": "2012-11-10T03:31:02",
             "properties_json": ""

@@ -3,11 +3,11 @@
 {% block title %}Stacks{% endblock %}
 
 {% block content %}
-    {% if latest_pages %}
-        <p>Latest pages:</p>
+    {% if latest_stacks %}
+        <p>Latest stacks:</p>
         <ul>
-            {% for page in latest_pages %}
-                <li><a href="{{ url_for('page', kwargs={'slug': page.slug}) }}">{{ page.title }}</a></li>
+            {% for stack in latest_stacks %}
+                <li><a href="{{ url_for('stack', kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
