@@ -22,11 +22,11 @@ def stack(request, slug):
         # for page_media_item in page.items.all():
         #     layout_context[page_media_item.placement] = '<img src="%s%s" />' % (settings.MEDIA_URL, page_media_item.item.image_path)
 
-        # grab all of the text items and render
-        # text_items = stack.get_prop('text_items')
-        # if text_items:
-        #     for placement, text in text_items.iteritems():
-        #         layout_context[placement] = markdown.markdown(text)
+        # grab all of the name/values and render
+        pairs = block.get_prop('context')
+        if pairs:
+            for name, value in pairs.iteritems():
+                layout_context[name] = value
 
         # render the block and add it to the content list
         rendered_blocks.append({'block': block, 'content': template.render(layout_context)})

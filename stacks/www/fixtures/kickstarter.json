@@ -125,6 +125,7 @@
             "user": 10,
             "site": 1,
             "title": "Weekend at Red Rock, NV",
+            "subtitle": "Sport climbing is neither, or so they say",
             "slug": "weekend-at-red-rock-nv",
             "added": "2012-11-10T03:31:02",
             "modified": "2012-11-10T03:31:02",
@@ -141,7 +142,7 @@
             "order": 0,
             "added": "2012-11-10T03:31:02",
             "modified": "2012-11-10T03:31:02",
-            "properties_json": ""
+            "properties_json": "{\"context\": {\"text\":\"<p>The sun cooked the water off the cement, creating a thick smell. The New York City version of fresh-cut grass, this was the smell of summer. The water from the sprinklers was icy cold, so even though the air was heavy and hot and the sun unforgiving, I could only stay under the frozen shower for a few seconds at a time.</p>\"}}"
         }
     },
     {
@@ -167,6 +168,46 @@
             "order": 2,
             "added": "2012-11-10T03:31:02",
             "modified": "2012-11-10T03:31:02",
+            "properties_json": "{\"context\": {\"text\":\"<p>My cousin Sabina and I ran in circles, darting in and out of the sprinkler and shrieking. Now when I hear children playing I sometimes wonder why they always have to scream, but then I remember the thrill of trying to outwit the water, to get cool but not cold, and it seems perfectly appropriate.</p><p>I spent almost every day during the summers of the early nineties in the sprinkler park in Tompkins Square. Sometimes my mother was there, but usually the playground was a trip my father and I took together. He sat on the bench close enough to see and hear me, but far enough away that his book wouldn’t get splashed.</p>\"}}"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "www.stack",
+        "fields": {
+            "user": 10,
+            "site": 1,
+            "title": "A Pinnacle's Project: Subterranean 5.11a",
+            "subtitle": "",
+            "slug": "a-pinnacles-project-subterranean",
+            "added": "2012-11-12T03:31:02",
+            "modified": "2012-11-12T03:31:02",
+            "properties_json": ""
+        }
+    },
+    {
+        "pk": 4,
+        "model": "www.block",
+        "fields": {
+            "stack": 2,
+            "name": "1",
+            "layout": 1,
+            "order": 0,
+            "added": "2012-11-13T03:31:02",
+            "modified": "2012-11-13T03:31:02",
+            "properties_json": "{\"context\": {\"text\":\"<p>Blocks enable the caller to provide the callback code at the point of invocation. Instead of packaging the required data in a “context” structure, blocks capture data from the same lexical scope as does the host method or function.</p>\"}}"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "www.block",
+        "fields": {
+            "stack": 2,
+            "name": "2",
+            "layout": 2,
+            "order": 1,
+            "added": "2012-11-13T03:31:02",
+            "modified": "2012-11-13T03:31:02",
             "properties_json": ""
         }
     }

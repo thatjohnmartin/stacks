@@ -8,6 +8,7 @@ class Stack(PropertiesMixin, CacheMixin, models.Model):
     user = models.ForeignKey(User, related_name="stacks")
     site = models.ForeignKey(Site, related_name="stacks")
     title = models.CharField(max_length=255, db_index=True)
+    subtitle = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, unique=True, db_index=True)
     added = models.DateTimeField(auto_now_add=True, db_index=True) # the date the item was added to the db
     modified = models.DateTimeField(auto_now=True, db_index=True)

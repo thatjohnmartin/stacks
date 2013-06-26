@@ -5,7 +5,10 @@
 {% block body_class %}stack{% endblock %}
 
 {% block content %}
-    <h1 id="title">{{ stack.title}}</h1>
+    <h1 class="title">{{ stack.title}}</h1>
+    {% if stack.subtitle %}
+        <h2 class="subtitle">{{ stack.subtitle }}</h2>
+    {% endif %}
     {% for rendered_block in rendered_blocks %}
         <!-- BLOCK: {{ rendered_block.block.name }} -->
         {{ rendered_block.content }}
