@@ -121,7 +121,14 @@
     properties_json: >
       {
         "context": {
-          "image": "<a href='http://www.flickr.com/photos/johnmartin78/8787002065/' title='2013-04-27 10.05.07 by johnmartin78, on Flickr'><img src='http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg' width='800' height='600' alt='2013-04-27 10.05.07'></a>"
+          "image2": {
+            "type": "url",
+            "url": "http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg"
+          },
+          "image": {
+            "type": "path",
+            "path": "users.johnm.library.flickr.image.8787002065"
+          }
         }
       }
 

@@ -40,7 +40,6 @@ class Template(jinja2.Template):
         
         return super(Template, self).render(context_dict)
 
-
 class Loader(BaseLoader):
     """
     A file system loader for Jinja2.
@@ -63,7 +62,7 @@ class Loader(BaseLoader):
     env.globals['url_for'] = urlresolvers.reverse
     env.globals['models'] = models
     env.globals['constants'] = constants
-    
+
     def load_template(self, template_name, template_dirs=None):
         try:
             template = self.env.get_template(template_name)
