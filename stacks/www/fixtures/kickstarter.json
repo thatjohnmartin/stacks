@@ -155,7 +155,8 @@
             "order": 1,
             "added": "2012-11-10T03:31:02",
             "modified": "2012-11-10T03:31:02",
-            "properties_json": ""
+            "properties_json": "{\"context\": {\"image\":\"THis is foo!\"}}"
+
         }
     },
     {
