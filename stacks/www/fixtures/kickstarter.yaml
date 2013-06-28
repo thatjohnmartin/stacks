@@ -183,4 +183,13 @@
     order: 1
     added: 2012-11-13T03:31:02
     modified: 2012-11-13T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "path",
+            "path": "users.johnm.library.flickr.image.8400215023"
+          }
+        }
+      }
 
