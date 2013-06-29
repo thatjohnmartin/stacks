@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.markup',
     'stacks.www',
-    'tastypie',
 )
 
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')

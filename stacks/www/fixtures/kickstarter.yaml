@@ -122,11 +122,17 @@
       {
         "context": {
           "image2": {
-            "type": "url",
+            "placement_type": "image",
+            "resource_type": "path",
             "url": "http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg"
           },
           "image": {
-            "type": "path",
+            "placement_type": "image",
+            "resource_type": "path",
+            "path": "users.johnm.library.flickr.image.8787002065"
+          },
+          "image3": {
+            "type": "image.path",
             "path": "users.johnm.library.flickr.image.8787002065"
           }
         }

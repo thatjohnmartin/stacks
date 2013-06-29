@@ -1,13 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from tastypie.api import Api
-from stacks.www.api import PageResource, UserResource
-
-# configure the Rest API with tastypie
-api = Api(api_name='1.0')
-api.register(PageResource())
-api.register(UserResource())
 
 admin.autodiscover()
 
@@ -22,9 +15,6 @@ urlpatterns = patterns('',
 
     # served uploaded media
     (r'^media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-
-    # api methods
-    (r'^api/', include(api.urls)),
 )
 
 urlpatterns += patterns('stacks.www.views',
