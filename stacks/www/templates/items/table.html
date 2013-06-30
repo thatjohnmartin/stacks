@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped">
+    {% if use_row_header %}
+        <thead>
+            <tr>
+                {% for th in header_row %}
+                    <th>{{ th|e }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+    {% endif %}
+    <tbody>
+        {% for row in rows %}
+            <tr>
+                {% for td in row %}
+                    {% if loop.first and use_col_header %}
+                        <th>{{ td|e }}</th>
+                    {% else %}
+                        <td>{{ td|e }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -29,6 +29,63 @@ class Block(PropertiesMixin, CacheMixin, models.Model):
             version_key('block-id-' + str(id)),
             lambda: cls.objects.get(id=id))
 
+
+# example items in block.properties.context
+#
+#   "image1": {
+#     "type": "image/jpeg",
+#     "provider": "path",
+#     "value": "users.johnm.library.flickr.image.8787002065"
+#   },
+#   "image2": {
+#     "type": "image/jpeg",
+#     "provider": "url",
+#     "value": "http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg"
+#   },
+#   "image3": {
+#     "type": "image/jpeg",
+#     "provider": "flickr",
+#     "value": "8787002065"
+#   },
+#   "gear1": {
+#     "type": "application/json",
+#     "value": {"manufacturer": "Losmandy", "model": "210c", "capacity": 45}
+#   }
+#   "gear2": {
+#     "type": "application/json",
+#     "provider": "path",
+#     "value": "global.library.json.gear.losmandy_210c"
+#   },
+#   "gear3": {
+#     "type": "application/json",
+#     "provider": "url",
+#     "value": "http://astrodb.com/gear/mounts/losmandy_210c.json"
+#   },
+#   "stats1": {
+#     "type": "text/csv",
+#     "value": "Item,Value|Scope,Losmandy|Foo,12.5"
+#   },
+#   "text1": {
+#     "type": "text/html",
+#     "value": "<p>This is some HTML.</p>"
+#   },
+#   "text2": {
+#     "type": "text/x-markdown",
+#     "value": "This is *some* markdown."
+#   },
+#   "text3": {
+#     "type": "text/plain",
+#     "value": "This is just plain old text."
+#   },
+#
+# supported (mime)types: image, text/html, text/x-markdown, text/plain, application/json, text/csv
+# supported providers: inline (default), path, url, flickr
+#
+# Notes:
+#
+#   * subtypes are required in items, but not in placeholders
+
+
 # keeping this just for future reference...
 #
 # class PageMediaItem(models.Model):

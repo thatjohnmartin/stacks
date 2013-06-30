@@ -82,6 +82,14 @@
     template_file: image.html
     added: 2012-11-10T03:31:02
 
+- model: www.layout
+  pk: 3
+  fields:
+    name: Table
+    description: A table.
+    template_file: table.html
+    added: 2012-11-10T03:31:02
+
 - model: www.stack
   pk: 1
   fields:
@@ -105,8 +113,12 @@
     properties_json: >
       {
         "context": {
-          "text": "<p>The sun cooked the water off the cement creating a thick smell. The New York City version of fresh-cut grass this was the smell of summer. The water from the sprinklers was icy cold so even though the air was heavy and hot and the sun unforgiving I could only stay under the frozen shower for a few seconds at a time.</p>"
-         }
+          "text": {
+            "type": "text/html",
+            "provider": "inline",
+            "value": "<p>The sun cooked the water off the cement creating a thick smell. The New York City version of fresh-cut grass this was the smell of summer. The water from the sprinklers was icy cold so even though the air was heavy and hot and the sun unforgiving I could only stay under the frozen shower for a few seconds at a time.</p>"
+          }
+        }
       }
 
 - model: www.block
@@ -121,19 +133,10 @@
     properties_json: >
       {
         "context": {
-          "image2": {
-            "placement_type": "image",
-            "resource_type": "path",
-            "url": "http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg"
-          },
           "image": {
-            "placement_type": "image",
-            "resource_type": "path",
-            "path": "users.johnm.library.flickr.image.8787002065"
-          },
-          "image3": {
-            "type": "image.path",
-            "path": "users.johnm.library.flickr.image.8787002065"
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "8787002065"
           }
         }
       }
@@ -150,8 +153,11 @@
     properties_json: >
       {
         "context": {
-          "text": "<p>My cousin Sabina and I ran in circles darting in and out of the sprinkler and shrieking. Now when I hear children playing I sometimes wonder why they always have to scream but then I remember the thrill of trying to outwit the water to get cool but not cold and it seems perfectly appropriate.</p><p>I spent almost every day during the summers of the early nineties in the sprinkler park in Tompkins Square. Sometimes my mother was there but usually the playground was a trip my father and I took together. He sat on the bench close enough to see and hear me but far enough away that his book wouldn’t get splashed.</p>"
-         }
+          "text": {
+            "type": "text/html",
+            "value": "<p>My cousin Sabina and I ran in circles darting in and out of the sprinkler and shrieking. Now when I hear children playing I sometimes wonder why they always have to scream but then I remember the thrill of trying to outwit the water to get cool but not cold and it seems perfectly appropriate.</p><p>I spent almost every day during the summers of the early nineties in the sprinkler park in Tompkins Square. Sometimes my mother was there but usually the playground was a trip my father and I took together. He sat on the bench close enough to see and hear me but far enough away that his book wouldn’t get splashed.</p>"
+          }
+        }
       }
 
 - model: www.stack
@@ -176,8 +182,11 @@
     properties_json: >
       {
         "context": {
-          "text": "<p>Blocks enable the caller to provide the callback code at the point of invocation. Instead of packaging the required data in a “context” structure blocks capture data from the same lexical scope as does the host method or function.</p>"
-         }
+          "text": {
+            "type": "text/x-markdown",
+            "value": "Blocks enable the caller to provide the *callback code* at the point of invocation. Instead of packaging the required data in a \"context\" structure blocks capture data from the same lexical scope as does the host method or function."
+          }
+        }
       }
 
 - model: www.block
@@ -193,9 +202,30 @@
       {
         "context": {
           "image": {
-            "type": "path",
-            "path": "users.johnm.library.flickr.image.8400215023"
+            "type": "image/jpeg",
+            "provider": "url",
+            "url": "http://farm9.staticflickr.com/8075/8400215023_b199816f3d_c.jpg"
           }
         }
       }
 
+- model: www.block
+  pk: 6
+  fields:
+    stack: 2
+    name: 3
+    layout: 3
+    order: 2
+    added: 2012-12-13T03:31:02
+    modified: 2012-12-13T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "table": {
+            "type": "text/csv",
+            "provider": "inline",
+            "use_row_header": true,
+            "value": "Item,Value\nScope,Losmandy\nFoo,12.5\nShit,22.3\nFruit,apples"
+          }
+        }
+      }
