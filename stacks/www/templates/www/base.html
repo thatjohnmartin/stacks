@@ -2,13 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}Stacks - {% block subtitle %}{% endblock %}{% endblock %}</title>
-        <meta name="description" content="Stacks – Lovingly organized pixels.">
+        <title>{% block title %}{{ request.site.name }} - {% block subtitle %}{% endblock %}{% endblock %}</title>
+        <meta name="description" content="{{ request.site.name }} – Lovingly organized pixels about {{ request.site.short_name }}.">
         <meta name="author" content="John Martin">
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400|Lora:400,700,400italic' rel='stylesheet' type='text/css'>
-        <link href="/static/lib/bootstrap-2.3.2/less/bootstrap.less" rel="stylesheet/less">
-        <link href="/static/www/less/core.less" rel="stylesheet/less">
+
+        <link rel="stylesheet" href="/static/lib/normalize.css"/>
+        <link rel="stylesheet/less" href="/static/www/less/base.less"/>
+
+{#        <link rel="stylesheet" href="/static/lib/toast.css"/>#}
+
+{#        <link href="/static/lib/bootstrap-2.3.2/less/bootstrap.less" rel="stylesheet/less">#}
+{#        <link href="/static/www/less/core.less" rel="stylesheet/less">#}
 
         {% block css %}{% endblock %}
 
@@ -16,7 +22,7 @@
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+{#            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>#}
         <![endif]-->
 
         {% block js %}{% endblock %}
@@ -31,67 +37,98 @@
     <body class="stacks {% block body_class %}{% endblock %}">
 
         {% block navbar %}
-            <div class="navbar navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="brand {{ request.site.short_name }}" href="/"></a>
-                        <ul class="nav nav-pills">
-                            {% if user.is_authenticated() %}
-                                <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
-                            {% endif %}
-                            <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
-                            {% if user.is_authenticated() %}
-                                <li class="divider-vertical"></li>
-                                <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
-                                <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
-                            {% endif %}
-                        </ul>
-                        {% if not user.is_authenticated() %}
-{#                                <a class="pull-right btn join-button" href="{{ url_for('join') }}">Join</a>#}
+            <div class="header">
+                <div class="navbar">
+                    <a class="logo {{ request.site.short_name }}" href="/">{{ request.site.name }}</a>
+                    <ul class="nav">
+                        {% if user.is_authenticated() %}
+                            <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
                         {% endif %}
-                        <ul class="nav nav-pills pull-right">
-                            {% if user.is_authenticated() %}
-                                <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Sign out</a></li>
-                            {% else %}
-                                <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>
-                                <li><a href="{{ url_for('join') }}">Join</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                        <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
+                        {% if user.is_authenticated() %}
+                            <li class="divider-vertical"></li>
+                            <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
+                            <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav pull-right">
+                        {% if user.is_authenticated() %}
+                            <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Sign out</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>
+                            <li><a href="{{ url_for('join') }}">Join</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
+
+
+{#            <div class="navbar navbar-fixed-top">#}
+{#                <div class="navbar-inner">#}
+{#                    <div class="container">#}
+{#                        <a class="brand {{ request.site.short_name }}" href="/"></a>#}
+{#                        <ul class="nav nav-pills">#}
+{#                            {% if user.is_authenticated() %}#}
+{#                                <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>#}
+{#                            {% endif %}#}
+{#                            <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>#}
+{#                            {% if user.is_authenticated() %}#}
+{#                                <li class="divider-vertical"></li>#}
+{#                                <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>#}
+{#                                <li><a href="#create-modal" data-toggle="modal">Upload</a></li>#}
+{#                            {% endif %}#}
+{#                        </ul>#}
+{#                        {% if not user.is_authenticated() %}#}
+{#                                <a class="pull-right btn join-button" href="{{ url_for('join') }}">Join</a>#}
+{#                        {% endif %}#}
+{#                        <ul class="nav nav-pills pull-right">#}
+{#                            {% if user.is_authenticated() %}#}
+{#                                <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Sign out</a></li>#}
+{#                            {% else %}#}
+{#                                <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>#}
+{#                                <li><a href="{{ url_for('join') }}">Join</a></li>#}
+{#                            {% endif %}#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         {% endblock %}
 
         <div class="container">
             {% block content %}Empty{% endblock %}
         </div>
 
-        <div id="create-modal" class="modal hide fade create-modal">
-            <form method="post" action="{{ url_for('page.create') }}" class="form-horizontal">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3>Create a new page</h3>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-                    <input type="hidden" name="user" value="{{ request.user.id }}" />
+        <div class="footer">
+            {% block footer %}<p>&copy; 2013 Lonepixel</p>{% endblock %}
+        </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="create-modal-title">Page title:</label>
-                        <div class="controls">
-                            <input type="text" id="create-modal-title" name="title" class="input-xlarge" placeholder="My New Page">
-                        </div>
-                    </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="create-modal-slug">URL:</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">/astro/</span>
-                                <input class="input-xlarge" id="create-modal-slug" name="slug" type="text" placeholder="my-new-page">
-                            </div>
-                        </div>
-                    </div>
+{#        <div id="create-modal" class="modal hide fade create-modal">#}
+{#            <form method="post" action="{{ url_for('page.create') }}" class="form-horizontal">#}
+{#                <div class="modal-header">#}
+{#                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
+{#                    <h3>Create a new page</h3>#}
+{#                </div>#}
+{#                <div class="modal-body">#}
+{#                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />#}
+{#                    <input type="hidden" name="user" value="{{ request.user.id }}" />#}
+{##}
+{#                    <div class="control-group">#}
+{#                        <label class="control-label" for="create-modal-title">Page title:</label>#}
+{#                        <div class="controls">#}
+{#                            <input type="text" id="create-modal-title" name="title" class="input-xlarge" placeholder="My New Page">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="control-group">#}
+{#                        <label class="control-label" for="create-modal-slug">URL:</label>#}
+{#                        <div class="controls">#}
+{#                            <div class="input-prepend">#}
+{#                                <span class="add-on">/astro/</span>#}
+{#                                <input class="input-xlarge" id="create-modal-slug" name="slug" type="text" placeholder="my-new-page">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
 
 {#                    <div class="control-group">#}
 {#                        <label class="control-label">Topic:</label>#}
@@ -105,25 +142,25 @@
 {#                        </div>#}
 {#                    </div>#}
 
-                    <div class="control-group">
-                        <label class="control-label">Layout:</label>
-                        <div class="controls">
-                            {% for layout in models.Layout.objects.all() %}
-                                <label class="radio">
-                                    <input type="radio" name="layout" value="{{ layout.id }}" {% if layout.name == 'Singularity' %}checked{% endif %}>
-                                    {{ layout.name }}
-                                </label>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Create page</button>
-                </div>
-            </form>
-        </div>
+{#                    <div class="control-group">#}
+{#                        <label class="control-label">Layout:</label>#}
+{#                        <div class="controls">#}
+{#                            {% for layout in models.Layout.objects.all() %}#}
+{#                                <label class="radio">#}
+{#                                    <input type="radio" name="layout" value="{{ layout.id }}" {% if layout.name == 'Singularity' %}checked{% endif %}>#}
+{#                                    {{ layout.name }}#}
+{#                                </label>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <div class="modal-footer">#}
+{#                    <a href="#" class="btn" data-dismiss="modal">Cancel</a>#}
+{#                    <button type="submit" class="btn btn-primary">Create page</button>#}
+{#                </div>#}
+{#            </form>#}
+{#        </div>#}
 
         <!-- Placed at the end of the document so the pages load faster -->
         {% if debug %}
@@ -142,29 +179,29 @@
 
         {% block extra_scripts_before_bootstrap %}{% endblock %}
 
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-transition.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-alert.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-modal.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-dropdown.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-scrollspy.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-tab.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-tooltip.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-popover.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-button.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-collapse.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-carousel.js"></script>
-        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-typeahead.js"></script>
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-transition.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-alert.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-modal.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-dropdown.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-scrollspy.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-tab.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-tooltip.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-popover.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-button.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-collapse.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-carousel.js"></script>#}
+{#        <script src="/static/lib/bootstrap-2.3.2/js/bootstrap-typeahead.js"></script>#}
 
         {% block extra_scripts_after_bootstrap %}{% endblock %}
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#create-modal').on('shown', function () {
-                    $('#create-modal-title').focus();
-                });
-                $('#create-modal-slug').slugify('#create-modal-title');
-            });
-        </script>
+{#        <script type="text/javascript">#}
+{#            $(document).ready(function() {#}
+{#                $('#create-modal').on('shown', function () {#}
+{#                    $('#create-modal-title').focus();#}
+{#                });#}
+{#                $('#create-modal-slug').slugify('#create-modal-title');#}
+{#            });#}
+{#        </script>#}
 
         {% block page_scripts %}{% endblock %}
     </body>

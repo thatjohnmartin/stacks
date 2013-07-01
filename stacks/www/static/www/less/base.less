@@ -1,0 +1,422 @@
+// Grays
+// -------------------------
+
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #ddd;
+@grayLightest:          #f9f9f9;
+@white:                 #fff;
+
+
+// Scaffolding
+// -------------------------
+
+@bodyBackground:        @white;
+@textColor:             @grayDark;
+@navbarHeight:          47px;
+@baseBorderRadius:      4px;
+
+
+// Links
+// -------------------------
+
+@linkColor:             #08c;
+@linkColorHover:        darken(@linkColor, 15%);
+
+
+// Typography
+// -------------------------
+
+@sansFontFamily:        "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       "Lora", Georgia, "Times New Roman", Times, serif;
+@monoFontFamily:        Menlo, Consolas, "Courier New", monospace;
+
+@headingsFontFamily:    @sansFontFamily;
+@headingsFontWeight:    700;
+@headingsColor:         @grayDark;
+
+@contentFontFamily:         @serifFontFamily;
+@contentFontSize:           18px;
+@contentLineHeight:         27px;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @headingsFontFamily;
+  font-weight: @headingsFontWeight;
+  color: @headingsColor;
+  text-rendering: optimizelegibility; // Fix the character spacing for headings
+}
+
+h1 {
+    font-size: 46px;
+    letter-spacing: -3px;
+    margin-bottom: 14px;
+    line-height: 54px;
+}
+
+h2 {
+    font-family: @contentFontFamily;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: normal;
+    margin-top: -4px;
+    line-height: 30px;
+    color: @gray;
+}
+
+
+// Border Radius
+// -------------------------
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Single Corner Border Radius
+.border-top-left-radius(@radius) {
+  -webkit-border-top-left-radius: @radius;
+      -moz-border-radius-topleft: @radius;
+          border-top-left-radius: @radius;
+}
+.border-top-right-radius(@radius) {
+  -webkit-border-top-right-radius: @radius;
+      -moz-border-radius-topright: @radius;
+          border-top-right-radius: @radius;
+}
+.border-bottom-right-radius(@radius) {
+  -webkit-border-bottom-right-radius: @radius;
+      -moz-border-radius-bottomright: @radius;
+          border-bottom-right-radius: @radius;
+}
+.border-bottom-left-radius(@radius) {
+  -webkit-border-bottom-left-radius: @radius;
+      -moz-border-radius-bottomleft: @radius;
+          border-bottom-left-radius: @radius;
+}
+
+
+// Misc fixes
+// -------------------------
+
+img {
+    max-width: 100%;
+}
+
+// Dimensions
+// -------------------------
+
+.content-width {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+// Grid
+// -------------------------
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+[class*='col-'] {
+    float: left;
+    padding-right: 20px;
+}
+[class*='col-']:last-of-type {
+    padding-right: 0;
+}
+
+.col-2-3 {
+    width: 66.66%;
+}
+.col-1-3 {
+    width: 33.33%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+// Header
+// -------------------------
+
+.header {
+    border-bottom: 1px solid @grayLighter;
+
+    .navbar {
+        .content-width;
+        height: @navbarHeight;
+        font-family: @sansFontFamily;
+        text-transform: uppercase;
+        font-size: 12px;
+
+        .logo {
+            display: block;
+            float: left;
+            text-indent: -9999px;
+            white-space: nowrap;
+            height: 38px;
+            width: 85px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            margin-left: 0px;
+            background-position: 0 3px;
+            background-repeat: no-repeat;
+            &.astro {
+                background-image: url('/static/www/img/astro/logo.png');
+            }
+            &.climbing {
+                background-image: url('/static/www/img/climbing/logo.png');
+            }
+            &:hover {
+                &.astro {
+                    background-image: url('/static/www/img/astro/logo-hover.png');
+                }
+                &.climbing {
+                    background-image: url('/static/www/img/climbing/logo-hover.png');
+                }
+            }
+        }
+
+        .nav {
+            float: left;
+            list-style: none;
+            display: block;
+            margin-top: 15px;
+
+            > li {
+                float: left;
+
+                > a {
+                    padding: 10px 15px;
+                    text-decoration: none;
+                    color: @grayLight;
+                    .border-radius(@baseBorderRadius);
+
+                    &:hover {
+                        color: @gray;
+                        background-color: rgb(242, 242, 242);
+                    }
+                }
+            }
+        }
+        .nav.pull-right {
+            float: right;
+            margin-right: 0;
+        }
+    }
+}
+
+.container {
+    .content-width;
+    font-family: @contentFontFamily;
+    font-size: @contentFontSize;
+    line-height: @contentLineHeight;
+
+    p {
+        margin:0 0 13px;
+    }
+}
+
+.footer {
+    .content-width;
+    border-top: 1px solid @grayLighter;
+    margin-top: 20px;
+    color: @grayLight;
+    font-size: 12px;
+    text-align: left;
+}
+
+
+// Stacks and blocks
+// -------------------------
+
+.stack {
+    // nothing
+}
+
+
+// BASE TABLES
+// -----------------
+
+@tableBorder: @grayLighter;
+@tableLineHeight: @contentLineHeight;
+@tableBackgroundAccent: @grayLightest;
+@tableBackgroundHover: darken(@tableBackgroundAccent, 5%);
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+// BASELINE STYLES
+// ---------------
+
+.table {
+  width: 100%;
+  margin-bottom: @tableLineHeight;
+  // Cells
+  th,
+  td {
+    padding: 8px;
+    line-height: @tableLineHeight;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid @tableBorder;
+  }
+  th {
+    font-weight: bold;
+  }
+  // Bottom align for column headings
+  thead th {
+    vertical-align: bottom;
+  }
+  // Remove top border from thead by default
+  caption + thead tr:first-child th,
+  caption + thead tr:first-child td,
+  colgroup + thead tr:first-child th,
+  colgroup + thead tr:first-child td,
+  thead:first-child tr:first-child th,
+  thead:first-child tr:first-child td {
+    border-top: 0;
+  }
+  // Account for multiple tbody instances
+  tbody + tbody {
+    border-top: 2px solid @tableBorder;
+  }
+
+  // Nesting
+  .table {
+    background-color: @bodyBackground;
+  }
+}
+
+
+// CONDENSED TABLE W/ HALF PADDING
+// -------------------------------
+
+.table-condensed {
+  th,
+  td {
+    padding: 4px 5px;
+  }
+}
+
+
+// BORDERED VERSION
+// ----------------
+
+.table-bordered {
+  border: 1px solid @tableBorder;
+  border-collapse: separate; // Done so we can round those corners!
+  *border-collapse: collapse; // IE7 can't round corners anyway
+  border-left: 0;
+  .border-radius(@baseBorderRadius);
+  th,
+  td {
+    border-left: 1px solid @tableBorder;
+  }
+  // Prevent a double border
+  caption + thead tr:first-child th,
+  caption + tbody tr:first-child th,
+  caption + tbody tr:first-child td,
+  colgroup + thead tr:first-child th,
+  colgroup + tbody tr:first-child th,
+  colgroup + tbody tr:first-child td,
+  thead:first-child tr:first-child th,
+  tbody:first-child tr:first-child th,
+  tbody:first-child tr:first-child td {
+    border-top: 0;
+  }
+  // For first th/td in the first row in the first thead or tbody
+  thead:first-child tr:first-child > th:first-child,
+  tbody:first-child tr:first-child > td:first-child,
+  tbody:first-child tr:first-child > th:first-child {
+    .border-top-left-radius(@baseBorderRadius);
+  }
+  // For last th/td in the first row in the first thead or tbody
+  thead:first-child tr:first-child > th:last-child,
+  tbody:first-child tr:first-child > td:last-child,
+  tbody:first-child tr:first-child > th:last-child {
+    .border-top-right-radius(@baseBorderRadius);
+  }
+  // For first th/td (can be either) in the last row in the last thead, tbody, and tfoot
+  thead:last-child tr:last-child > th:first-child,
+  tbody:last-child tr:last-child > td:first-child,
+  tbody:last-child tr:last-child > th:first-child,
+  tfoot:last-child tr:last-child > td:first-child,
+  tfoot:last-child tr:last-child > th:first-child {
+    .border-bottom-left-radius(@baseBorderRadius);
+  }
+  // For last th/td (can be either) in the last row in the last thead, tbody, and tfoot
+  thead:last-child tr:last-child > th:last-child,
+  tbody:last-child tr:last-child > td:last-child,
+  tbody:last-child tr:last-child > th:last-child,
+  tfoot:last-child tr:last-child > td:last-child,
+  tfoot:last-child tr:last-child > th:last-child {
+    .border-bottom-right-radius(@baseBorderRadius);
+  }
+
+  // Clear border-radius for first and last td in the last row in the last tbody for table with tfoot
+  tfoot + tbody:last-child tr:last-child td:first-child {
+    .border-bottom-left-radius(0);
+  }
+  tfoot + tbody:last-child tr:last-child td:last-child {
+    .border-bottom-right-radius(0);
+  }
+
+  // Special fixes to round the left border on the first td/th
+  caption + thead tr:first-child th:first-child,
+  caption + tbody tr:first-child td:first-child,
+  colgroup + thead tr:first-child th:first-child,
+  colgroup + tbody tr:first-child td:first-child {
+    .border-top-left-radius(@baseBorderRadius);
+  }
+  caption + thead tr:first-child th:last-child,
+  caption + tbody tr:first-child td:last-child,
+  colgroup + thead tr:first-child th:last-child,
+  colgroup + tbody tr:first-child td:last-child {
+    .border-top-right-radius(@baseBorderRadius);
+  }
+
+}
+
+
+// ZEBRA-STRIPING
+// --------------
+
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+.table-striped {
+  tbody {
+    > tr:nth-child(odd) > td,
+    > tr:nth-child(odd) > th {
+      background-color: @tableBackgroundAccent;
+    }
+  }
+}
+
+
+// HOVER EFFECT
+// ------------
+// Placed here since it has to come after the potential zebra striping
+.table-hover {
+  tbody {
+    tr:hover > td,
+    tr:hover > th {
+      background-color: @tableBackgroundHover;
+    }
+  }
+}

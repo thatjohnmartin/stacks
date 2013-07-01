@@ -5,12 +5,17 @@
 {% block body_class %}home content{% endblock %}
 
 {% block content %}
-    {% if latest_stacks %}
-        <p>Latest stacks:</p>
-        <ul>
-            {% for stack in latest_stacks %}
-                <li><a href="{{ url_for('stack', kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="row">
+        <h1>Welcome to Stacks</h1>
+        <div class="col-2-3">
+            {% if latest_stacks %}
+                <p>Latest stacks:</p>
+                <ul>
+                    {% for stack in latest_stacks %}
+                        <li><a href="{{ url_for('stack', kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
