@@ -5,6 +5,10 @@
     short_name: astro
     domain_local: local.astrostacks.com:8000
     domain_prod: www.astrostacks.com
+    properties_json: >
+      {
+        "description": "Stunningly beautiful astrophotography"
+      }
 
 - model: www.site
   pk: 2
@@ -13,6 +17,10 @@
     short_name: climbing
     domain_local: local.climbingstacks.com:8000
     domain_prod: www.climbingstacks.com
+    properties_json: >
+      {
+        "description": "Pixel-based spraying"
+      }
 
 - model: auth.user
   pk: 1

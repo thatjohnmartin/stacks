@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %}{{ request.site.name }} - {% block subtitle %}{% endblock %}{% endblock %}</title>
-        <meta name="description" content="{{ request.site.name }} – Lovingly organized pixels about {{ request.site.short_name }}.">
+        <meta name="description" content="{{ request.site.name }} – {{ request.site.properties.description }}">
         <meta name="author" content="John Martin">
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400|Lora:400,700,400italic' rel='stylesheet' type='text/css'>
