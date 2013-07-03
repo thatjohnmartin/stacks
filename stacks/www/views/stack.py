@@ -104,8 +104,7 @@ def item(placement_types, data):
         if provider == 'url':
             if 'url' not in data:
                 return _render_missing_param_error('url')
-            c['url'] = data['url']
-            return template.render(c)
+            c['image_url'] = data['url']
 
         elif provider == 'flickr':
             if 'photo_id' not in data:
@@ -116,8 +115,15 @@ def item(placement_types, data):
             sizes = simplejson.loads(flickr.photos_getSizes(photo_id=photo_id)[14:-1])
             for size in sizes['sizes']['size']:
                 if size['label'] == 'Medium 800':
-                    c['url'] = size['source']
-                    return template.render(c)
+                    c['image_url'] = size['source']
+
+            info = simplejson.loads(flickr.photos_getInfo(photo_id=photo_id)[14:-1])
+            url = info['photo']['urls']['url']
+            if url and url[0]['type'] == 'photopage':
+                    c['page_url'] = url[0]['_content']
+
+        if 'image_url' in c:
+            return template.render(c)
 
     # text rendering - supports plain, html, markdown formats and inline
     if data_super_type == 'text' and data_sub_type != 'csv':

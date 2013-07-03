@@ -120,6 +120,8 @@ img {
 // Grid
 // -------------------------
 
+@gridGutterWidth: 20px;
+
 *, *:after, *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -128,7 +130,7 @@ img {
 
 [class*='col-'] {
     float: left;
-    padding-right: 20px;
+    padding-right: @gridGutterWidth;
 }
 [class*='col-']:last-of-type {
     padding-right: 0;
@@ -232,6 +234,16 @@ img {
 
     p {
         margin:0 0 13px;
+    }
+
+    .block {
+        .image-caption-text {
+            font-family: @sansFontFamily;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 22px;
+            color: @grayLight;
+        }
     }
 }
 
@@ -424,10 +436,24 @@ table {
     .col-2-3, .col-1-3 {
         width: 50%;
     }
+    .col-2-3.go-big {
+        width: auto;
+        padding-right: 0;
+    }
 
     .col-2-3:last-of-type {
         width: auto;
         float: none;
+    }
+
+    .col-1-3.go-under {
+        float: none;
+        width: auto;
+        padding-right: 0;
+    }
+
+    .blank {
+        display:none;
     }
 }
 
@@ -443,6 +469,7 @@ table {
     .col-2-3, .col-1-3 {
         width: auto;
         float: none;
+        padding-right: 0;
     }
 
 	h1 {
@@ -456,6 +483,11 @@ table {
 }
 
 @media screen and (max-width: 480px) {
+
+    .header .navbar, .container, .footer {
+        margin-left: 20px;
+        margin-right: 20px;
+	}
 
     h1 {
         font-size: 28px;
