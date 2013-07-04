@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 {% for th in header_row %}
-                    <th>{{ th|e }}</th>
+                    <th style="{{ style[loop.index0] }}">{{ th|e }}</th>
                 {% endfor %}
             </tr>
         </thead>
@@ -13,9 +13,9 @@
             <tr>
                 {% for td in row %}
                     {% if loop.first and use_col_header %}
-                        <th>{{ td|e }}</th>
+                        <th style="{{ style[loop.index0] }}">{{ td|e }}</th>
                     {% else %}
-                        <td>{{ td|e }}</td>
+                        <td style="{{ style[loop.index0] }}">{{ td|e }}</td>
                     {% endif %}
                 {% endfor %}
             </tr>

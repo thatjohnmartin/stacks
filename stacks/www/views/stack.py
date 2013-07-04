@@ -197,6 +197,7 @@ def item(placement_types, data):
 
             # other options
             c['use_col_header'] = data['use_col_header'] if 'use_col_header' in data else False
+            c['style'] = data['style'] if 'style' in data else []
 
             return template.render(c)
 

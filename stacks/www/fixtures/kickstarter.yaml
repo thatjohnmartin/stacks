@@ -296,6 +296,7 @@
             "type": "text/csv",
             "provider": "url",
             "use_row_header": true,
+            "style": ["", "text-align:right", "text-align:right"],
             "url": "https://dl.dropboxusercontent.com/u/17066303/planet-distances-from-sun.csv"
           }
         }
