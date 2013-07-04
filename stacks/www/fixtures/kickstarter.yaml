@@ -269,3 +269,34 @@
         }
       }
 
+- model: www.stack
+  pk: 3
+  fields:
+    user: 10
+    site: 1
+    title: A Big, Complicated Example Stack
+    subtitle: A little bit of this, a little bit of that
+    slug: a-complicated-example
+    added: 2012-9-10T03:31:02
+    modified: 2012-9-10T03:31:02
+
+- model: www.block
+  pk: 8
+  fields:
+    stack: 3
+    name: 1
+    layout: 3
+    order: 0
+    added: 2012-11-10T03:31:02
+    modified: 2012-11-10T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "table": {
+            "type": "text/csv",
+            "provider": "url",
+            "use_row_header": true,
+            "url": "https://dl.dropboxusercontent.com/u/17066303/planet-distances-from-sun.csv"
+          }
+        }
+      }

@@ -3,6 +3,7 @@ import simplejson
 import markdown
 import StringIO
 import csv
+import urllib2
 from jinja2 import Environment, PackageLoader
 from django.shortcuts import render, Http404
 from django.conf import settings
@@ -164,14 +165,24 @@ def item(placement_types, data):
         template = env.get_template('table.html') # !! this should be cached
         c = {}
 
+        f = None
+
         if provider == 'inline':
             if 'value' not in data:
                 _render_missing_param_error('value')
 
+            f = StringIO.StringIO(data['value'])
+
+        elif provider == 'url':
+            if 'url' not in data:
+                _render_missing_param_error('url')
+
+            f = urllib2.urlopen(data['url'])
+
+        if f:
             # delimiter is configurable
             delimiter = data['delimiter'] if 'delimiter' in data else ','
 
-            f = StringIO.StringIO(data['value'])
             reader = csv.reader(f, delimiter=delimiter)
 
             # if there is a header row, pop it off the reader
