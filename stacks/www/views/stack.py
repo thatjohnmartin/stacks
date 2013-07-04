@@ -40,6 +40,23 @@ def stack(request, slug):
 
     return render(request, 'www/stack.html', {'stack': stack, 'rendered_blocks': rendered_blocks})
 
+# saved from Page...
+#
+# class PageForm(ModelForm):
+#     class Meta:
+#         model = Page
+#
+# def create(request):
+#     if request.method == 'POST':
+#         form = PageForm(request.POST)
+#         if form.is_valid():
+#             page = form.save()
+#             return HttpResponseRedirect(reverse('page', args=[page.topic, page.slug]))
+#     else:
+#         form = PageForm()
+#
+#     return render(request, 'www/create.html', {'form': form,})
+
 def parse_type(type):
     """Parses a (mime)type string into super-type and sub-type."""
     if type not in constants.SUPPORTED_TYPES:

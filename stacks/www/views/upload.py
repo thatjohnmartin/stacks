@@ -1,10 +1,10 @@
 import os
 import datetime
+import simplejson
 from django.http import HttpResponse
-from django.utils import simplejson
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from stacks.www.models import MediaItem
+# from stacks.www.models import MediaItem
 
 ALLOWED_EXTENSIONS = [".jpg", ".png", ".gif"]
 SIZE_LIMIT = 1024 * 1000 * 10 # 10mb
@@ -37,9 +37,9 @@ def upload_image(request):
     else:
         return HttpResponse(simplejson.dumps({'error': "File has an invalid extension."}))
 
-    item = MediaItem.objects.create(
-        user = request.user,
-        title = name,
-        image_path = file_path_from_media_root,
-    )
+    # item = MediaItem.objects.create(
+    #     user = request.user,
+    #     title = name,
+    #     image_path = file_path_from_media_root,
+    # )
     return HttpResponse(simplejson.dumps({'success': True, 'path': settings.MEDIA_URL + file_path_from_media_root}))

@@ -8,3 +8,4 @@ python-memcached==1.53
 flickrapi==1.4.2
 pyyaml==3.10
 fabric==1.6.1
+gunicorn==0.17.4

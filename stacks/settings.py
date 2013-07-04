@@ -180,3 +180,13 @@ if not ENABLE_SQL_LOGGING:
 
 FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
 FLICKR_API_SECRET = '37f2aa730149f69c'
+
+# configure logging
+import logging
+from django.conf import settings
+
+# logging level is INFO on production, DEBUG if local install
+LOG_LEVEL = logging.DEBUG if settings.DEBUG else logging.INFO
+LOG_FORMAT = '%(asctime)s %(process)d %(filename)s(%(lineno)d): %(levelname)s %(message)s'
+
+logging.basicConfig(filename=settings.LOG_FILE, filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)

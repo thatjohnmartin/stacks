@@ -62,6 +62,7 @@ class Loader(BaseLoader):
     env.globals['url_for'] = urlresolvers.reverse
     env.globals['models'] = models
     env.globals['constants'] = constants
+    env.globals['settings'] = settings
 
     def load_template(self, template_name, template_dirs=None):
         try:
