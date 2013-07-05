@@ -200,15 +200,49 @@
           },
           "topo": {
             "type": "application/x-topo-json",
-            "provider": "mountain_project",
+            "provider": "mountain_project_scraper",
             "value": {
-              "source_url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
+              "_scrape": {
+                "url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
+                "date": "2012-11-10T03:31:02"
+              },
+              "url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
               "type": "Sport, 1 pitch, 50 feet",
               "grade": "5.8+",
               "fa": "Unknown, 1991",
               "location": {
                 "state": "Nevada",
                 "area": "Red Rock > Second Pullout > The Gallery"
+              }
+            }
+          }
+        }
+      }
+
+- model: www.block
+  pk: 10
+  fields:
+    stack: 1
+    name: 5
+    layout: 4
+    order: 5
+    added: 2012-11-10T03:31:02
+    modified: 2012-11-10T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "8786942121"
+          },
+          "topo": {
+            "type": "application/x-topo-json",
+            "provider": "mountain_project_scraper",
+            "value": {
+              "_scrape": {
+                "url": "http://www.mountainproject.com/v/under-the-boardwalk/105813238",
+                "date": ""
               }
             }
           }

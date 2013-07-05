@@ -12,9 +12,11 @@
             <th>FA</th>
             <td>{{ topo.fa|e }}</td>
         </tr>
-        <tr>
-            <th>Location</th>
-            <td>{{ topo.location.area|e }}</td>
-        </tr>
+        {% if topo.location %}
+            <tr>
+                <th>Location</th>
+                <td>{{ topo.location.area|e }}</td>
+            </tr>
+        {% endif %}
     </tbody>
 </table>
