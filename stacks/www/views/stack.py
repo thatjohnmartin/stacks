@@ -201,5 +201,21 @@ def item(placement_types, data):
 
             return template.render(c)
 
+    # text rendering - supports plain, html, markdown formats and inline
+    if data_super_type == 'application' and data_sub_type == 'x-topo-json':
+
+        # get the image item template
+        env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
+        template = env.get_template('climbing/topo.html') # !! this should be cached
+        c = {}
+
+        if provider == 'mountain_project':
+            if 'value' not in data:
+                return _render_missing_param_error('value')
+
+            c['topo'] = data['value']
+
+        return template.render(c)
+
     # simple error message for unprocessed items
     return _render_item_error("Empty")

@@ -1,0 +1,7 @@
+{% extends "image.html" %}
+
+{% block right_col %}
+    <div class="col-1-3">
+        {{ item(['application/x-topo-json'], topo) }}
+    </div>
+{% endblock %}
