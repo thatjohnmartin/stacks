@@ -10,3 +10,4 @@ pyyaml==3.10
 fabric==1.6.1
 gunicorn==0.17.4
 beautifulsoup4==4.2.1
+lxml==3.2.1
