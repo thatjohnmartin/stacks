@@ -9,7 +9,7 @@ from django.shortcuts import render, Http404
 from django.conf import settings
 from stacks.www.models import Stack
 from stacks import constants
-from stacks.www.utils.scrapers import MountainProjectScraper
+from stacks.www.utils import scrapers
 
 def stack(request, slug):
     stack = Stack.get_from_cache(site=request.site, slug=slug)
@@ -214,10 +214,9 @@ def item(placement_types, data):
             if 'value' not in data:
                 return _render_missing_param_error('value')
 
-            scraper = MountainProjectScraper()
-            scraper.update_item(data['value'])
+            # topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
 
-        c['topo'] = data['value']
+            c['topo'] = data['value']
 
         return template.render(c)
 

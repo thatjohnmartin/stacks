@@ -1,6 +1,10 @@
 <table class="table table-bordered table-striped">
     <tbody>
         <tr>
+            <th>Name</th>
+            <td>{{ topo.name|e }}</td>
+        </tr>
+        <tr>
             <th>Type</th>
             <td>{{ topo.type|e }}</td>
         </tr>
@@ -15,7 +19,17 @@
         {% if topo.location %}
             <tr>
                 <th>Location</th>
-                <td>{{ topo.location.area|e }}</td>
+                <td><a href="http://www.mountainproject.com{{ topo.location.url }}">{{ topo.location.name|e }}</a></td>
+            </tr>
+        {% endif %}
+        {% if topo.area %}
+            <tr>
+                <th>Area</th>
+                <td>
+                    {% for a in topo.area %}
+                        <a href="http://www.mountainproject.com{{ a.url }}">{{ a.name|e }}</a>
+                    {% endfor %}
+                </td>
             </tr>
         {% endif %}
     </tbody>

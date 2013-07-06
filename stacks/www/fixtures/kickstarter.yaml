@@ -204,15 +204,7 @@
             "value": {
               "_scrape": {
                 "url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
-                "date": "2012-11-10T03:31:02"
-              },
-              "url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
-              "type": "Sport, 1 pitch, 50 feet",
-              "grade": "5.8+",
-              "fa": "Unknown, 1991",
-              "location": {
-                "state": "Nevada",
-                "area": "Red Rock > Second Pullout > The Gallery"
+                "date": ""
               }
             }
           }
