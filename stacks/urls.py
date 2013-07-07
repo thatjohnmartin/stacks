@@ -21,14 +21,17 @@ urlpatterns += patterns('stacks.www.views',
     # stacks homepage
     url(r'^$', 'listing.stacks_home', name='stacks_home'),
 
+    # authentication
+    url(r'^join/$', 'join.join', name='join'),
+
+    # test page
+    url(r'^test/$', 'listing.test'),
+
     # site homepage
     url(r'^(?P<site>[\w-]+)/$', 'listing.site_home', name='site_home'),
 
     # new uploader
     url(r'^(?P<site>[\w-]+)/upload/$', 'upload.upload_image', name='upload_image'),
-
-    # authentication
-    url(r'^join/$', 'join.join', name='join'),
 
     # user home
     url(r'^(?P<site>[\w-]+)/users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
@@ -41,7 +44,4 @@ urlpatterns += patterns('stacks.www.views',
 
     # browse pages
     url(r'^(?P<site>[\w-]+)/stacks/(?P<slug>[\w-]+)/$', 'stack.stack', name='stack'),
-
-    # test page
-    url(r'^test/$', 'listing.test')
 )

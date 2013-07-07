@@ -12,16 +12,26 @@
     <form method="post" action=".">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
         <fieldset>
-            {{ form.email.label_tag() }}
-            {{ form.email }}
-            {{ form.username.label_tag() }}
-            {{ form.username }}
-            {{ form.password1.label_tag() }}
-            {{ form.password1 }}
-            {{ form.password2.label_tag() }}
-            {{ form.password2 }}
+            <p>
+                {{ form.email.label_tag() }}
+                {{ form.email }}
+            </p>
+            <p>
+                {{ form.username.label_tag() }}
+                {{ form.username }}
+            </p>
+            <p>
+                {{ form.password1.label_tag() }}
+                {{ form.password1 }}
+            </p>
+            <p>
+                <label for="id_password2">(again)</label>
+                {{ form.password2 }}
+            </p>
         </fieldset>
-        <button type="submit" class="btn btn-primary">Create my account</button>
+        <p class="form-actions">
+            <button type="submit">Create my account</button>
+        </p>
     </form>
 
 {% endblock %}
