@@ -1,3 +1,7 @@
+//@import "variables.less";
+//@import "mixins.less";
+
+
 // Grays
 // -------------------------
 
@@ -42,6 +46,14 @@
 @contentFontWeight:     500;
 @contentFontSize:       17px;
 @contentLineHeight:     26px;
+
+//@baseFontFamily: @sansFontFamily;
+//@baseFontSize: 14px;
+//@baseLineHeight: 20px;
+
+@formFontFamily: @sansFontFamily;
+@formFontSize: 14px;
+@formLineHeight: 20px;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: @headingsFontFamily;
@@ -147,6 +159,16 @@ img {
     content: "";
     display: table;
     clear: both;
+}
+
+// Modal
+// -------------------------
+
+.modal {
+    width: 400px;
+    margin: 100px auto 0;
+    .border-radius(@baseBorderRadius);
+    border: 1px solid @grayLighter;
 }
 
 
@@ -505,4 +527,35 @@ table {
     .header .navbar .nav {
         display: none;
     }
+}
+
+//@import "forms.less";
+//@import "buttons.less";
+
+
+// Forms
+// -------------------------
+
+label,
+input,
+button,
+select,
+textarea {
+    font-size: @formFontSize;
+    font-weight: normal;
+    line-height: @formLineHeight;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: @formFontFamily; // And only set font-family here for those that need it (note the missing label element)
+}
+
+// Identify controls by their labels
+label {
+    display: block;
+    float: left;
+    margin-bottom: 5px;
 }
