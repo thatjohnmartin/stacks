@@ -2,7 +2,7 @@ from django.contrib import admin
 from stacks.www.models import Site, Stack, Block, Layout
 
 class SiteAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short_name', 'domain_local', 'domain_prod')
+    list_display = ('name', 'short_name')
 
 admin.site.register(Site, SiteAdmin)
 

@@ -18,26 +18,29 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('stacks.www.views',
-    # homepage
-    url(r'^$', 'listing.home', name='home'),
+    # stacks homepage
+    url(r'^$', 'listing.stacks_home', name='stacks_home'),
+
+    # site homepage
+    url(r'^(?P<site>[\w-]+)/$', 'listing.site_home', name='site_home'),
 
     # new uploader
-    url(r'^upload/$', 'upload.upload_image', name='upload_image'),
+    url(r'^(?P<site>[\w-]+)/upload/$', 'upload.upload_image', name='upload_image'),
 
     # authentication
     url(r'^join/$', 'join.join', name='join'),
 
     # user home
-    url(r'^users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
+    url(r'^(?P<site>[\w-]+)/users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
     # tags home - tag directory
-    url(r'^tags/$', 'listing.tag_home', name='tag_home'),
+    url(r'^(?P<site>[\w-]+)/tags/$', 'listing.tag_home', name='tag_home'),
 
     # single tag listing page
-    url(r'^tags/(?P<tag>[\w-]+)/$', 'listing.tag_list', name='tag_list'),
+    url(r'^(?P<site>[\w-]+)/tags/(?P<tag>[\w-]+)/$', 'listing.tag_list', name='tag_list'),
 
     # browse pages
-    url(r'^stacks/(?P<slug>[\w-]+)/$', 'stack.stack', name='stack'),
+    url(r'^(?P<site>[\w-]+)/stacks/(?P<slug>[\w-]+)/$', 'stack.stack', name='stack'),
 
     # test page
     url(r'^test/$', 'listing.test')

@@ -7,26 +7,28 @@
             <div class="navbar">
 
                 <a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>
-                <span class="slash">/</span>
-                <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
+                {% if not request.site.is_home %}
+                    <span class="slash">/</span>
+                    <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
 
-                <ul class="nav">
-                    {% if user.is_authenticated() %}
-                        <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>
-                    {% endif %}
-                    <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
-                    {% if user.is_authenticated() %}
-                        <li class="divider-vertical"></li>
-                        <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
-                        <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
-                    {% endif %}
-                </ul>
+                    <ul class="nav">
+                        {% if user.is_authenticated() %}
+                            <li {% if request.path.startswith(site_url('user_home', request.site, kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ site_url('user_home', request.site, kwargs={'username': user.username}) }}">You</a></li>
+                        {% endif %}
+                        <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
+                        {% if user.is_authenticated() %}
+                            <li class="divider-vertical"></li>
+                            <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
+                            <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif  %}
                 <ul class="nav pull-right">
                     {% if user.is_authenticated() %}
-                        <li><a href="{{ url_for('django.contrib.auth.views.logout') }}">Sign out</a></li>
+                        <li><a href="{{ url('django.contrib.auth.views.logout') }}">Sign out</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('django.contrib.auth.views.login') }}">Sign in</a></li>
-                        <li><a href="{{ url_for('join') }}">Join</a></li>
+                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Sign in</a></li>
+                        <li><a href="{{ url('join') }}">Join</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -43,7 +45,7 @@
 
 
 {#        <div id="create-modal" class="modal hide fade create-modal">#}
-{#            <form method="post" action="{{ url_for('page.create') }}" class="form-horizontal">#}
+{#            <form method="post" action="{{ url('page.create') }}" class="form-horizontal">#}
 {#                <div class="modal-header">#}
 {#                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
 {#                    <h3>Create a new page</h3>#}

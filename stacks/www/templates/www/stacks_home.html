@@ -12,7 +12,7 @@
                 <p>Latest stacks:</p>
                 <ul>
                     {% for stack in latest_stacks %}
-                        <li><a href="{{ url_for('stack', kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a></li>
+                        <li><a href="{{ url('stack', kwargs={'site': stack.site.short_name, 'slug': stack.slug}) }}">{{ stack.title }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

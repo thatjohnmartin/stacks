@@ -40,6 +40,14 @@ class Template(jinja2.Template):
         
         return super(Template, self).render(context_dict)
 
+def reverse_site_url(viewname, site, urlconf=None, args=None, kwargs=None, prefix=None, current_app=None):
+    if kwargs:
+        kwargs['site'] = site.short_name
+    else:
+        kwargs = {'site': site.short_name}
+
+    return urlresolvers.reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+
 class Loader(BaseLoader):
     """
     A file system loader for Jinja2.
@@ -59,7 +67,8 @@ class Loader(BaseLoader):
     env.template_class = Template
     
     # These are available to all templates.
-    env.globals['url_for'] = urlresolvers.reverse
+    env.globals['url'] = urlresolvers.reverse
+    env.globals['site_url'] = reverse_site_url
     env.globals['models'] = models
     env.globals['constants'] = constants
     env.globals['settings'] = settings

@@ -11,9 +11,9 @@
         </div>
     {% endif %}
 
-    <form method="post" action="{{ url_for('django.contrib.auth.views.login') }}">
+    <form method="post" action="{{ url('django.contrib.auth.views.login') }}">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-        <input type="hidden" name="next" value="{{ url_for('home') }}" />
+        <input type="hidden" name="next" value="{{ url('stacks_home') }}" />
 
         <fieldset>
             {{ form.username.label_tag() }}
