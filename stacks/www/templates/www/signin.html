@@ -14,16 +14,19 @@
     <form method="post" action="{{ url('django.contrib.auth.views.login') }}">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
         <input type="hidden" name="next" value="{{ url('stacks_home') }}" />
-
         <fieldset>
-            {{ form.username.label_tag() }}
-            {{ form.username }}
-            {{ form.password.label_tag() }}
-            {{ form.password }}
+            <p>
+                {{ form.username.label_tag() }}
+                {{ form.username }}
+            </p>
+            <p>
+                {{ form.password.label_tag() }}
+                {{ form.password }}
+            </p>
         </fieldset>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Log in</button>
-        </div>
+        <p class="form-actions">
+            <button type="submit">Sign in</button>
+        </p>
     </form>
 
 {% endblock %}
