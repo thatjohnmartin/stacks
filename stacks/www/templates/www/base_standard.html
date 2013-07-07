@@ -5,7 +5,11 @@
     {% block navbar %}
         <div class="header">
             <div class="navbar">
-                <a class="logo {{ request.site.short_name }}" href="/">{{ request.site.name }}</a>
+
+                <a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>
+                <span class="slash">/</span>
+                <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
+
                 <ul class="nav">
                     {% if user.is_authenticated() %}
                         <li {% if request.path.startswith(url_for('user_home', args=[user.username])) %}class="active"{% endif %}><a href="{{ url_for('user_home', args=[user.username]) }}">You</a></li>

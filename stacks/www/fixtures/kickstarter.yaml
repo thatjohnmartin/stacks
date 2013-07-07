@@ -1,10 +1,10 @@
 - model: www.site
   pk: 1
   fields:
-    name: Astro Stacks
+    name: astro.stcks
     short_name: astro
-    domain_local: local.astrostacks.com:8000
-    domain_prod: www.astrostacks.com
+    domain_local: astro-local.stcks.net:8000
+    domain_prod: astro.stcks.net
     properties_json: >
       {
         "description": "Stunningly beautiful astrophotography"
@@ -13,10 +13,10 @@
 - model: www.site
   pk: 2
   fields:
-    name: Climbing Stacks
+    name: climbing.stcks
     short_name: climbing
-    domain_local: local.climbingstacks.com:8000
-    domain_prod: www.climbingstacks.com
+    domain_local: climbing-local.stcks.net:8000
+    domain_prod: climbing.stcks.net
     properties_json: >
       {
         "description": "Pixel-based spraying"
