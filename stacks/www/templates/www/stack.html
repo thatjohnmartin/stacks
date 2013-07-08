@@ -24,5 +24,7 @@
             Posted by <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
             {% if is_you %}you{% else %}{{ stack.user.username }}{% endif %}</a>
             on <span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+        <p class="follow">
+            <a href="#"><i class="icon-plus-sign icon-large"></i> Follow the author</a></p>
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from stacks.www.models.user import *
 from stacks.www.models.layout import *
 from stacks.www.models.library_item import *
 from stacks.www.models.site import *

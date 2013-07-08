@@ -107,6 +107,10 @@ h2 {
 // Misc fixes
 // -------------------------
 
+body {
+    margin-bottom: 40px;
+}
+
 img {
     max-width: 100%;
 }
@@ -276,23 +280,48 @@ img {
 .stack {
     .below-stack {
         border-top: 1px solid @grayLighter;
-        margin-top: 20px;
+        margin-top: 30px;
         padding-top: 20px;
-        padding-bottom: 36px;
+        padding-bottom: 26px;
+        font-family: @sansFontFamily;
+        font-size: 12px;
+        line-height: 14px;
+        color: @grayLight;
+
+        a {
+            color: @gray;
+            text-decoration: none;
+
+            &:hover {
+                color: darken(@gray, 20%);
+                background-color: @grayLightest;
+            }
+        }
 
         .attribution {
-            font-family: @sansFontFamily;
-            font-size: 12px;
-            line-height: 14px;
-            color: @grayLight;
-            margin-top:12px;
+            float: left;
 
-            a, .post-date {
+            .post-date {
                 color: @gray;
             }
 
             .profile-icon {
                 color: @grayLighter;
+            }
+        }
+
+        .follow {
+            float: right;
+            margin-top: 3px;
+
+            a {
+                padding: 10px 15px;
+                .border-radius(@baseBorderRadius);
+
+                &:hover {
+                    color: @gray;
+                    background-color: rgb(242, 242, 242);
+                }
             }
         }
     }
@@ -620,14 +649,15 @@ button {
     background: @grayLighter2;
     .border-radius(@baseBorderRadius);
     border: none;
+    border-bottom: 1px solid @grayLighter;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
     padding: 8px 16px;
 
     &:hover {
         background-color: @grayLighter;
+        border-bottom-color: darken(@grayLighter, 10%);
     }
 }
-
 
 // Close icons
 // -------------------------

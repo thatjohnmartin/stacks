@@ -18,5 +18,12 @@
         {% else %}
             <p>You haven't created any stacks yet! <i class="icon-frown"></i></p>
         {% endif %}
+
+        <p>{% if is_you %}You follow{% else %}{{ page_user.username }} follows{% endif %} these users:</p>
+        <ul>
+            {% for f in page_user.following.all() %}
+                <li><a href="{{ url('user_home', kwargs={'username': f.followed_user.username }) }}">{{ f.followed_user.username }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

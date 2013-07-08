@@ -41,6 +41,11 @@
     email: stacks@lonepixel.com
     date_joined: 2012-11-26T02:41:37
 
+- model: www.profile
+  pk: 1
+  fields:
+    user: 1
+
 - model: auth.user
   pk: 10
   fields: 
@@ -53,6 +58,19 @@
     password: pbkdf2_sha256$10000$iG1noFOlRBfJ$jm2aQesdYz8/wBS8LdocBEdI19aovProE+eOSM/7Rfo=
     email: bruce@foo.com
     date_joined: 2012-11-26T02:41:37
+
+- model: www.profile
+  pk: 2
+  fields:
+    user: 10
+
+- model: www.following
+  pk: 1
+  fields:
+    user: 10
+    followed_user: 11
+    added: 2012-11-10T03:31:02
+    modified: 2012-11-10T03:31:02
 
 - model: auth.user
   pk: 11
@@ -67,6 +85,11 @@
     email: johnw@lyric.com
     date_joined: 2012-11-26T02:41:37
 
+- model: www.profile
+  pk: 3
+  fields:
+    user: 11
+
 - model: auth.user
   pk: 12
   fields:
@@ -79,6 +102,11 @@
     password: pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=
     email: john@lonepixel.com
     date_joined: 2012-11-26T02:41:37
+
+- model: www.profile
+  pk: 4
+  fields:
+    user: 12
 
 - model: www.layout
   pk: 1
