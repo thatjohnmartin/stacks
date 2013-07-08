@@ -1,13 +1,13 @@
 {% extends "www/base_modal.html" %}
 
-{% block title %}Sign in{% endblock %}
+{% block title %}Sign in to your account{% endblock %}
 
 {% block content %}
 
     {% if form.errors %}
         <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            Your username and password didn't match. Please try again.
+            Invalid username or password. Try again.
         </div>
     {% endif %}
 

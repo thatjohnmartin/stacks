@@ -5,11 +5,9 @@
         <div class="header">
             <div class="navbar">
 
-                <a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>
-                {% if not request.site.is_home %}
-                    <span class="slash">/</span>
-                    <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
+                {% include "www/inc/logo.html" %}
 
+                {% if not request.site.is_home %}
                     <ul class="nav">
                         {% if user.is_authenticated() %}
                             <li {% if request.path.startswith(site_url('user_home', request.site, kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ site_url('user_home', request.site, kwargs={'username': user.username}) }}">You</a></li>

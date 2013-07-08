@@ -1,0 +1,5 @@
+<a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>
+{% if not request.site.is_home %}
+    <span class="slash">/</span>
+    <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
+{% endif %}

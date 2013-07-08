@@ -1,5 +1,7 @@
 {% extends "www/base_modal.html" %}
 
+{% block subtitle %}Create an account{% endblock %}
+
 {% block content %}
 
     {% if form.errors %}
@@ -30,7 +32,7 @@
             </p>
         </fieldset>
         <p class="form-actions">
-            <button type="submit">Create my account</button>
+            <button type="submit">Create account</button>
         </p>
     </form>
 
