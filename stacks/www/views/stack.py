@@ -40,7 +40,13 @@ def stack(request, slug):
         # render the block and add it to the content list
         rendered_blocks.append({'block': block, 'content': template.render(layout_context)})
 
-    return render(request, 'www/stack.html', {'stack': stack, 'rendered_blocks': rendered_blocks})
+    c = {
+        'stack': stack,
+        'is_you': stack.user == request.user,
+        'rendered_blocks': rendered_blocks
+    }
+
+    return render(request, 'www/stack.html', c)
 
 # saved from Page...
 #

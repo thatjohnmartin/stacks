@@ -27,14 +27,14 @@ urlpatterns += patterns('stacks.www.views',
     # test page
     url(r'^test/$', 'listing.test'),
 
+    # user home
+    url(r'^users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
+
     # site homepage
     url(r'^(?P<site>[\w-]+)/$', 'listing.site_home', name='site_home'),
 
     # new uploader
     url(r'^(?P<site>[\w-]+)/upload/$', 'upload.upload_image', name='upload_image'),
-
-    # user home
-    url(r'^(?P<site>[\w-]+)/users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
 
     # tags home - tag directory
     url(r'^(?P<site>[\w-]+)/tags/$', 'listing.tag_home', name='tag_home'),

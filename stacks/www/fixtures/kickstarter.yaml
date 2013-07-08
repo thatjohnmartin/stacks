@@ -116,7 +116,7 @@
 - model: www.stack
   pk: 1
   fields:
-    user: 10
+    user: 12
     site: 3
     title: Pulling on Huecos at Red Rock, NV
     subtitle: Sport climbing is neither, or so they say
@@ -250,7 +250,7 @@
 - model: www.stack
   pk: 2
   fields:
-    user: 10
+    user: 11
     site: 2
     title: "NGC 2237, RGB Rosette Nebula in Monoceros"
     slug: ngc-2237-rgb-rosette-nebula-in-monoceros

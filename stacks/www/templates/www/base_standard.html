@@ -10,7 +10,7 @@
                 {% if not request.site.is_home %}
                     <ul class="nav">
                         {% if user.is_authenticated() %}
-                            <li {% if request.path.startswith(site_url('user_home', request.site, kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ site_url('user_home', request.site, kwargs={'username': user.username}) }}">You</a></li>
+                            <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
                         {% endif %}
                         <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
                         {% if user.is_authenticated() %}

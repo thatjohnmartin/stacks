@@ -26,6 +26,29 @@ from django.conf import settings
 from stacks.www import models
 from stacks import constants
 
+# Global functions
+# -------------------------
+
+def reverse_site_url(viewname, site, urlconf=None, args=None, kwargs=None, prefix=None, current_app=None):
+    if kwargs:
+        kwargs['site'] = site.short_name
+    else:
+        kwargs = {'site': site.short_name}
+    return urlresolvers.reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+
+# Custom filters
+# -------------------------
+
+def pluralize(value, plural_suffix="s", singular_suffix=""):
+    if len(value) == 1:
+        return singular_suffix
+    else:
+        return plural_suffix
+
+
+# Django/Jinja integration
+# -------------------------
+
 class Template(jinja2.Template):
     def render(self, context):
         # flatten the Django Context into a single dictionary.
@@ -39,14 +62,6 @@ class Template(jinja2.Template):
             signals.template_rendered.send(sender=self, template=self, context=context)
         
         return super(Template, self).render(context_dict)
-
-def reverse_site_url(viewname, site, urlconf=None, args=None, kwargs=None, prefix=None, current_app=None):
-    if kwargs:
-        kwargs['site'] = site.short_name
-    else:
-        kwargs = {'site': site.short_name}
-
-    return urlresolvers.reverse(viewname, urlconf, args, kwargs, prefix, current_app)
 
 class Loader(BaseLoader):
     """
@@ -66,12 +81,15 @@ class Loader(BaseLoader):
     )
     env.template_class = Template
     
-    # These are available to all templates.
+    # add global functions
     env.globals['url'] = urlresolvers.reverse
     env.globals['site_url'] = reverse_site_url
     env.globals['models'] = models
     env.globals['constants'] = constants
     env.globals['settings'] = settings
+
+    # add custom filters
+    env.filters['pluralize'] = pluralize
 
     def load_template(self, template_name, template_dirs=None):
         try:
