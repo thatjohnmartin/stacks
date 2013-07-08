@@ -274,15 +274,26 @@ img {
 // -------------------------
 
 .stack {
-    .attribution {
-        font-family: @sansFontFamily;
-        font-size: 12px;
-        line-height: 14px;
-        color: @grayLight;
-        margin-top:12px;
+    .below-stack {
+        border-top: 1px solid @grayLighter;
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 36px;
 
-        a, .post-date {
-            color: @gray;
+        .attribution {
+            font-family: @sansFontFamily;
+            font-size: 12px;
+            line-height: 14px;
+            color: @grayLight;
+            margin-top:12px;
+
+            a, .post-date {
+                color: @gray;
+            }
+
+            .profile-icon {
+                color: @grayLighter;
+            }
         }
     }
 }

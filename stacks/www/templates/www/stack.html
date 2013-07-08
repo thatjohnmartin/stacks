@@ -5,17 +5,24 @@
 {% block body_class %}stack content{% endblock %}
 
 {% block content %}
-    <p class="attribution">Posted by
-        <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
-            {% if is_you %}you{% else %}{{ stack.user.username }}{% endif %}</a>
-        on <span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
-
     <h1 class="title">{{ stack.title}}</h1>
     {% if stack.subtitle %}
         <h2 class="subtitle">{{ stack.subtitle }}</h2>
     {% endif %}
+
     {% for rendered_block in rendered_blocks %}
         <!-- BLOCK: {{ rendered_block.block.name }} -->
         {{ rendered_block.content }}
     {% endfor %}
+
+    <div class="below-stack">
+        <p class="attribution">
+            <span class="profile-icon icon-stack">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-user icon-light"></i>
+            </span>
+            Posted by <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
+            {% if is_you %}you{% else %}{{ stack.user.username }}{% endif %}</a>
+            on <span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+    </div>
 {% endblock %}
