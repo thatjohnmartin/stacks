@@ -18,9 +18,9 @@ Note for namespaced urls you have to use quotes eg:
 """
 
 import jinja2
-
 from django.template.loader import BaseLoader
 from django.template import TemplateDoesNotExist, Origin
+from django.core.context_processors import csrf as django_csrf
 from django.core import urlresolvers
 from django.conf import settings
 from stacks.www import models
@@ -30,11 +30,16 @@ from stacks import constants
 # -------------------------
 
 def reverse_site_url(viewname, site, urlconf=None, args=None, kwargs=None, prefix=None, current_app=None):
+    """Convenience function for URLs with a site prefix."""
     if kwargs:
         kwargs['site'] = site.short_name
     else:
         kwargs = {'site': site.short_name}
     return urlresolvers.reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+
+def csrf(request):
+    """Generate a CSRF token."""
+    return django_csrf(request)['csrf_token']
 
 # Custom filters
 # -------------------------
@@ -74,19 +79,17 @@ class Loader(BaseLoader):
     # Set up the jinja env and load any extensions you may have
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(settings.JINJA2_TEMPLATE_DIRS),
-        extensions=(
-            # 'django_jinja2.extensions.URLExtension',
-            # 'django_jinja2.extensions.CsrfExtension',
-        )
+        extensions=()
     )
     env.template_class = Template
     
-    # add global functions
+    # add global identifiers
     env.globals['url'] = urlresolvers.reverse
     env.globals['site_url'] = reverse_site_url
     env.globals['models'] = models
     env.globals['constants'] = constants
     env.globals['settings'] = settings
+    env.globals['csrf'] = csrf
 
     # add custom filters
     env.filters['pluralize'] = pluralize

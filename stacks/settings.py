@@ -138,6 +138,8 @@ INSTALLED_APPS = (
     'stacks.www',
 )
 
+LOGIN_URL = '/login/'
+
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')
 ENABLE_SQL_LOGGING = os.environ.get('STACKS_ENABLE_SQL_LOGGING', False)
 ENABLE_CACHE_LOGGING = os.environ.get('STACKS_ENABLE_CACHE_LOGGING', False)

@@ -6,6 +6,7 @@ import csv
 import urllib2
 from jinja2 import Environment, PackageLoader
 from django.shortcuts import render, Http404
+from django.template import RequestContext
 from django.conf import settings
 from stacks.www.models import Stack
 from stacks import constants

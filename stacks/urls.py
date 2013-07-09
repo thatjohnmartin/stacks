@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # authentication
-    url(r'^signin/$', 'django.contrib.auth.views.login', {'template_name': 'www/signin.html'}, name="sign_in"),
-    url(r'^signout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="sign_out"),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'www/login.html'}, name="login"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="logout"),
 
     # served uploaded media
     (r'^media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
@@ -29,6 +29,10 @@ urlpatterns += patterns('stacks.www.views',
 
     # user home
     url(r'^users/(?P<username>[\w-]+)/$', 'listing.user_home', name='user_home'),
+
+    # ajax methods
+    url(r'^ajax/follow/$', 'ajax.follow', name='follow'),
+    url(r'^ajax/unfollow/$', 'ajax.unfollow', name='unfollow'),
 
     # site homepage
     url(r'^(?P<site>[\w-]+)/$', 'listing.site_home', name='site_home'),

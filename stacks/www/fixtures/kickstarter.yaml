@@ -108,6 +108,14 @@
   fields:
     user: 12
 
+- model: www.following
+  pk: 2
+  fields:
+    user: 12
+    followed_user: 11
+    added: 2012-11-10T03:31:02
+    modified: 2012-11-10T03:31:02
+
 - model: www.layout
   pk: 1
   fields:

@@ -1,5 +1,7 @@
 {% extends "www/base_standard.html" %}
 
+{% from "www/macros.html" import follow_button %}
+
 {% block title %}{{ stack.title }}{% endblock %}
 
 {% block body_class %}stack content{% endblock %}
@@ -24,7 +26,6 @@
             Posted by <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
             {% if is_you %}you{% else %}{{ stack.user.username }}{% endif %}</a>
             on <span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
-        <p class="follow">
-            <a href="#"><i class="icon-plus-sign icon-large"></i> Follow the author</a></p>
+        <p class="follow">{{ follow_button(request, request.user, stack.user) }}</p>
     </div>
 {% endblock %}

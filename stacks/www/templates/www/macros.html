@@ -1,0 +1,32 @@
+{% macro follow_button(request, user, followed_user) -%}
+    {% if not user.is_anonymous() %}
+        {% set is_following = user.profile.is_following(followed_user) %}
+        <a id="follow_button" style="{% if is_following %}display:none{% endif %}" href="#"><i class="icon-plus-sign icon-large"></i> Follow the author</a>
+        <a id="unfollow_button" style="{% if not is_following %}display:none{% endif %}" href="#"><i class="icon-minus-sign icon-large"></i> Unfollow</a>
+        <script type="text/javascript">
+            $(function() {
+                $("#follow_button").click(function(e) {
+                    $.post("{{ url('follow') }}", {
+                        'followed_user': {{ followed_user.id }},
+                        'csrfmiddlewaretoken': '{{ csrf(request) }}'
+                    });
+                    $("#follow_button").hide();
+                    $("#unfollow_button").show();
+                    return false;
+                });
+
+                $("#unfollow_button").click(function(e) {
+                    $.post("{{ url('unfollow') }}", {
+                        'followed_user': {{ followed_user.id }},
+                        'csrfmiddlewaretoken': '{{ csrf(request) }}'
+                    });
+                    $("#unfollow_button").hide();
+                    $("#follow_button").show();
+                    return false;
+                });
+            });
+        </script>
+    {% else %}
+        <a id="follow_button" href="{{ url('join') }}"><i class="icon-plus-sign icon-large"></i> Follow the author</a>
+    {% endif %}
+{%- endmacro %}

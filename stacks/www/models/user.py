@@ -11,6 +11,10 @@ class Profile(PropertiesMixin, models.Model):
     class Meta:
         app_label = 'www'
 
+    def is_following(self, followed_user):
+        """Returns true if this user is following the given user."""
+        return self.user.following.filter(followed_user=followed_user).exists()
+
 class Following(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="following")
     followed_user = models.ForeignKey(User, related_name="followers")

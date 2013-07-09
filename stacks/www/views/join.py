@@ -14,7 +14,7 @@ def join(request):
         form = JoinForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return HttpResponseRedirect(reverse("sign_in")) # !! should redirect to user page
+            return HttpResponseRedirect(reverse("login")) # !! should redirect to user page
     else:
         form = JoinForm()
 

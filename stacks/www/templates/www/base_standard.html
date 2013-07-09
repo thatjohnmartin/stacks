@@ -22,9 +22,9 @@
                 {% endif  %}
                 <ul class="nav pull-right">
                     {% if user.is_authenticated() %}
-                        <li><a href="{{ url('django.contrib.auth.views.logout') }}">Sign out</a></li>
+                        <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
                     {% else %}
-                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Sign in</a></li>
+                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
                         <li><a href="{{ url('join') }}">Join</a></li>
                     {% endif %}
                 </ul>
