@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import signals
 from django.contrib.auth.models import User
 from stacks.www.models.utils import PropertiesMixin
 
@@ -14,6 +15,15 @@ class Profile(PropertiesMixin, models.Model):
     def is_following(self, followed_user):
         """Returns true if this user is following the given user."""
         return self.user.following.filter(followed_user=followed_user).exists()
+
+    @staticmethod
+    def user_saved(sender, instance, **kwargs):
+        pass
+
+    # implement saved and deleted here!!
+
+signals.post_save.connect(Profile.user_saved, sender=User)
+signals.post_save.connect(Profile.user_deleted, sender=User)
 
 class Following(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="following")
