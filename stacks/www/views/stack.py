@@ -221,9 +221,29 @@ def item(placement_types, data):
             if 'value' not in data:
                 return _render_missing_param_error('value')
 
-            # topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
+            topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
 
-            c['topo'] = data['value']
+            # c['topo'] = data['value']
+            c['topo'] = topo
+
+        return template.render(c)
+
+    # text rendering - supports plain, html, markdown formats and inline
+    if data_super_type == 'application' and data_sub_type == 'x-wikiepedia-astro-object-json':
+
+        # get the image item template
+        env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
+        template = env.get_template('climbing/topo.html') # !! this should be cached
+        c = {}
+
+        if provider == 'mountain_project_scraper':
+            if 'value' not in data:
+                return _render_missing_param_error('value')
+
+            topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
+
+            # c['topo'] = data['value']
+            c['topo'] = topo
 
         return template.render(c)
 

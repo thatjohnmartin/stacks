@@ -3,6 +3,8 @@ from django.db.models import signals
 from django.contrib.auth.models import User
 from stacks.www.models.utils import PropertiesMixin
 
+# !! add post_create/delete signals here!!
+
 class Profile(PropertiesMixin, models.Model):
     user = models.OneToOneField(User)
 
@@ -18,9 +20,11 @@ class Profile(PropertiesMixin, models.Model):
 
     @staticmethod
     def user_saved(sender, instance, **kwargs):
-        pass
+        Profile.objects.create(user=instance)
 
-    # implement saved and deleted here!!
+    @staticmethod
+    def user_deleted(sender, instance, **kwargs):
+        instance.profile.delete()
 
 signals.post_save.connect(Profile.user_saved, sender=User)
 signals.post_save.connect(Profile.user_deleted, sender=User)

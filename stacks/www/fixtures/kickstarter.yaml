@@ -60,17 +60,9 @@
     date_joined: 2012-11-26T02:41:37
 
 - model: www.profile
-  pk: 2
+  pk: 10
   fields:
     user: 10
-
-- model: www.following
-  pk: 1
-  fields:
-    user: 10
-    followed_user: 11
-    added: 2012-11-10T03:31:02
-    modified: 2012-11-10T03:31:02
 
 - model: auth.user
   pk: 11
@@ -86,7 +78,7 @@
     date_joined: 2012-11-26T02:41:37
 
 - model: www.profile
-  pk: 3
+  pk: 11
   fields:
     user: 11
 
@@ -104,9 +96,17 @@
     date_joined: 2012-11-26T02:41:37
 
 - model: www.profile
-  pk: 4
+  pk: 12
   fields:
     user: 12
+
+- model: www.following
+  pk: 1
+  fields:
+    user: 10
+    followed_user: 11
+    added: 2012-11-10T03:31:02
+    modified: 2012-11-10T03:31:02
 
 - model: www.following
   pk: 2
@@ -145,8 +145,17 @@
   fields:
     name: Image with topo
     site: 3
-    description: A image with a topo from Mountain Project.
+    description: An image with a topo from Mountain Project.
     template_file: climbing/image_with_topo.html
+    added: 2012-11-10T03:31:02
+
+- model: www.layout
+  pk: 5
+  fields:
+    name: Image with object attributes
+    site: 2
+    description: An image with a table of object attributes from SIMBAD.
+    template_file: astro/image_with_object_attributes.html
     added: 2012-11-10T03:31:02
 
 - model: www.stack
@@ -376,6 +385,36 @@
           "caption_text": {
             "type": "text/x-markdown",
             "value": "The first moderately successful Hubble palette narrowband shot. I'm still figuring channel balance and how to prep each channel so that stars don't have such prominent halos. But, pretty cool, love the dust-lanes."
+          }
+        }
+      }
+
+- model: www.block
+  pk: 11
+  fields:
+    stack: 2
+    name: 5
+    layout: 5
+    order: 5
+    added: 2012-11-13T03:31:02
+    modified: 2012-11-13T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "8400215225"
+          },
+          "astro_object_attributes": {
+            "type": "application/x-wikipedia-astro-object-json",
+            "provider": "wikipedia_astro_object_scraper",
+            "value": {
+              "_scrape": {
+                "url": "http://en.wikipedia.org/wiki/Rosette_Nebula",
+                "date": ""
+              }
+            }
           }
         }
       }
