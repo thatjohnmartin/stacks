@@ -9,7 +9,7 @@ from django.shortcuts import render, Http404
 from django.conf import settings
 from stacks.www.models import Stack
 from stacks import constants
-from stacks.www.utils.scrapers import scrape
+from stacks.www.scrapers import scrape
 
 def stack(request, slug):
     stack = Stack.get_from_cache(site=request.site, slug=slug)
