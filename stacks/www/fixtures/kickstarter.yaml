@@ -250,8 +250,8 @@
             "photo_id": "8787001015"
           },
           "topo": {
-            "type": "application/x-topo-json",
-            "provider": "mountain_project_scraper",
+            "type": "application/x-route-topo-json",
+            "provider": "mountain_project",
             "value": {
               "_scrape": {
                 "url": "http://www.mountainproject.com/v/sport-climbing-is-neither/105732554",
@@ -280,8 +280,8 @@
             "photo_id": "8786942121"
           },
           "topo": {
-            "type": "application/x-topo-json",
-            "provider": "mountain_project_scraper",
+            "type": "application/x-route-topo-json",
+            "provider": "mountain_project",
             "value": {
               "_scrape": {
                 "url": "http://www.mountainproject.com/v/under-the-boardwalk/105813238",

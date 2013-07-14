@@ -1,9 +1,31 @@
 import urllib2
 import datetime
 import re
+from collections import defaultdict
 from bs4 import BeautifulSoup
+from stacks.www.utils.cache import safe_cache_key, get_from_cache
 
-def mountain_project_climb_page(url):
+SCRAPERS = defaultdict(dict)
+
+def scrape(provider, resource, url):
+    """Scrapes a resource at the provider with the URL, or pulls it from the cache."""
+    return get_from_cache(
+        safe_cache_key('scraper-%s-%s-%s' % (provider, resource, url)),
+        lambda: SCRAPERS[provider][resource](url),
+        ttl=60*60*24*7 # a week
+    )
+
+def scraper(provider, resource):
+    """Decorator to add scrapers to the SCRAPERS dict."""
+    def wrap(scraper_function):
+        def wrapped_scraper(url):
+            scraper_function(scraper_function)
+        SCRAPERS[provider][resource] = scraper_function
+        return wrapped_scraper
+    return wrap
+
+@scraper('mountain_project', 'x-route-topo-json')
+def mountain_project_route(url):
     """Scrapes a regular climb page."""
 
     climb = {}
@@ -40,14 +62,31 @@ def mountain_project_climb_page(url):
 
     return climb
 
+@scraper('mountain_project', 'x-area-topo-json')
+def mountain_project_area(url):
+    return {}
+
+@scraper('super_topo', 'x-route-topo-json')
+def super_topo_route(url):
+    return {}
+
+@scraper('super_topo', 'x-area-topo-json')
+def super_topo_area(url):
+    return {}
+
+@scraper('simbad', 'x-astro-object-json')
 def simbad_object_page(url):
     """Scrapes a SIMBAD query result (or object) page."""
     return {}
 
+@scraper('wikipedia', 'x-astro-object-json')
 def wikipedia_astro_object_page(url):
     """Scrapes an astro object page on wikipedia."""
 
     astro = {}
+
+    opener = urllib2.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
     soup = BeautifulSoup(urllib2.urlopen(url), 'lxml')
 

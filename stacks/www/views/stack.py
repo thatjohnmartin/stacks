@@ -6,11 +6,10 @@ import csv
 import urllib2
 from jinja2 import Environment, PackageLoader
 from django.shortcuts import render, Http404
-from django.template import RequestContext
 from django.conf import settings
 from stacks.www.models import Stack
 from stacks import constants
-from stacks.www.utils import scrapers
+from stacks.www.utils.scrapers import scrape
 
 def stack(request, slug):
     stack = Stack.get_from_cache(site=request.site, slug=slug)
@@ -210,21 +209,14 @@ def item(placement_types, data):
             return template.render(c)
 
     # text rendering - supports plain, html, markdown formats and inline
-    if data_super_type == 'application' and data_sub_type == 'x-topo-json':
+    if data_super_type == 'application' and data_sub_type == 'x-route-topo-json':
 
         # get the image item template
         env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
         template = env.get_template('climbing/topo.html') # !! this should be cached
         c = {}
 
-        if provider == 'mountain_project_scraper':
-            if 'value' not in data:
-                return _render_missing_param_error('value')
-
-            topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
-
-            # c['topo'] = data['value']
-            c['topo'] = topo
+        c['topo'] = scrape(provider, data_sub_type, data['value']['_scrape']['url'])
 
         return template.render(c)
 
@@ -240,7 +232,7 @@ def item(placement_types, data):
             if 'value' not in data:
                 return _render_missing_param_error('value')
 
-            topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
+            # topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
 
             # c['topo'] = data['value']
             c['topo'] = topo

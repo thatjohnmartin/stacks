@@ -20,5 +20,5 @@ SUPPORTED_TYPES = (
     'application/x-astro-object-json',
 
     # climbing
-    'application/x-topo-json',
+    'application/x-route-topo-json',
 )
