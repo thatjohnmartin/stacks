@@ -140,9 +140,14 @@ INSTALLED_APPS = (
 
 LOGIN_URL = '/login/'
 
+FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
+FLICKR_API_SECRET = '37f2aa730149f69c'
+
+ENABLE_SCRAPER_CACHE = int(os.environ.get('STACKS_ENABLE_SCRAPER_CACHE', 1))
+
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')
-ENABLE_SQL_LOGGING = os.environ.get('STACKS_ENABLE_SQL_LOGGING', False)
-ENABLE_CACHE_LOGGING = os.environ.get('STACKS_ENABLE_CACHE_LOGGING', False)
+ENABLE_SQL_LOGGING = int(os.environ.get('STACKS_ENABLE_SQL_LOGGING', 0))
+ENABLE_CACHE_LOGGING = int(os.environ.get('STACKS_ENABLE_CACHE_LOGGING', 0))
 
 LOGGING = {
     'version': 1,
@@ -179,9 +184,6 @@ if not ENABLE_SQL_LOGGING:
         'propagate': False,
         'level':'DEBUG',
     }
-
-FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
-FLICKR_API_SECRET = '37f2aa730149f69c'
 
 # configure logging
 import logging

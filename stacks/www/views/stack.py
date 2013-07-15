@@ -221,21 +221,14 @@ def item(placement_types, data):
         return template.render(c)
 
     # text rendering - supports plain, html, markdown formats and inline
-    if data_super_type == 'application' and data_sub_type == 'x-wikiepedia-astro-object-json':
+    if data_super_type == 'application' and data_sub_type == 'x-astro-object-json':
 
         # get the image item template
         env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
-        template = env.get_template('climbing/topo.html') # !! this should be cached
+        template = env.get_template('astro/object_attributes.html') # !! this should be cached
         c = {}
 
-        if provider == 'mountain_project_scraper':
-            if 'value' not in data:
-                return _render_missing_param_error('value')
-
-            # topo = scrapers.mountain_project_climb_page(data['value']['_scrape']['url'])
-
-            # c['topo'] = data['value']
-            c['topo'] = topo
+        c['astro_object_attributes'] = scrape(provider, data_sub_type, data['value']['_scrape']['url'])
 
         return template.render(c)
 

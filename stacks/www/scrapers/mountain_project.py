@@ -1,8 +1,7 @@
-import urllib2
-import datetime
 import re
 from bs4 import BeautifulSoup
 from stacks.www.scrapers.decorators import scraper
+from stacks.www.scrapers.utils import build_opener, add_scrape_metadata
 
 @scraper('mountain_project', 'x-route-topo-json')
 def mountain_project_route(url):
@@ -10,7 +9,7 @@ def mountain_project_route(url):
 
     climb = {}
 
-    soup = BeautifulSoup(urllib2.urlopen(url), 'lxml')
+    soup = BeautifulSoup(build_opener(url), 'lxml')
 
     h1 = soup.find('h1', class_="dkorange")
     climb['name'] = h1.text.strip()
@@ -37,8 +36,7 @@ def mountain_project_route(url):
     climb['fa'] = _get_value_in_td(re.compile('^FA'))
     climb['url'] = url
 
-    # update scraping metadata
-    climb['_scrape'] = {'url': url, 'date': datetime.datetime.now()}
+    add_scrape_metadata(climb, url)
 
     return climb
 

@@ -407,11 +407,11 @@
             "photo_id": "8400215225"
           },
           "astro_object_attributes": {
-            "type": "application/x-wikipedia-astro-object-json",
-            "provider": "wikipedia_astro_object_scraper",
+            "type": "application/x-astro-object-json",
+            "provider": "wikipedia",
             "value": {
               "_scrape": {
-                "url": "http://en.wikipedia.org/wiki/Rosette_Nebula",
+                "url": "http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Rosette_Nebula&prop=revisions&rvprop=content",
                 "date": ""
               }
             }

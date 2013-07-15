@@ -21,4 +21,5 @@ SUPPORTED_TYPES = (
 
     # climbing
     'application/x-route-topo-json',
+    'application/x-area-topo-json',
 )
