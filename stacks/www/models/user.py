@@ -20,14 +20,15 @@ class Profile(PropertiesMixin, models.Model):
 
     @staticmethod
     def user_saved(sender, instance, **kwargs):
-        Profile.objects.create(user=instance)
+        if not Profile.objects.filter(user=instance).exists():
+            Profile.objects.create(user=instance)
 
     @staticmethod
     def user_deleted(sender, instance, **kwargs):
         instance.profile.delete()
 
 signals.post_save.connect(Profile.user_saved, sender=User)
-signals.post_save.connect(Profile.user_deleted, sender=User)
+signals.post_delete.connect(Profile.user_deleted, sender=User)
 
 class Following(PropertiesMixin, models.Model):
     user = models.ForeignKey(User, related_name="following")
