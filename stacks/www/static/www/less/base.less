@@ -11,6 +11,7 @@
 @grayLightest:          #f9f9f9;
 @white:                 #fff;
 
+@hoverHighlight:        #e1473b;
 
 // Scaffolding
 // -------------------------
@@ -192,7 +193,7 @@ img {
             margin-top: 16px;
 
             &:hover {
-                color: #e1473b;
+                color: @hoverHighlight;
             }
 
             .home-text {
@@ -782,4 +783,61 @@ button.close {
 }
 .alert-block p + p {
     margin-top: 5px;
+}
+
+
+// Clicky boxes
+// -------------------------
+
+.clicky-box-container {
+    margin: 70px auto;
+    width: 520px;
+    text-align: center;
+
+    p.intro {
+        margin-bottom: 70px;
+    }
+}
+
+.clicky-box {
+    border:1px solid @grayLight;
+    background-color: @grayLightest;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    line-height: 180px;
+    font-family: @sansFontFamily;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: @gray;
+    display: inline-block;
+
+    &.left {
+        -webkit-transform:rotate(-7deg);
+        &:hover {
+            -webkit-transform:rotate(-4deg);
+        }
+    }
+    &.right {
+        -webkit-transform:rotate(3deg);
+        &:hover {
+            -webkit-transform:rotate(1deg);
+        }
+    }
+
+    &:hover {
+        border-color: @hoverHighlight;
+        background-color: white;
+        color: @hoverHighlight;
+    }
+}
+.clicky-box-separator {
+    height: 200px;
+    margin: 0 20px;
+    line-height: 180px;
+    color: @grayLight;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
 }
