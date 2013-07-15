@@ -9,7 +9,7 @@ def mountain_project_route(url):
 
     climb = {}
 
-    soup = BeautifulSoup(build_opener(url), 'lxml')
+    soup = BeautifulSoup(build_opener().open(url), 'lxml')
 
     h1 = soup.find('h1', class_="dkorange")
     climb['name'] = h1.text.strip()
