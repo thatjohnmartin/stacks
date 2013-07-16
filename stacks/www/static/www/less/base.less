@@ -548,93 +548,6 @@ table {
     }
 }
 
-
-// Responsive
-// -------------------------
-
-// narrow windows - switch to 50/50 or 100 cols
-@media screen and (max-width: 1040px) {
-
-	.header .navbar, .container, .footer {
-		width: 760px;
-	}
-
-    .col-2-3, .col-1-3 {
-        width: 50%;
-    }
-    .col-2-3.go-big {
-        width: auto;
-        padding-right: 0;
-    }
-
-    .col-2-3:last-of-type {
-        width: auto;
-        float: none;
-    }
-
-    .col-1-3.go-under {
-        float: none;
-        width: auto;
-        padding-right: 0;
-    }
-
-    .blank {
-        display:none;
-    }
-}
-
-// mobile - stretchy single col with gutter
-@media screen and (max-width: 850px) {
-
-	.header .navbar, .container, .footer {
-		width: auto;
-        margin-left: 60px;
-        margin-right: 60px;
-	}
-
-    .col-2-3, .col-1-3 {
-        width: auto;
-        float: none;
-        padding-right: 0;
-    }
-
-	h1 {
-		font-size: 34px;
-        line-height: 40px;
-	}
-    h2 {
-        font-size: 20px;
-        line-height: 22px;
-    }
-}
-
-@media screen and (max-width: 520px) {
-
-    .header .navbar, .container, .footer {
-        margin-left: 20px;
-        margin-right: 20px;
-	}
-
-    h1 {
-        font-size: 28px;
-        line-height: 32px;
-    }
-    h2 {
-        font-size: 18px;
-        line-height: 20px;
-    }
-
-    .container {
-        font-size: 16px;
-        line-height: 24px;
-    }
-
-    .header .navbar .nav {
-        display: none;
-    }
-}
-
-
 // Forms
 // -------------------------
 
@@ -881,3 +794,131 @@ button.close {
     text-align: center;
     display: inline-block;
 }
+
+
+// Responsive
+// -------------------------
+
+// narrow windows - switch to 50/50 or 100 cols
+@media screen and (max-width: 1040px) {
+
+	.header .navbar, .container, .footer {
+		width: 760px;
+	}
+
+    .col-2-3, .col-1-3 {
+        width: 50%;
+    }
+    .col-2-3.go-big {
+        width: auto;
+        padding-right: 0;
+    }
+
+    .col-2-3:last-of-type {
+        width: auto;
+        float: none;
+    }
+
+    .col-1-3.go-under {
+        float: none;
+        width: auto;
+        padding-right: 0;
+    }
+
+    .blank {
+        display:none;
+    }
+}
+
+// mobile - stretchy single col with gutter
+@media screen and (max-width: 850px) {
+
+	.header .navbar, .container, .footer {
+		width: auto;
+        margin-left: 60px;
+        margin-right: 60px;
+	}
+
+    .col-2-3, .col-1-3 {
+        width: auto;
+        float: none;
+        padding-right: 0;
+    }
+
+	h1 {
+		font-size: 34px;
+        line-height: 40px;
+	}
+    h2 {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .clicky-box-container {
+        width: auto;
+        margin-top: 40px;
+        font-size: 15px;
+
+        p.intro {
+            margin-bottom: 50px;
+        }
+    }
+    .clicky-box {
+        width: 150px;
+        height: 150px;
+        line-height: 140px;
+        font-size: 16px;
+    }
+    .clicky-box-separator {
+        height: 150px;
+        margin: 0 10px;
+        line-height: 140px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+
+    .header .navbar, .container, .footer {
+        margin-left: 20px;
+        margin-right: 20px;
+	}
+
+    h1 {
+        font-size: 28px;
+        line-height: 32px;
+    }
+    h2 {
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .container {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .header .navbar .nav {
+        display: none;
+    }
+
+    .clicky-box-container {
+        margin-top: 30px;
+
+        p.intro {
+            margin-bottom: 40px;
+        }
+    }
+    .clicky-box {
+        width: 100px;
+        height: 100px;
+        line-height: 90px;
+        font-size: 14px;
+    }
+    .clicky-box-separator {
+        height: 100px;
+        margin: 0 5px;
+        line-height: 90px;
+    }
+
+}
+
