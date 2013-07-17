@@ -2,32 +2,46 @@
 
 {% block body %}
     {% block navbar %}
-        <div class="header">
-            <div class="navbar">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
 
-                {% include "www/inc/logo.html" %}
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
 
-                {% if not request.site.is_home %}
-                    <ul class="nav">
-                        {% if user.is_authenticated() %}
-                            <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
-                        {% endif %}
-                        <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
-                        {% if user.is_authenticated() %}
-                            <li class="divider-vertical"></li>
-                            <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
-                            <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
-                        {% endif %}
-                    </ul>
-                {% endif  %}
-                <ul class="nav pull-right">
-                    {% if user.is_authenticated() %}
-                        <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
-                    {% else %}
-                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
-                        <li><a href="{{ url('join') }}">Join</a></li>
-                    {% endif %}
-                </ul>
+                    <a class="brand" href="#">Stacks</a>
+
+                    {% if not request.site.is_home %}
+                        <ul class="nav">
+                            {% if user.is_authenticated() %}
+                                <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
+                            {% endif %}
+                            <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
+                            {% if user.is_authenticated() %}
+                                <li class="divider-vertical"></li>
+                                <li><a id="create-button" href="#create-modal" data-toggle="modal">+ New</a></li>
+                                <li><a href="#create-modal" data-toggle="modal">Upload</a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif  %}
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            {% if user.is_authenticated() %}
+                                <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
+                            {% else %}
+                                <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
+                                <li><a href="{{ url('join') }}">Join</a></li>
+                            {% endif %}
+                        </ul>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     {% endblock %}
