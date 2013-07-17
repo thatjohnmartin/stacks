@@ -1,0 +1,56 @@
+// Clicky boxes
+// -------------------------
+
+.clicky-box-container {
+    margin: 70px auto;
+    width: 520px;
+    text-align: center;
+
+    p.intro {
+        margin-bottom: 70px;
+    }
+}
+
+.clicky-box {
+    border:1px solid @gray;
+    background-color: @grayLighter;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    line-height: 180px;
+//    font-family: @sansFontFamily;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: @gray;
+    display: inline-block;
+
+    &.left {
+        .rotate(-7deg);
+        &:hover {
+            .rotate(-4deg);
+        }
+    }
+    &.right {
+        .rotate(3deg);
+        &:hover {
+            .rotate(1deg);
+        }
+    }
+
+    &:hover {
+        border-color: @red;
+        background-color: white;
+        color: @red;
+    }
+}
+
+.clicky-box-separator {
+    height: 200px;
+    margin: 0 20px;
+    line-height: 180px;
+    color: @grayLight;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+}

@@ -1,0 +1,52 @@
+// Stack
+// -------------------------
+
+.stack {
+    .below-stack {
+        border-top: 1px solid @grayLighter;
+        margin-top: 30px;
+        padding-top: 20px;
+        padding-bottom: 26px;
+        font-family: @sansFontFamily;
+        font-size: 12px;
+        line-height: 14px;
+        color: @grayLight;
+
+        a {
+            color: @gray;
+            text-decoration: none;
+
+            &:hover {
+                color: darken(@gray, 20%);
+                background-color: @grayLighter;
+            }
+        }
+
+        .attribution {
+            float: left;
+
+            .post-date {
+                color: @gray;
+            }
+
+            .profile-icon {
+                color: @grayLight;
+            }
+        }
+
+        .follow {
+            float: right;
+            margin-top: 19px;
+
+            a {
+                padding: 10px 15px;
+                .border-radius(@baseBorderRadius);
+
+                &:hover {
+                    color: @gray;
+                    background-color: rgb(242, 242, 242);
+                }
+            }
+        }
+    }
+}
