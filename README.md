@@ -14,7 +14,7 @@ Recommended env vars:
 
 Recommended /etc/hosts:
 
-    127.0.0.1 local.astrostacks.com local.climbingstacks.com
+    127.0.0.1 local.stcks.com
 
 Create the environment:
 
@@ -30,7 +30,6 @@ Start the Django development server:
 
     ./manage.py runserver 0.0.0.0 8000
 
-Visit one of the local sites:
+Visit the local sites:
 
-    http://local.astrostacks.com:8000
-    http://local.climbingstacks.com:8000
+    http://www.stcks.com:8000
