@@ -12,18 +12,18 @@
 }
 
 .clicky-box {
-    border:1px solid @gray;
-    background-color: @grayLighter;
+    border:1px solid @grayLight;
+    background-color: @grayLightest;
     height: 200px;
     width: 200px;
     text-align: center;
     line-height: 180px;
-//    font-family: @sansFontFamily;
     font-size: 24px;
     text-transform: uppercase;
     text-decoration: none;
     color: @gray;
     display: inline-block;
+    .box-shadow(0 4px 6px rgba(0,0,0,.1));
 
     &.left {
         .rotate(-7deg);
@@ -39,9 +39,10 @@
     }
 
     &:hover {
-        border-color: @red;
+        border-color: @hoverHighlight;
         background-color: white;
-        color: @red;
+        color: @hoverHighlight;
+        text-decoration: none;
     }
 }
 

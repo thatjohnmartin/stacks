@@ -43,21 +43,6 @@
 }
 
 
-// Brand: website or project name
-// -------------------------
-.navbar .brand {
-  float: left;
-  display: block;
-  // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
-  margin-left: -20px; // negative indent to left-align the text down the page
-  color: @navbarBrandColor;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-}
-
 // Plain text in topbar
 // -------------------------
 .navbar-text {
@@ -223,10 +208,12 @@
 .navbar .nav > li > a {
   float: none;
   // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+  padding: 7.5px 12px 6.5px;
+  margin: 7px 2px 6px;
   color: @navbarLinkColor;
   text-decoration: none;
   text-shadow: 0 1px 0 @navbarBackgroundHighlight;
+  .border-radius(@baseBorderRadius);
 }
 .navbar .nav .dropdown-toggle .caret {
   margin-top: 8px;
@@ -273,6 +260,30 @@
   margin-top: 3px;
 }
 
+
+// Home links
+.navbar {
+    .home-link {
+        display: block;
+        float: left;
+        line-height: @navbarHeight;
+        text-decoration: none;
+        color: @navbarBrandColor;
+        margin-right: 5px;
+
+        &.home-link-site {
+            margin-right: 35px;
+        }
+    }
+    .home-icon {
+        margin-right: 3px;
+    }
+    a.home-link {
+        &:hover {
+            color: @hoverHighlight;
+        }
+    }
+}
 
 
 // Dropdown menus
