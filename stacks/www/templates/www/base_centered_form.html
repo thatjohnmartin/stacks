@@ -1,0 +1,15 @@
+{% extends "www/base.html" %}
+
+{% block body %}
+    <div class="centered-form">
+        {% block navbar %}
+            <div class="centered-form-navbar">
+
+            </div>
+        {% endblock %}
+
+        <div class="centered-form-content">
+            {% block content %}<p>Empty, no content.</p>{% endblock %}
+        </div>
+    </div>
+{% endblock %}

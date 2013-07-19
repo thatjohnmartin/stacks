@@ -1,6 +1,6 @@
-{% extends "www/base_modal.html" %}
+{% extends "www/base_centered_form.html" %}
 
-{% block title %}Log in to your account{% endblock %}
+{% block subtitle %}Log in{% endblock %}
 
 {% block content %}
 
@@ -11,22 +11,33 @@
         </div>
     {% endif %}
 
-    <form method="post" action="{{ url('django.contrib.auth.views.login') }}">
+    <form class="form-horizontal" method="post" action="{{ url('django.contrib.auth.views.login') }}">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
         <input type="hidden" name="next" value="{{ url('stacks_home') }}" />
-        <fieldset>
-            <p>
-                {{ form.username.label_tag() }}
+        <div class="control-group">
+            <label class="control-label" for="username">{{ form.username.label }}</label>
+            <div class="controls">
                 {{ form.username }}
-            </p>
-            <p>
-                {{ form.password.label_tag() }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">{{ form.password.label }}</label>
+            <div class="controls">
                 {{ form.password }}
-            </p>
-        </fieldset>
-        <p class="form-actions">
-            <button type="submit">Log in</button>
-        </p>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox"> Remember me
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+        </div>
     </form>
 
 {% endblock %}
