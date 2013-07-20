@@ -1,11 +1,12 @@
-@loginFormHorizontalComponentOffset: 140px;
+@loginFormHorizontalComponentOffset: 120px;
 
 .login-form {
-    .form-horizontal .controls {
-        width: @loginFormHorizontalComponentOffset - 20;
-    }
-
-    .form-horizontal .control-label {
-        width: @loginFormHorizontalComponentOffset;
+    &.form-horizontal {
+        .controls {
+            margin-left: @loginFormHorizontalComponentOffset;
+        }
+        .control-label {
+            width: @loginFormHorizontalComponentOffset - 20;
+        }
     }
 }
