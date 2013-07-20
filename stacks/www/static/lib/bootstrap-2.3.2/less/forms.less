@@ -688,3 +688,20 @@ legend + .control-group {
     padding-left: @horizontalComponentOffset;
   }
 }
+
+
+// Adjust the width of forms controls
+// --------------------------
+
+.form-horizontal-component-offset(@offset) {
+    &.form-horizontal {
+        .controls {
+            margin-left: @offset;
+        }
+        .control-label {
+            width: @offset - 20;
+        }
+    }
+}
+
+

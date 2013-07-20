@@ -11,29 +11,31 @@
         </div>
     {% endif %}
 
-    <form method="post" action=".">
+    <form class="join-form form-horizontal" method="post" action=".">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-        <fieldset>
-            <p>
-                {{ form.email.label_tag() }}
+        <div class="control-group">
+            <label class="control-label" for="email">{{ form.email.label }}</label>
+            <div class="controls">
                 {{ form.email }}
-            </p>
-            <p>
-                {{ form.username.label_tag() }}
-                {{ form.username }}
-            </p>
-            <p>
-                {{ form.password1.label_tag() }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password1">{{ form.password1.label }}</label>
+            <div class="controls">
                 {{ form.password1 }}
-            </p>
-            <p>
-                <label for="id_password2">(again)</label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label muted" for="password2">(again)</label>
+            <div class="controls">
                 {{ form.password2 }}
-            </p>
-        </fieldset>
-        <p class="form-actions">
-            <button type="submit">Create account</button>
-        </p>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">Create account</button>
+            </div>
+        </div>
     </form>
 
 {% endblock %}
