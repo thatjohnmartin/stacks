@@ -13,11 +13,7 @@
                         <span class="icon-bar"></span>
                     </a>
 
-                    <a class="home-link home-link-home" href="/"><i class="icon-star-empty home-icon"></i> STCKS</a>
-                    <span class="home-link separator">/</span>
-                    {% if not request.site.is_home %}
-                        <a class="home-link home-link-site {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
-                    {% endif %}
+                    {% include "www/inc/logo.html" %}
 
                     <div class="nav-collapse collapse">
 

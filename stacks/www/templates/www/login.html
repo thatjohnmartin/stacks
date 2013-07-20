@@ -11,7 +11,7 @@
         </div>
     {% endif %}
 
-    <form class="form-horizontal" method="post" action="{{ url('django.contrib.auth.views.login') }}">
+    <form class="login-form form-horizontal" method="post" action="{{ url('django.contrib.auth.views.login') }}">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
         <input type="hidden" name="next" value="{{ url('stacks_home') }}" />
         <div class="control-group">

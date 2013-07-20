@@ -1,5 +1,13 @@
-<a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>
+<a class="home-link home-link-home" href="/"><i class="icon-star-empty home-icon"></i> STCKS</a>
 {% if not request.site.is_home %}
-    <span class="slash">/</span>
-    <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
+    <span class="home-link separator">/</span>
+    <a class="home-link home-link-site {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>
 {% endif %}
+
+
+
+{#<a class="home-link" href="/"><i class="icon-star-empty"></i> <span class="home-text">STCKS</span></a>#}
+{#{% if not request.site.is_home %}#}
+{#    <span class="slash">/</span>#}
+{#    <a class="site-link {{ request.site.short_name }}" href="/{{ request.site.short_name }}">{{ request.site.short_name }}</a>#}
+{#{% endif %}#}
