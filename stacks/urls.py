@@ -24,6 +24,9 @@ urlpatterns += patterns('stacks.www.views',
     # authentication
     url(r'^join/$', 'join.join', name='join'),
 
+    # create a stack
+    url(r'^new/$', 'stack.new', name='stack.new'),
+
     # test page
     url(r'^test/$', 'listing.test'),
 

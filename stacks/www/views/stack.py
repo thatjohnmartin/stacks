@@ -5,8 +5,10 @@ import StringIO
 import csv
 import urllib2
 from jinja2 import Environment, PackageLoader
-from django.shortcuts import render, Http404
+from django.shortcuts import render, Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.forms import ModelForm
 from stacks.www.models import Stack
 from stacks import constants
 from stacks.www.scrapers import scrape
@@ -48,22 +50,20 @@ def stack(request, slug):
 
     return render(request, 'www/stack.html', c)
 
-# saved from Page...
-#
-# class PageForm(ModelForm):
-#     class Meta:
-#         model = Page
-#
-# def create(request):
-#     if request.method == 'POST':
-#         form = PageForm(request.POST)
-#         if form.is_valid():
-#             page = form.save()
-#             return HttpResponseRedirect(reverse('page', args=[page.topic, page.slug]))
-#     else:
-#         form = PageForm()
-#
-#     return render(request, 'www/create.html', {'form': form,})
+class StackForm(ModelForm):
+    class Meta:
+        model = Stack
+
+def new(request):
+    if request.method == 'POST':
+        form = StackForm(request.POST)
+        if form.is_valid():
+            page = form.save()
+            return HttpResponseRedirect(reverse('stack', args=[stack.site, stack.slug]))
+    else:
+        form = StackForm()
+
+    return render(request, 'www/create.html', {'form': form,})
 
 def parse_type(type):
     """Parses a (mime)type string into super-type and sub-type."""
