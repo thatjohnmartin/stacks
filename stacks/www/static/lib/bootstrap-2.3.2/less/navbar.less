@@ -261,7 +261,7 @@
 }
 
 
-// Home links
+// Home links and icons in nav
 .navbar, .centered-form-navbar {
     .home-link {
         display: block;
@@ -275,13 +275,24 @@
             margin-right: 35px;
         }
     }
-    .home-icon {
+
+    .nav-icon {
+        // a little extra padding for navbar icons
         margin-right: 3px;
     }
+
     a.home-link {
         &:hover {
             color: @hoverHighlight;
         }
+    }
+}
+
+.navbar .nav > li > a.profile-image-link {
+    .border-radius(100%);
+    padding: 4px;
+    &:hover {
+        background-color: darken(@navbarLinkBackgroundHover, 10%);
     }
 }
 
@@ -290,7 +301,6 @@
         margin-left:20px;
     }
 }
-
 
 // Dropdown menus
 // --------------

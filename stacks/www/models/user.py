@@ -1,12 +1,28 @@
+import simplejson
+import twitter
+from social_auth.db.django_models import UserSocialAuth
 from django.db import models
 from django.db.models import signals
 from django.contrib.auth.models import User
+from django.conf import settings
 from stacks.www.models.utils import PropertiesMixin
-
-# !! add post_create/delete signals here!!
+from stacks.www.utils.cache import get_from_cache, version_key
 
 class Profile(PropertiesMixin, models.Model):
     user = models.OneToOneField(User)
+
+    # def __init__(self, *args, **kwargs):
+    #     self._twitter_profile
+    #     parent = kwargs.get('parent', None)
+    #     if parent is not None:
+    #         invitation_defn = kwargs.get('invitation_definition', None)
+    #         if invitation_defn is None:
+    #             kwargs['invitation_definition'] = parent.invitation_definition
+    #         elif parent.invitation_definition != invitation_defn:
+    #             raise ValueError(
+    #                 'An invitation with parent MUST specify the same invitation definition as the parent')
+    #
+    #     super(Invitation, self).__init__(*args, **kwargs)
 
     def __unicode__(self):
         return "Profile (%s)" % self.user
@@ -26,6 +42,53 @@ class Profile(PropertiesMixin, models.Model):
     @staticmethod
     def user_deleted(sender, instance, **kwargs):
         instance.profile.delete()
+
+    def get_twitter_oauth_values(self):
+        social_auth = UserSocialAuth.objects.get(provider='twitter', user=self.user)
+        token_secret, token_key = [t.split('=')[1] for t in social_auth.extra_data['access_token'].split('&')]
+        return token_secret, token_key
+
+    def get_twitter_profile(self):
+        token_secret, token_key = self.get_twitter_oauth_values()
+        api = twitter.Api(
+            consumer_key=settings.TWITTER_CONSUMER_KEY,
+            consumer_secret=settings.TWITTER_CONSUMER_SECRET,
+            access_token_key=token_key,
+            access_token_secret=token_secret
+        )
+        return api.VerifyCredentials().AsDict()
+
+    @property
+    def twitter_profile(self):
+        if not hasattr(self, '_twitter_profile'):
+            self._twitter_profile = simplejson.loads(
+                get_from_cache(
+                    version_key('twitter_profile', self.user),
+                    lambda: simplejson.dumps(self.get_twitter_profile()),
+                    60*60*48
+                )
+            )
+        return self._twitter_profile
+
+    @property
+    def profile_image_url_24px(self):
+        return self.twitter_profile['profile_image_url'].replace('_normal', '_mini')
+
+    @property
+    def profile_image_url_48px(self):
+        return self.twitter_profile['profile_image_url']
+
+    @property
+    def profile_image_url_73px(self):
+        return self.twitter_profile['profile_image_url'].replace('_normal', '_bigger')
+
+    @property
+    def profile_image_url_original(self):
+        return self.twitter_profile['profile_image_url'].replace('_normal', '')
+
+    @property
+    def location(self):
+        return self.twitter_profile['location']
 
 signals.post_save.connect(Profile.user_saved, sender=User)
 signals.post_delete.connect(Profile.user_deleted, sender=User)

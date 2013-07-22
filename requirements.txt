@@ -11,3 +11,5 @@ fabric==1.6.1
 gunicorn==0.17.4
 beautifulsoup4==4.2.1
 lxml==3.2.1
+django-social-auth==0.7.24
+python-twitter==1.0

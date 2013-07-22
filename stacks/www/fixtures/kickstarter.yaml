@@ -80,6 +80,18 @@
     email: john@lonepixel.com
     date_joined: 2012-11-26T02:41:37
 
+- model: social_auth.usersocialauth
+  pk: 12
+  fields:
+    user: 12
+    provider: twitter
+    uid: 2565221
+    extra_data: >
+      {
+        "access_token": "oauth_token_secret=JzGlnyQmDxgTJsX7Uc2jx0Ok7UipU9kFD5KRvULTfY&oauth_token=2565221-vY1DrsARohLzeTnPN5HwwF6mgvUWm5R9A86G72R5lo",
+        "id": 2565221
+      }
+
 - model: www.following
   pk: 1
   fields:

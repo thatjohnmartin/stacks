@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'www/login.html'}, name="login"),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="logout"),
 
+    # social logins
+    url(r'', include('social_auth.urls')),
+
     # served uploaded media
     (r'^media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )
@@ -23,6 +26,9 @@ urlpatterns += patterns('stacks.www.views',
 
     # authentication
     url(r'^join/$', 'join.join', name='join'),
+
+    # start page, where people go after a login
+    url(r'^join/$', 'user.start', name='start'),
 
     # create a stack
     url(r'^new/$', 'stack.new', name='stack.new'),

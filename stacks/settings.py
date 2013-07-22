@@ -136,9 +136,29 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.markup',
     'stacks.www',
+    'social_auth',
 )
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/start/'
+LOGIN_ERROR_URL = '/login-error/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+SOCIAL_AUTH_UID_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+
+SOCIAL_AUTH_ENABLED_BACKENDS = ('twitter')
+
+TWITTER_CONSUMER_KEY = 'KGWgTDLPg3srd4BA5zaEg'
+TWITTER_CONSUMER_SECRET = 'TAREqhMLY9Q3wqdtZxKaksmREjjGu1hEgH45srLkSsc'
 
 FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
 FLICKR_API_SECRET = '37f2aa730149f69c'

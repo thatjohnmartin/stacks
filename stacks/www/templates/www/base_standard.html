@@ -33,10 +33,16 @@
 
                         <ul class="nav pull-right">
                             {% if user.is_authenticated() %}
+                                <li><a href="#" class="profile-image-link"><img class="profile-image" src="{{ user.profile.profile_image_url_24px }}" /></a></li>
                                 <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
                             {% else %}
-                                <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
-                                <li><a href="{{ url('join') }}">Join</a></li>
+                                <li>
+                                    <a href="{{ url('socialauth_begin', args=('twitter',)) }}">
+                                        <i class="nav-icon icon-twitter"></i> Log in
+                                    </a>
+                                </li>
+{#                                <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>#}
+{#                                <li><a href="{{ url('join') }}">Join</a></li>#}
                             {% endif %}
                         </ul>
 
