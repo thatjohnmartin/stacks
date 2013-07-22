@@ -28,7 +28,7 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^join/$', 'join.join', name='join'),
 
     # start page, where people go after a login
-    url(r'^join/$', 'user.start', name='start'),
+    url(r'^start/$', 'user.start', name='start'),
 
     # create a stack
     url(r'^new/$', 'stack.new', name='stack.new'),

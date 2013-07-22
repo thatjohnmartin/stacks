@@ -22,14 +22,23 @@
     {% endfor %}
 
     <div class="below-stack">
-        <p class="attribution">
-            <span class="profile-icon icon-stack icon-2x">
-                <i class="icon-circle icon-stack-base"></i>
-                <i class="icon-user icon-light"></i>
-            </span>
-            Posted by <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
-            {% if is_you %}you{% else %}{{ stack.user.username }}{% endif %}</a>
-            on <span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
-        <p class="follow hidden-phone">{{ follow_button(request, request.user, stack.user) }}</p>
+
+        <div class="media stack-attribution">
+            <img class="profile-image media-object pull-left" src="{{ stack.user.profile.profile_image_url_73px }}" />
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
+                        {{ stack.user.profile.name }}
+                    </a>
+                </h4>
+                <p>{{ stack.user.profile.description }}</p>
+
+                <h5 class="media-heading">Posted on</h5>
+                <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+
+            </div>
+        </div>
+
+{#        <p class="follow hidden-phone">{{ follow_button(request, request.user, stack.user) }}</p>#}
     </div>
 {% endblock %}

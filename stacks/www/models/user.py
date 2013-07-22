@@ -11,19 +11,6 @@ from stacks.www.utils.cache import get_from_cache, version_key
 class Profile(PropertiesMixin, models.Model):
     user = models.OneToOneField(User)
 
-    # def __init__(self, *args, **kwargs):
-    #     self._twitter_profile
-    #     parent = kwargs.get('parent', None)
-    #     if parent is not None:
-    #         invitation_defn = kwargs.get('invitation_definition', None)
-    #         if invitation_defn is None:
-    #             kwargs['invitation_definition'] = parent.invitation_definition
-    #         elif parent.invitation_definition != invitation_defn:
-    #             raise ValueError(
-    #                 'An invitation with parent MUST specify the same invitation definition as the parent')
-    #
-    #     super(Invitation, self).__init__(*args, **kwargs)
-
     def __unicode__(self):
         return "Profile (%s)" % self.user
 
@@ -87,8 +74,20 @@ class Profile(PropertiesMixin, models.Model):
         return self.twitter_profile['profile_image_url'].replace('_normal', '')
 
     @property
+    def name(self):
+        return self.twitter_profile['name']
+
+    @property
     def location(self):
         return self.twitter_profile['location']
+
+    @property
+    def description(self):
+        return self.twitter_profile['description']
+
+    @property
+    def external_url(self):
+        return self.twitter_profile['url']
 
 signals.post_save.connect(Profile.user_saved, sender=User)
 signals.post_delete.connect(Profile.user_deleted, sender=User)

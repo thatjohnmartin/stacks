@@ -29,23 +29,11 @@
       }
 
 - model: auth.user
-  pk: 1
-  fields: 
-    username: admin
-    first_name: Admin
-    is_active: true
-    is_superuser: true
-    is_staff: true
-    last_login: 2012-11-26T02:41:37
-    password: pbkdf2_sha256$10000$iG1noFOlRBfJ$jm2aQesdYz8/wBS8LdocBEdI19aovProE+eOSM/7Rfo=
-    email: stacks@lonepixel.com
-    date_joined: 2012-11-26T02:41:37
-
-- model: auth.user
   pk: 10
   fields: 
-    username: bruce
-    first_name: Bruce
+    username: FakeJoeKinder
+    first_name: Joe
+    last_name: Kinder
     is_active: true
     is_superuser: false
     is_staff: false
@@ -54,11 +42,22 @@
     email: bruce@foo.com
     date_joined: 2012-11-26T02:41:37
 
+- model: social_auth.usersocialauth
+  pk: 10
+  fields:
+    user: 10
+    provider: twitter
+    uid: 1611959521
+    extra_data: >
+      {
+        "access_token": "oauth_token_secret=wwTat8ztG7kiwmzexPfu4J30jnpSE6v6Qj7eFY3ulp8&oauth_token=1611959521-u4BFpoLX4QmCiyUTzQFmletTEKHEWr1tWslFoU3", "id": 1611959521}
+
 - model: auth.user
   pk: 11
   fields:
-    username: johnw
+    username: fakejohnw
     first_name: John
+    last_name: Wainwright
     is_active: true
     is_superuser: false
     is_staff: false
@@ -67,13 +66,25 @@
     email: johnw@lyric.com
     date_joined: 2012-11-26T02:41:37
 
+- model: social_auth.usersocialauth
+  pk: 11
+  fields:
+    user: 11
+    provider: twitter
+    uid: 1611912330
+    extra_data: >
+      {
+        "access_token": "oauth_token_secret=opt2XbjAmIXB6WtHBmIEDeY62YZy5p9m8jFGyMJLhRY&oauth_token=1611912330-qHaYh0NvPp5G0Sl5eMN5peretUxxP3Sal82w80I",
+        "id": 1611912330
+      }
+
 - model: auth.user
   pk: 12
   fields:
     username: johnm
     first_name: John
     is_active: true
-    is_superuser: false
+    is_superuser: true
     is_staff: false
     last_login: 2012-11-26T02:41:37
     password: pbkdf2_sha256$10000$KVMvaMJa6dGv$ujLNdzlgOYrfttLkEladfD1xGPWAgWKP6nFIlSYxCrY=
@@ -153,7 +164,7 @@
 - model: www.stack
   pk: 1
   fields:
-    user: 12
+    user: 10
     site: 3
     title: Pulling on Huecos at Red Rock, NV
     subtitle: Sport climbing is neither, or so they say
@@ -414,7 +425,7 @@
 - model: www.stack
   pk: 3
   fields:
-    user: 10
+    user: 11
     site: 2
     title: A Big, Complicated Example Stack
     subtitle: A little bit of this, a little bit of that
