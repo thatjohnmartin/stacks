@@ -21,22 +21,35 @@
         {{ rendered_block.content }}
     {% endfor %}
 
-    <div class="below-stack">
+    {% if stack.tags.exists() %}
+        <div class="row tags">
+            <div class="span12">
+                <p>
+                    <i class="icon-tags"></i>
+                    {% for tag in stack.tags.all() %}
+                        <a href="#" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    {% endif %}
 
-        <div class="media stack-attribution">
-            <img class="profile-image media-object pull-left" src="{{ stack.user.profile.profile_image_url_73px }}" />
-            <div class="media-body">
-                <h4 class="media-heading">
-                    <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
-                        {{ stack.user.profile.name }}
-                    </a>
-                </h4>
-                <p>{{ stack.user.profile.description }}</p>
+    <div class="row below-stack">
+        <div class="span5">
+            <div class="media stack-attribution">
+                <img class="profile-image media-object pull-left" src="{{ stack.user.profile.profile_image_url_73px }}" />
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="{{ url('user_home', kwargs={'username': stack.user.username}) }}">
+                            {{ stack.user.profile.name }}
+                        </a>
+                    </h4>
+                    <p>{{ stack.user.profile.description }}</p>
 
-                <h5 class="media-heading">Posted on</h5>
-                <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
-                <p style="margin-top:20px;">{{ follow_button(request, request.user, stack.user) }}</p>
-{#                <p style="margin-top:20px;"><button class="btn btn-mini btn-success" type="button"><i class="icon-plus-sign"></i> Follow</button></p>#}
+                    <h5 class="media-heading">Posted on</h5>
+                    <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+                    <p style="margin-top:20px;">{{ follow_button(request, request.user, stack.user) }}</p>
+                </div>
             </div>
         </div>
     </div>

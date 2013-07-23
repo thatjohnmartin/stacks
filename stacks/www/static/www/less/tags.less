@@ -1,0 +1,17 @@
+.tag {
+    background-color: @grayLightest;
+    border: 1px solid @grayLighter;
+    .border-radius(3px);
+    margin-left: 5px;
+    padding: 3px 6px;
+    font-size: 11px;
+    color: @gray;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken(@grayLightest, 10%);
+        border-color: darken(@grayLighter, 10%);
+        color: @gray;
+        text-decoration: none;
+    }
+}
