@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'stacks.www',
     'social_auth',
+    'taggit',
 )
 
 LOGIN_URL = '/login/'

@@ -35,10 +35,9 @@
 
                 <h5 class="media-heading">Posted on</h5>
                 <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
-
+                <p style="margin-top:20px;">{{ follow_button(request, request.user, stack.user) }}</p>
+{#                <p style="margin-top:20px;"><button class="btn btn-mini btn-success" type="button"><i class="icon-plus-sign"></i> Follow</button></p>#}
             </div>
         </div>
-
-{#        <p class="follow hidden-phone">{{ follow_button(request, request.user, stack.user) }}</p>#}
     </div>
 {% endblock %}

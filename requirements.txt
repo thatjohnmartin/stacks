@@ -13,3 +13,4 @@ beautifulsoup4==4.2.1
 lxml==3.2.1
 django-social-auth==0.7.24
 python-twitter==1.0
+django-taggit==0.10a1

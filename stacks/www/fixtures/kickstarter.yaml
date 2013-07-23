@@ -161,6 +161,24 @@
     template_file: astro/image_with_object_attributes.html
     added: 2012-11-10T03:31:02
 
+- model: taggit.tag
+  pk: 1
+  fields:
+    name: sandstone
+    slug: sandstone
+
+- model: taggit.tag
+  pk: 2
+  fields:
+    name: huecos
+    slug: huecos
+
+- model: taggit.tag
+  pk: 3
+  fields:
+    name: sport climbing
+    slug: sport-climbing
+
 - model: www.stack
   pk: 1
   fields:
@@ -171,6 +189,31 @@
     slug: pulling-on-huecos-at-red-rock-nv
     added: 2012-11-10T03:31:02
     modified: 2012-11-10T03:31:02
+    properties_json: >
+      {
+        "feature_block": 2
+      }
+
+- model: taggit.taggeditem
+  pk: 1
+  fields:
+    content_type: 12
+    object_id: 1
+    tag: 1
+
+- model: taggit.taggeditem
+  pk: 2
+  fields:
+    content_type: 12
+    object_id: 1
+    tag: 2
+
+- model: taggit.taggeditem
+  pk: 3
+  fields:
+    content_type: 12
+    object_id: 1
+    tag: 3
 
 - model: www.block
   pk: 1
@@ -304,6 +347,10 @@
     slug: ngc-2237-rgb-rosette-nebula-in-monoceros
     added: 2012-11-12T03:31:02
     modified: 2012-11-12T03:31:02
+    properties_json: >
+      {
+        "feature_block": 5
+      }
 
 - model: www.block
   pk: 4
@@ -432,6 +479,10 @@
     slug: a-complicated-example
     added: 2012-9-10T03:31:02
     modified: 2012-9-10T03:31:02
+    properties_json: >
+      {
+        "feature_block": 8
+      }
 
 - model: www.block
   pk: 8

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 from stacks.www.models.utils import PropertiesMixin, CacheMixin
 from stacks.www.models.site import Site
 from stacks.www.utils.cache import incr_version, version_key, get_from_cache, safe_cache_key
@@ -12,6 +13,8 @@ class Stack(PropertiesMixin, CacheMixin, models.Model):
     slug = models.CharField(max_length=255, unique=True, db_index=True)
     added = models.DateTimeField(auto_now_add=True, db_index=True) # the date the item was added to the db
     modified = models.DateTimeField(auto_now=True, db_index=True)
+
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.title

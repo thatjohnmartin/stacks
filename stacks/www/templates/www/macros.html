@@ -1,8 +1,14 @@
 {% macro follow_button(request, user, followed_user) -%}
     {% if not user.is_anonymous() %}
         {% set is_following = user.profile.is_following(followed_user) %}
-        <a id="follow_button" style="{% if is_following %}display:none{% endif %}" href="#"><i class="icon-plus-sign icon-large"></i> Follow the author</a>
-        <a id="unfollow_button" style="{% if not is_following %}display:none{% endif %}" href="#"><i class="icon-minus-sign icon-large"></i> Unfollow</a>
+        <button id="follow_button" class="btn btn-mini btn-success" type="button"
+                style="{% if is_following %}display:none{% endif %}" href="#">
+            <i class="icon-plus-sign"></i> Follow
+        </button>
+        <button id="unfollow_button" class="btn btn-mini btn-success" type="button"
+                style="{% if not is_following %}display:none{% endif %}" href="#">
+            <i class="icon-minus-sign"></i> Unfollow
+        </button>
         <script type="text/javascript">
             $(function() {
                 $("#follow_button").click(function(e) {
@@ -27,6 +33,8 @@
             });
         </script>
     {% else %}
-        <a id="follow_button" href="{{ url('join') }}"><i class="icon-plus-sign icon-large"></i> Follow the author</a>
+        <button id="follow_button" class="btn btn-mini btn-success" type="button" href="#">
+            <i class="icon-plus-sign"></i> Follow
+        </button>
     {% endif %}
 {%- endmacro %}
