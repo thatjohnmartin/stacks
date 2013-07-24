@@ -2,7 +2,7 @@ import simplejson
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from stacks.www.models import Following
+from stacks.www.models import Following, Stack
 
 def error_json(message=None, code=None):
     """Generates a standard 'error' response."""
@@ -52,3 +52,17 @@ def unfollow(request):
             return error_json("Ease up, you're not following that user anyway.")
 
         return ok_json("Unfollowed %s" % followed_user.username)
+
+@login_required
+def like(request):
+    stack_id = request.POST.get('stack_id')
+    if not stack_id:
+        return error_json("You need to tell me which stack you like.")
+    else:
+        try:
+            stack = Stack.objects.get(id=stack_id)
+        except Stack.DoesNotExist:
+            return error_json("That stack doesn't exist.")
+
+        request.user.likes.create(stack=stack)
+        return ok_json("You like %s!" % stack)

@@ -7,7 +7,7 @@ from stacks.www.utils.cache import incr_version, version_key, get_from_cache, sa
 
 class Stack(PropertiesMixin, CacheMixin, models.Model):
     user = models.ForeignKey(User, related_name="stacks")
-    site = models.ForeignKey(Site, related_name="stacks")
+    site = models.ForeignKey("Site", related_name="stacks")
     title = models.CharField(max_length=255, db_index=True)
     subtitle = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, unique=True, db_index=True)
@@ -41,3 +41,27 @@ class Stack(PropertiesMixin, CacheMixin, models.Model):
             return get_from_cache(
                 version_key(safe_cache_key('stack-slug-' + slug + '.' + 'stack-site-' + str(site.id))),
                 lambda: cls.objects.get(site=site, slug=slug))
+
+    @property
+    def like_count(self):
+        return get_from_cache(
+            version_key('stack-id-' + str(self.id)) + '.like-count',
+            lambda: self.likes.count())
+
+    @property
+    def liked_by(self):
+        return get_from_cache(
+            version_key('stack-id-' + str(self.id)) + '.liked-by',
+            lambda: [like.user for like in self.likes.only("user")])
+
+class Like(models.Model):
+    user = models.ForeignKey(User, related_name="likes")
+    stack = models.ForeignKey("Stack", related_name="likes")
+    added = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __unicode__(self):
+        return "%s likes %s" % (self.user, self.stack)
+
+    class Meta:
+        app_label = 'www'
+        unique_together = (("user", "stack"),)

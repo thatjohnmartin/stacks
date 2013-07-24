@@ -42,6 +42,7 @@ urlpatterns += patterns('stacks.www.views',
     # ajax methods
     url(r'^ajax/follow/$', 'ajax.follow', name='follow'),
     url(r'^ajax/unfollow/$', 'ajax.unfollow', name='unfollow'),
+    url(r'^ajax/like/$', 'ajax.like', name='like'),
 
     # site homepage
     url(r'^(?P<site>[\w-]+)/$', 'listing.site_home', name='site_home'),
