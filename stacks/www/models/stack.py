@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from stacks.www.models.utils import PropertiesMixin, CacheMixin
-from stacks.www.models.site import Site
 from stacks.www.utils.cache import incr_version, version_key, get_from_cache, safe_cache_key
 
 class Stack(PropertiesMixin, CacheMixin, models.Model):
@@ -44,17 +43,23 @@ class Stack(PropertiesMixin, CacheMixin, models.Model):
 
     @property
     def like_count(self):
+        """Returns the number of likes for this stack."""
         return get_from_cache(
-            version_key('stack-id-' + str(self.id)) + '.like-count',
+            version_key('stack-likes-' + str(self.id)) + '.like-count',
             lambda: self.likes.count())
 
     @property
     def liked_by(self):
+        """Returns a list of users that have liked this stack."""
         return get_from_cache(
-            version_key('stack-id-' + str(self.id)) + '.liked-by',
+            version_key('stack-likes-' + str(self.id)) + '.liked-by',
             lambda: [like.user for like in self.likes.only("user")])
 
-class Like(models.Model):
+    def liked_by_user(self, user):
+        """Returns true if this user has liked this stack."""
+        return self.likes.filter(user=user).exists()
+
+class Like(CacheMixin, models.Model):
     user = models.ForeignKey(User, related_name="likes")
     stack = models.ForeignKey("Stack", related_name="likes")
     added = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -65,3 +70,8 @@ class Like(models.Model):
     class Meta:
         app_label = 'www'
         unique_together = (("user", "stack"),)
+
+    def invalidate_cache(self):
+        # invalidate not individual like instances but collections from each side, user and stack
+        incr_version('stack-likes-'+ str(self.stack.id))
+        incr_version('user-likes-' + str(self.user.id))

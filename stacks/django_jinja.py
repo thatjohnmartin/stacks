@@ -45,10 +45,16 @@ def csrf(request):
 # -------------------------
 
 def pluralize(value, plural_suffix="s", singular_suffix=""):
-    if len(value) == 1:
-        return singular_suffix
+    if isinstance(value, (int, float, long)):
+        if value == 1:
+            return singular_suffix
+        else:
+            return plural_suffix
     else:
-        return plural_suffix
+        if len(value) == 1:
+            return singular_suffix
+        else:
+            return plural_suffix
 
 
 # Django/Jinja integration

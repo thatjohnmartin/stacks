@@ -31,6 +31,7 @@ class Profile(PropertiesMixin, models.Model):
         instance.profile.delete()
 
     def get_twitter_oauth_values(self):
+        """Returns the oauth token secret and key for this user."""
         social_auth = UserSocialAuth.objects.get(provider='twitter', user=self.user)
         token_secret, token_key = [t.split('=')[1] for t in social_auth.extra_data['access_token'].split('&')]
         return token_secret, token_key
@@ -47,6 +48,7 @@ class Profile(PropertiesMixin, models.Model):
 
     @property
     def twitter_profile(self):
+        """This users's twitter profile: https://dev.twitter.com/docs/api/1/get/account/verify_credentials"""
         if not hasattr(self, '_twitter_profile'):
             self._twitter_profile = simplejson.loads(
                 get_from_cache(
@@ -56,6 +58,10 @@ class Profile(PropertiesMixin, models.Model):
                 )
             )
         return self._twitter_profile
+
+
+    # Twitter profile props
+    # -------------------------
 
     @property
     def profile_image_url_24px(self):

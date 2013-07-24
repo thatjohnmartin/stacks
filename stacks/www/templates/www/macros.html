@@ -38,3 +38,36 @@
         </button>
     {% endif %}
 {%- endmacro %}
+
+{% macro like_button(request, user, stack) -%}
+
+    {% if not user.is_anonymous() %}
+        <a id="like_link" class="like-link" href="#">
+            <i class="icon-heart like-icon"></i>
+            <span id="like_count">{{ stack.like_count }}</span> <span id="like_text">like{{ stack.like_count|pluralize }}</span>
+        </a>
+    {% else %}
+        <i class="icon-heart like-icon"></i>
+        {{ stack.like_count }} like{{ stack.like_count|pluralize }}
+    {% endif %}
+
+    <script type="text/javascript">
+        $(function() {
+            $("#like_link").click(function(e) {
+                $.post("{{ url('like') }}", {
+                    'stack_id': {{ stack.id }},
+                    'csrfmiddlewaretoken': '{{ csrf(request) }}'
+                });
+                $("#like_count").text("{{ stack.like_count + 1 }}");
+                {% if stack.like_count == 0 %}
+                    // special case for 0 to 1
+                    $("#like_text").text("like")
+                {% elif stack.like_count == 1 %}
+                    // special case for 1 to 0
+                    $("#like_text").text("likes")
+                {% endif %}
+                return false;
+            });
+        });
+    </script>
+{%- endmacro %}

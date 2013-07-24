@@ -1,6 +1,6 @@
 {% extends "www/base_standard.html" %}
 
-{% from "www/macros.html" import follow_button %}
+{% from "www/macros.html" import follow_button, like_button %}
 
 {% block title %}{{ stack.title }}{% endblock %}
 
@@ -35,8 +35,8 @@
     {% endif %}
 
     <div class="row below-stack">
-        <div class="span5">
-            <div class="media stack-attribution">
+        <div class="span4">
+            <div class="media">
                 <img class="profile-image media-object pull-left" src="{{ stack.user.profile.profile_image_url_73px }}" />
                 <div class="media-body">
                     <h4 class="media-heading">
@@ -44,13 +44,19 @@
                             {{ stack.user.profile.name }}
                         </a>
                     </h4>
-                    <p>{{ stack.user.profile.description }}</p>
-
-                    <h5 class="media-heading">Posted on</h5>
-                    <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+                    <p class="description">{{ stack.user.profile.description }}</p>
                     <p style="margin-top:20px;">{{ follow_button(request, request.user, stack.user) }}</p>
                 </div>
             </div>
+        </div>
+
+        <div class="span3 offset1">
+            <h5 class="media-heading">Posted on</h5>
+            <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
+        </div>
+
+        <div class="span3 offset1">
+            <p>{{ like_button(request, request.user, stack) }}</p>
         </div>
     </div>
 {% endblock %}
