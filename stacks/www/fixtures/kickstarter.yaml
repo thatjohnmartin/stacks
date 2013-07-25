@@ -215,6 +215,20 @@
     object_id: 1
     tag: 3
 
+- model: www.like
+  pk: 1
+  fields:
+    user: 12
+    stack: 1
+    added: 2012-11-10T03:31:02
+
+- model: www.like
+  pk: 2
+  fields:
+    user: 11
+    stack: 1
+    added: 2012-11-10T03:32:02
+
 - model: www.block
   pk: 1
   fields:

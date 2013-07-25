@@ -21,18 +21,6 @@
         {{ rendered_block.content }}
     {% endfor %}
 
-    {% if stack.tags.exists() %}
-        <div class="row tags">
-            <div class="span12">
-                <p>
-                    <i class="icon-tags"></i>
-                    {% for tag in stack.tags.all() %}
-                        <a href="#" class="tag">{{ tag }}</a>
-                    {% endfor %}
-                </p>
-            </div>
-        </div>
-    {% endif %}
 
     <div class="row below-stack">
         <div class="span4">
@@ -51,12 +39,25 @@
         </div>
 
         <div class="span3 offset1">
+            <h5 class="media-heading">Tagged in</h5>
+            <ul class="unstyled">
+                {% if stack.tags.exists() %}
+                    {% for tag in stack.tags.all() %}
+                        <li>#{{ tag }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No tags yet</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="span3">
             <h5 class="media-heading">Posted on</h5>
             <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
         </div>
 
-        <div class="span3 offset1">
-            <p>{{ like_button(request, request.user, stack) }}</p>
+        <div class="span1 text-center">
+            {{ like_button(request, request.user, stack) }}
         </div>
     </div>
 {% endblock %}
