@@ -26,6 +26,16 @@ Run the rebuild script to sync and add fixtures to the database:
 
 	./rebuild.sh
 
+Create log and cached asset dirs and make them writeable:
+
+    mkdir /var/log/stacks
+    chgrp staff /var/log/stacks
+    chmod 775 /var/log/stacks
+
+    mkdir /var/stacks
+    chgrp staff /var/stacks
+    chmod 775 /var/stacks
+
 Start the Django development server:
 
     ./manage.py runserver 0.0.0.0 8000

@@ -31,6 +31,9 @@ CACHES = {
     }
 }
 
+ALLOWED_HOSTS = [
+    '.stcks.net'
+]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -91,7 +94,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -138,6 +141,7 @@ INSTALLED_APPS = (
     'stacks.www',
     'social_auth',
     'taggit',
+    'compressor',
 )
 
 LOGIN_URL = '/login/'
@@ -165,6 +169,19 @@ FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
 FLICKR_API_SECRET = '37f2aa730149f69c'
 
 ENABLE_SCRAPER_CACHE = int(os.environ.get('STACKS_ENABLE_SCRAPER_CACHE', 1))
+
+COMPRESS_ENABLED = os.environ.get('STACKS_COMPRESS_ENABLED', 0)
+COMPRESS_ROOT = '/var/stacks'
+COMPRESS_OUTPUT_DIR = 'cache'
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', '/usr/local/bin/lessc {infile} {outfile}'),
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+)
 
 LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')
 ENABLE_SQL_LOGGING = int(os.environ.get('STACKS_ENABLE_SQL_LOGGING', 0))
