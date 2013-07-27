@@ -3,7 +3,7 @@ Stacks
 
 Lovingly organized pixels.
 
-Assumes a running MySQL database, memcached cache, and a Python environment with virtualenv.
+Assumes a running MySQL database, memcached cache, and a Python environment with virtualenv. Also requires node.js and lessc for asset compression.
 
 Recommended env vars:
 
