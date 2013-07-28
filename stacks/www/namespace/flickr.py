@@ -1,37 +1,38 @@
 import flickrapi
-from django.conf import settings
-from stacks.www.namespace import NameSpace
+from stacks.www.namespace import NameSpace, VirtualSubspace
 
-class FlickrNameSpace(NameSpace):
+class FlickrNameSpace(VirtualSubspace):
 
-    def __init__(self, subspace_name=''):
-        pass
+    def __init__(self, flickr_api_key, flickr_username):
+        super(NameSpace, self).__setattr__('_flickr_api_key',  flickr_api_key)
+        super(NameSpace, self).__setattr__('_flickr_username',  flickr_username)
+        super(FlickrNameSpace, self).__init__('flickr', structured=False)
 
     def __getitem__(self, key):
         if key == "photos":
-            return {'8787002065': LazyFlickrPhoto('8787002065'), '8711102065': LazyFlickrPhoto('8711102065')}
+            return {
+                '8787002065': FlickrPhoto(self._flickr_api_key, '8787002065'),
+                '8711102065': FlickrPhoto(self._flickr_api_key, '8711102065')
+            }
         else:
             raise AttributeError(key)
 
-    # make it read-only
-    def __setitem__(self, key, val):
-        raise Exception('Not writeable!')
-
 class FlickrPhoto(object):
 
-    def __init__(self, photo_id):
-        self.loaded = False
-        self.photo_id = photo_id
+    def __init__(self, flickr_api_key, photo_id):
+        self._loaded = False
+        self._flickr_api_key = flickr_api_key
+        self._photo_id = photo_id
 
     def _load(self):
-        flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY, format='json')
+        flickr = flickrapi.FlickrAPI(self._flickr_api_key, format='json')
         flickr.people_getPublicPhotos(user_id='67298421@N00')
 
     def __repr__(self):
-        return "<LazyFlickrPhoto: %s>" % self.photo_id
+        return "<FlickrPhoto: %s>" % self._photo_id
 
     def __unicode__(self):
-        return "<LazyFlickrPhoto: %s>" % self.photo_id
+        return "<FlickrPhoto: %s>" % self._photo_id
 
     @property
     def url(self):
