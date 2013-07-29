@@ -16,6 +16,9 @@ SUPPORTED_TYPES = (
     'text/csv',
     'application/json',
 
+    # general namespace
+    'application/x-stacks-directory',
+
     # astro
     'application/x-astro-object-json',
 

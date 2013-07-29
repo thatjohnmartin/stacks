@@ -9,6 +9,7 @@ from django.shortcuts import render, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.forms import ModelForm
+from stacks import directory
 from stacks.www.models import Stack
 from stacks import constants
 from stacks.www.scrapers import scrape
@@ -229,6 +230,18 @@ def item(placement_types, data):
         c = {}
 
         c['astro_object_attributes'] = scrape(provider, data_sub_type, data['value']['_scrape']['url'])
+
+        return template.render(c)
+
+    if data_super_type == 'application' and data_sub_type == 'x-stacks-directory':
+
+        # get the image item template
+        env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
+        template = env.get_template('astro/object_attributes.html') # !! this should be cached
+        c = {}
+
+        # c['astro_object_attributes'] = scrape(provider, data_sub_type, data['value']['_scrape']['url'])
+        c['astro_object_attributes'] = directory[data['path']]
 
         return template.render(c)
 

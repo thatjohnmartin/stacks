@@ -236,13 +236,3 @@ LOG_LEVEL = logging.DEBUG if settings.DEBUG else logging.INFO
 LOG_FORMAT = '%(asctime)s %(process)d %(filename)s(%(lineno)d): %(levelname)s %(message)s'
 
 logging.basicConfig(filename=settings.LOG_FILE, filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)
-
-
-# Initialize global namespace
-# -------------------------
-
-from stacks.www.namespace import NameSpace, WikipediaNameSpace, MountainProjectNameSpace, FlickrNameSpace
-directory = NameSpace()
-directory['wikipedia'] = WikipediaNameSpace()
-directory['mountain_project'] = MountainProjectNameSpace()
-directory['users.johnm.flickr'] = FlickrNameSpace(FLICKR_API_KEY, flickr_username='johnmartin78')
