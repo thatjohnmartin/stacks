@@ -1,7 +1,7 @@
 from dateutil import parser
 from datetime import datetime
 import flickrapi
-import NameSpace, VirtualSubspace, ReadOnlyNameSpace
+from stacks.www.namespace import NameSpace, VirtualSubspace, ReadOnlyNameSpace
 
 class FlickrPhoto(object):
     """A lazy-loaded Flickr photo."""
@@ -184,3 +184,6 @@ class FlickrSetsSubspace(VirtualSubspace):
         super(NameSpace, self).__setattr__('_flickr_username', flickr_username)
         super(NameSpace, self).__setattr__('_loaded', False)
         super(FlickrSetsSubspace, self).__init__(subspace_name='sets', structured=False)
+
+    def __repr__(self):
+        return "{<not loaded>}"
