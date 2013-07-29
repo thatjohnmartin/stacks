@@ -1,7 +1,7 @@
 from dateutil import parser
 from datetime import datetime
 import flickrapi
-from stacks.www.namespace import NameSpace, VirtualSubspace, ReadOnlyNameSpace
+import NameSpace, VirtualSubspace, ReadOnlyNameSpace
 
 class FlickrPhoto(object):
     """A lazy-loaded Flickr photo."""
