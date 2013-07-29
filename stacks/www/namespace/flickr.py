@@ -114,19 +114,30 @@ class FlickrPhoto(object):
 class FlickrNameSpace(ReadOnlyNameSpace):
     """A namespace of Flickr-y things: photos, sets. Configured for a single Flickr user account."""
 
-    def __init__(self, flickr_api_key, flickr_username):
+    def __init__(self, flickr_api_key, flickr_username=None, flickr_email=None, flickr_user_id=None):
+        assert flickr_username or flickr_email or flickr_user_id, "Need either a username, email, or user_id"
         super(NameSpace, self).__setattr__('_flickr_api_key', flickr_api_key)
-        super(NameSpace, self).__setattr__('_flickr_username', flickr_username)
-        super(NameSpace, self).__setitem__('photos', FlickrPhotosSubspace(flickr_api_key, flickr_username))
-        super(NameSpace, self).__setitem__('sets', FlickrSetsSubspace(flickr_api_key, flickr_username))
+
+        # resolve a Flickr user ID
+        if not flickr_user_id:
+            flickr = flickrapi.FlickrAPI(self._flickr_api_key)
+            if flickr_username:
+                response = flickr.people_findByUsername(username=flickr_username)
+            else:
+                response = flickr.people_findByEmail(find_email=flickr_email)
+            flickr_user_id = response.find('user').attrib['id']
+
+        super(NameSpace, self).__setattr__('_flickr_user_id', flickr_user_id)
+        super(NameSpace, self).__setitem__('photos', FlickrPhotosSubspace(flickr_api_key, flickr_user_id))
+        super(NameSpace, self).__setitem__('sets', FlickrSetsSubspace(flickr_api_key, flickr_user_id))
         super(FlickrNameSpace, self).__init__(subspace_name='flickr')
 
 class FlickrPhotosSubspace(VirtualSubspace):
     """A virtual subspace of lazy-loaded Flickr photos."""
 
-    def __init__(self, flickr_api_key, flickr_username):
+    def __init__(self, flickr_api_key, flickr_user_id):
         super(NameSpace, self).__setattr__('_flickr_api_key', flickr_api_key)
-        super(NameSpace, self).__setattr__('_flickr_username', flickr_username)
+        super(NameSpace, self).__setattr__('_flickr_user_id', flickr_user_id)
         super(NameSpace, self).__setattr__('_loaded', False)
         super(FlickrPhotosSubspace, self).__init__(subspace_name='photos', structured=False)
 
@@ -142,7 +153,7 @@ class FlickrPhotosSubspace(VirtualSubspace):
         photos_dict = {}
         for page in range(1, 100):
             # BTW, 100 is an arbitrary maximum .. not sure how big some people's Flickr accounts will be
-            response = flickr.people_getPublicPhotos(user_id=self._flickr_username, per_page=100, page=page)
+            response = flickr.people_getPublicPhotos(user_id=self._flickr_user_id, per_page=100, page=page)
             photos = response.find('photos')
             for id in [photo.attrib['id'] for photo in photos.findall('photo')]:
                 photos_dict[id] = FlickrPhoto(self._flickr_api_key, id)
@@ -179,9 +190,9 @@ class FlickrPhotosSubspace(VirtualSubspace):
 class FlickrSetsSubspace(VirtualSubspace):
     """A virtual subspace of lazy-loaded Flickr sets."""
 
-    def __init__(self, flickr_api_key, flickr_username):
+    def __init__(self, flickr_api_key, flickr_user_id):
         super(NameSpace, self).__setattr__('_flickr_api_key', flickr_api_key)
-        super(NameSpace, self).__setattr__('_flickr_username', flickr_username)
+        super(NameSpace, self).__setattr__('_flickr_user_id', flickr_user_id)
         super(NameSpace, self).__setattr__('_loaded', False)
         super(FlickrSetsSubspace, self).__init__(subspace_name='sets', structured=False)
 
