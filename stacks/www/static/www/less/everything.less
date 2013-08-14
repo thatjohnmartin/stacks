@@ -1,4 +1,55 @@
-@import "../../lib/bootstrap-2.3.2/less/bootstrap.less";
+@import "../../lib/bootstrap-3.0.0-rc1/less/bootstrap.less";
+@import "../../lib/font-awesome-3.2.1/less/font-awesome";
+
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@grayLightest:          #f9f9f9;
+@white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+@blue:                  #049cdb;
+@blueDark:              #0064cd;
+@green:                 #46a546;
+@red:                   #9d261d;
+@yellow:                #ffc40d;
+@orange:                #f89406;
+@pink:                  #c3325f;
+@purple:                #7a43b6;
+
+@grayHover:             rgb(242, 242, 242);
+@hoverHighlight:        #e1473b;
+
+@baseBorderRadius:      4px;
+
+@navbarHeight:                    47px;
+@navbarBackgroundHighlight:       #ffffff;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+@navbarBorder:                    darken(@navbarBackground, 12%);
+
+@sansFontFamily:        'Whitney SSm A', 'Whitney SSm B',  "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Adjust the width of forms controls
+// --------------------------
+
+.form-horizontal-component-offset(@offset) {
+    &.form-horizontal {
+        .controls {
+            margin-left: @offset;
+        }
+        .control-label {
+            width: @offset - 20;
+        }
+    }
+}
+
 @import "clickybox.less";
 @import "centered-form.less";
 @import "tags.less";
