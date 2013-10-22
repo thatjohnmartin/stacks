@@ -2,55 +2,54 @@
 
 {% block body %}
     {% block navbar %}
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
+{#                {% include "www/inc/logo.html" %}#}
 
-                    {% include "www/inc/logo.html" %}
-
-                    <div class="nav-collapse collapse">
-
-                        {% if not request.site.is_home %}
-                            <ul class="nav">
-                                {% if user.is_authenticated() %}
-                                    <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
-                                {% endif %}
-                                <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
-                                {% if user.is_authenticated() %}
-                                    <li class="divider-vertical"></li>
-                                    <li><a id="create-button" href="#create-modal" role="button" data-toggle="modal">+ New</a></li>
-                                    <li><a href="#">Upload</a></li>
-                                {% endif %}
-                            </ul>
-                        {% endif  %}
-
-                        <ul class="nav pull-right">
-                            {% if user.is_authenticated() %}
-                                <li><a href="#" class="profile-image-link"><img class="profile-image" src="{{ user.profile.profile_image_url_24px }}" /></a></li>
-                                <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
-                            {% else %}
-                                <li>
-                                    <a href="{{ url('socialauth_begin', args=('twitter',)) }}">
-                                        <i class="nav-icon icon-twitter"></i> Log in
-                                    </a>
-                                </li>
-{#                                <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>#}
-{#                                <li><a href="{{ url('join') }}">Join</a></li>#}
-                            {% endif %}
-                        </ul>
-
-                    </div>
-
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Stacks</a>
             </div>
-        </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                {% if not request.site.is_home %}
+                    <ul class="nav navbar-nav">
+                        {% if user.is_authenticated() %}
+                            <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
+                        {% endif %}
+                        <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
+                        {% if user.is_authenticated() %}
+                            <li class="divider-vertical"></li>
+                            <li><a id="create-button" href="#create-modal" role="button" data-toggle="modal">+ New</a></li>
+                            <li><a href="#">Upload</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif  %}
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated() %}
+                        <li><a href="#" class="profile-image-link"><img class="profile-image" src="{{ user.profile.profile_image_url_24px }}" /></a></li>
+                        <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
+                    {% else %}
+                        <li>
+                            <a href="{{ url('socialauth_begin', args=('twitter',)) }}">
+                                 <span class="glyphicon glyphicon-star"></span> Log in
+                            </a>
+                        </li>
+                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
+                        <li><a href="{{ url('join') }}">Join</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+
+        </nav>
     {% endblock %}
 
     <div class="container">

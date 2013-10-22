@@ -6,12 +6,33 @@
         <meta name="description" content="{{ request.site.name }} – {{ request.site.properties.description }}">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-            <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7488232/727982/css/fonts.css" />
-            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7488232/727982/css/fonts.css" />
+{#        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />#}
 
-        {% compress css %}
-            <link rel="stylesheet" type="text/less" href="/static/www/less/everything.less"/>
-        {% endcompress %}
+        <!-- Bootstrap -->
+        {% if debug %}
+            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.css" rel="stylesheet" media="screen">
+            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.css" rel="stylesheet" media="screen">
+        {% else %}
+            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+        {% endif %}
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="/static/lib/bootstrap-3.0.0/js/html5shiv.js"></script>
+            <script src="/static/lib/bootstrap-3.0.0/js/respond.min.js"></script>
+        <![endif]-->
+
+        {% if debug %}
+            <script src="/static/lib/jquery-1.10.1.js"></script>
+        {% else %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        {% endif %}
+
+{#        {% compress css %}#}
+{#            <link rel="stylesheet" type="text/less" href="/static/www/less/everything.less"/>#}
+{#        {% endcompress %}#}
 
         {% if debug %}
             <script src="/static/lib/jquery-1.10.1.js"></script>
@@ -32,18 +53,11 @@
         {% block body %}<p>Empty.</p>{% endblock %}
 
         {% compress js %}
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/affix.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/transition.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/alert.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/modal.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/dropdown.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/scrollspy.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/tab.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/tooltip.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/popover.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/button.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/collapse.js"></script>
-            <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-rc1/js/carousel.js"></script>
+            {% if debug %}
+                <script type="text/javascript" src="/static/lib/bootstrap-3.0.0/js/bootstrap.js"></script>
+            {% else %}
+                <script type="text/javascript" src="/static/lib/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+            {% endif %}
 
             <script type="text/javascript" src="/static/lib/jquery.slugify.js"></script>
 
