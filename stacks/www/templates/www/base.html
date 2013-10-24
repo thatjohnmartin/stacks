@@ -10,29 +10,24 @@
 {#        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />#}
 
         <!-- Bootstrap -->
-        {% if debug %}
-            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.css" rel="stylesheet" media="screen">
-            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.css" rel="stylesheet" media="screen">
-        {% else %}
-            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-        {% endif %}
+{#        {% if debug %}#}
+{#            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.css" rel="stylesheet" media="screen">#}
+{#            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.css" rel="stylesheet" media="screen">#}
+{#        {% else %}#}
+{#            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">#}
+{#            <link href="/static/lib/bootstrap-3.0.0/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">#}
+{#        {% endif %}#}
+
+        {% compress css %}
+            <link rel="stylesheet" type="text/less" href="/static/www/less/everything.less"/>
+{#            <link rel="stylesheet" type="text/less" href="/static/lib/bootstrap-2.3.2/less/responsive.less">#}
+        {% endcompress %}
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="/static/lib/bootstrap-3.0.0/js/html5shiv.js"></script>
             <script src="/static/lib/bootstrap-3.0.0/js/respond.min.js"></script>
         <![endif]-->
-
-        {% if debug %}
-            <script src="/static/lib/jquery-1.10.1.js"></script>
-        {% else %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        {% endif %}
-
-{#        {% compress css %}#}
-{#            <link rel="stylesheet" type="text/less" href="/static/www/less/everything.less"/>#}
-{#        {% endcompress %}#}
 
         {% if debug %}
             <script src="/static/lib/jquery-1.10.1.js"></script>
