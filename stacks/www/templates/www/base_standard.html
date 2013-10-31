@@ -3,6 +3,7 @@
 {% block body %}
     {% block navbar %}
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
 
 {#                {% include "www/inc/logo.html" %}#}
 
@@ -13,7 +14,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Stacks</a>
+                <a class="navbar-brand" href="/">
+                    <i class="fa fa-star-o" style="margin-right:5px;"></i>Stacks
+                </a>
             </div>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -39,16 +42,16 @@
                     {% else %}
                         <li>
                             <a href="{{ url('socialauth_begin', args=('twitter',)) }}">
-                                 <span class="glyphicon glyphicon-star"></span> Log in
+                                 <i class="fa fa-twitter"></i> Log in
                             </a>
                         </li>
-                        <li><a href="{{ url('django.contrib.auth.views.login') }}">Log in</a></li>
                         <li><a href="{{ url('join') }}">Join</a></li>
                     {% endif %}
                 </ul>
 
             </div>
 
+            </div>
         </nav>
     {% endblock %}
 

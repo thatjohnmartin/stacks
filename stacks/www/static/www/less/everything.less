@@ -1,5 +1,8 @@
+@base-border-radius:    4px;
+@hover-highlight:       #e1473b;
+
 @import "../../lib/bootstrap-3.0.0-less/less/bootstrap.less";
-//@import "../../lib/font-awesome-3.2.1/less/font-awesome";
+@import "../../lib/font-awesome-4.0.1/less/font-awesome";
 
 // Grays
 // -------------------------
@@ -24,16 +27,6 @@
 @purple:                #7a43b6;
 
 @grayHover:             rgb(242, 242, 242);
-@hoverHighlight:        #e1473b;
-
-@baseBorderRadius:      4px;
-
-@navbarHeight:                    47px;
-@navbarBackgroundHighlight:       #ffffff;
-@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
-@navbarBorder:                    darken(@navbarBackground, 12%);
-
-@sansFontFamily:        'Whitney SSm A', 'Whitney SSm B',  "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 // Adjust the width of forms controls
 // --------------------------
@@ -49,6 +42,8 @@
     }
 }
 
+// foo2332233
+
 @import "clickybox.less";
 @import "centered-form.less";
 @import "tags.less";
@@ -63,7 +58,7 @@
 // Prose text
 .prose {
     font-family: @font-family-serif;
-//    font-weight: @altFontWeight;
+    font-weight: @font-family-sans-serif-base-weight;
     font-size: 17px;
     line-height: 26px;
 
@@ -76,3 +71,18 @@
     font-size: 14px;
     line-height: 22px;
 }
+
+// Navbar
+// --------------------------
+
+.navbar {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.navbar-brand {
+    padding-left: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
