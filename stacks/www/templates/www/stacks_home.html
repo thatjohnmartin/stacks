@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="clicky-box-container">
-        <p class="intro prose">Welcome to STCKS, stranger.</p>
+        <p class="intro prose">Welcome to {{ settings.APP_NAME }}, stranger.</p>
         <a class="clicky-box left" href="{{ url('site_home', kwargs={'site': 'astro'}) }}">
             Astro
         </a>

@@ -6,6 +6,8 @@ IS_LOCAL = 'STACKS_LOCAL' in os.environ
 DEBUG = int(os.environ.get('STACKS_DEBUG', IS_LOCAL))
 TEMPLATE_DEBUG = DEBUG
 
+APP_NAME = 'Stacks'
+
 ADMINS = (
     ('John Martin', 'john@lonepixel.com'),
 )
