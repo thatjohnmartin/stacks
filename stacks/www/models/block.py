@@ -1,7 +1,7 @@
+from crimpycache.models import CacheMixin
 from django.db import models
-from stacks.www.models.utils import PropertiesMixin, CacheMixin
+from stacks.www.models.utils import PropertiesMixin
 from stacks.www.models import Stack, Layout
-from stacks.www.utils.cache import incr_version, version_key, get_from_cache, safe_cache_key
 
 class Block(PropertiesMixin, CacheMixin, models.Model):
     stack = models.ForeignKey(Stack, related_name="blocks")
@@ -18,17 +18,16 @@ class Block(PropertiesMixin, CacheMixin, models.Model):
         app_label = 'www'
         unique_together = (("stack", "name"),)
 
-    def invalidate_cache(self):
-        # invalidate collections and individual by ID and by slug + site
-        incr_version('blocks')
-        incr_version('block-id-' + str(self.id))
-
-    @classmethod
-    def get_from_cache(cls, id):
-        return get_from_cache(
-            version_key('block-id-' + str(id)),
-            lambda: cls.objects.get(id=id))
-
+    # def invalidate_cache(self):
+    #     # invalidate collections and individual by ID and by slug + site
+    #     incr_version('blocks')
+    #     incr_version('block-id-' + str(self.id))
+    #
+    # @classmethod
+    # def get_from_cache(cls, id):
+    #     return get_from_cache(
+    #         version_key('block-id-' + str(id)),
+    #         lambda: cls.objects.get(id=id))
 
 # example items in block.properties.context
 #

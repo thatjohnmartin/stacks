@@ -15,7 +15,7 @@ from stacks import constants
 from stacks.www.scrapers import scrape
 
 def stack(request, slug):
-    stack = Stack.get_from_cache(site=request.site, slug=slug)
+    stack = Stack.get_from_cache(site_id=request.site.id, slug=slug)
     if not stack:
         raise Http404
 

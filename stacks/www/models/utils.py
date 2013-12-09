@@ -5,6 +5,8 @@ import simplejson
 from django.db import models
 from django.db.utils import IntegrityError
 
+# TODO: update to latest properties class
+
 class PropertiesMixin(models.Model):
     """model-class mixin adds generic p-list via carrier 'properties_json' field containing JSON-encoded property dict"""
     # note this is an abstract Django 1.0+ model class, inheritors don't need to add the properties_json field
@@ -99,25 +101,6 @@ class PropertiesMixin(models.Model):
         if getattr(self, '_props_dirty', False):
             self.properties_json = simplejson.dumps(self._properties)
         super(PropertiesMixin, self).save(**kwargs)
-
-class CacheMixin(models.Model):
-    "A mixin that provides scaffolding for cache invalidation."
-
-    class Meta:
-        abstract = True
-
-    def save(self, **kwargs):
-        super(CacheMixin, self).save(**kwargs)
-        self.invalidate_cache()
-
-    def delete(self, **kwargs):
-        super(CacheMixin, self).delete(**kwargs)
-        self.invalidate_cache()
-        # Note: I don't think the delete will capture query_set deletions, so at some point we
-        # should add some signal-based invalidation.
-
-    def invalidate_cache(self):
-        pass
 
 class AutoSlugMixin(models.Model):
     "A mixin to provide auto slug generation."
