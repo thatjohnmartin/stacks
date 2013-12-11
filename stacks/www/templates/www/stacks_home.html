@@ -1,6 +1,6 @@
 {% extends "www/base_standard.html" %}
 
-{% block subtitle %}{{ request.site.properties.description }}{% endblock %}
+{% block subtitle %}{{ request.site.properties_json.description }}{% endblock %}
 
 {% block body_class %}home content{% endblock %}
 {% block navbar %}{% endblock %}

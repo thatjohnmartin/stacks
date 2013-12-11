@@ -1,5 +1,5 @@
+from crimpyutils.models import PropertiesMixin
 from django.db import models
-from stacks.www.models.utils import PropertiesMixin
 
 class Layout(PropertiesMixin, models.Model):
     name = models.CharField(max_length=255, db_index=True)

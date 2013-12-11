@@ -1,7 +1,6 @@
-from django.db import models
 from crimpycache.models import CacheMixin
-from stacks.www.models.utils import PropertiesMixin
-# from stacks.www.utils.cache import incr_version, version_key, get_from_cache
+from crimpyutils.models import PropertiesMixin
+from django.db import models
 from stacks import constants
 
 class Site(PropertiesMixin, CacheMixin, models.Model):

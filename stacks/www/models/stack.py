@@ -1,9 +1,9 @@
 from crimpycache import cache
 from crimpycache.models import CacheMixin
+from crimpyutils.models import PropertiesMixin
 from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from stacks.www.models.utils import PropertiesMixin
 
 class Stack(PropertiesMixin, CacheMixin, models.Model):
     user = models.ForeignKey(User, related_name="stacks")

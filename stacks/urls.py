@@ -60,5 +60,5 @@ urlpatterns += patterns('stacks.www.views',
     url(r'^(?P<site>[\w-]+)/stacks/(?P<slug>[\w-]+)/$', 'stack.stack', name='stack'),
 
     # browse individual blocks
-    url(r'^(?P<site>[\w-]+)/stacks/(?P<slug>[\w-]+)/(?P<block_identifier>[\w-]+)/$', 'stack.block', name='block'),
+    # url(r'^(?P<site>[\w-]+)/stacks/(?P<slug>[\w-]+)/(?P<block_identifier>[\w-]+)/$', 'stack.block', name='block'),
 )

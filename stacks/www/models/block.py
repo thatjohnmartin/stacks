@@ -1,6 +1,6 @@
 from crimpycache.models import CacheMixin
+from crimpyutils.models import PropertiesMixin
 from django.db import models
-from stacks.www.models.utils import PropertiesMixin
 from stacks.www.models import Stack, Layout
 
 class Block(PropertiesMixin, CacheMixin, models.Model):

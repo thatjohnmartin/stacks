@@ -1,11 +1,11 @@
 import simplejson
 import twitter
 from social_auth.db.django_models import UserSocialAuth
+from crimpyutils.models import PropertiesMixin
 from django.db import models
 from django.db.models import signals
 from django.contrib.auth.models import User
 from django.conf import settings
-from stacks.www.models.utils import PropertiesMixin
 from stacks.www.utils.cache import get_from_cache, version_key
 
 class Profile(PropertiesMixin, models.Model):

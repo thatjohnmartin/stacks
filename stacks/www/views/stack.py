@@ -15,7 +15,7 @@ from stacks import constants
 from stacks.www.scrapers import scrape
 
 def stack(request, slug):
-    stack = Stack.get_from_cache(site=request.site, slug=slug)
+    stack = Stack.get_from_cache(site_id=request.site.id, slug=slug)
     if not stack:
         raise Http404
 
@@ -35,7 +35,8 @@ def stack(request, slug):
         #     layout_context[page_media_item.placement] = '<img src="%s%s" />' % (settings.MEDIA_URL, page_media_item.item.image_path)
 
         # grab all of the name/values and render
-        pairs = block.get_prop('context')
+        # pairs = block.get_prop('context')
+        pairs = block.properties_json['context']
         if pairs:
             for name, value in pairs.iteritems():
                 layout_context[name] = value
