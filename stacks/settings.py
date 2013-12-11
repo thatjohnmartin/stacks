@@ -6,6 +6,8 @@ IS_LOCAL = 'STACKS_LOCAL' in os.environ
 DEBUG = int(os.environ.get('STACKS_DEBUG', IS_LOCAL))
 TEMPLATE_DEBUG = DEBUG
 
+APP_NAME = 'Stacks'
+
 ADMINS = (
     ('John Martin', 'john@lonepixel.com'),
 )
@@ -183,7 +185,7 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter',
 )
 
-LOG_FILE = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks/app.log')
+LOG_ROOT = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks')
 ENABLE_SQL_LOGGING = int(os.environ.get('STACKS_ENABLE_SQL_LOGGING', 0))
 ENABLE_CACHE_LOGGING = int(os.environ.get('STACKS_ENABLE_CACHE_LOGGING', 0))
 
@@ -235,4 +237,4 @@ from django.conf import settings
 LOG_LEVEL = logging.DEBUG if settings.DEBUG else logging.INFO
 LOG_FORMAT = '%(asctime)s %(process)d %(filename)s(%(lineno)d): %(levelname)s %(message)s'
 
-logging.basicConfig(filename=settings.LOG_FILE, filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)
+logging.basicConfig(filename=os.path.join(settings.LOG_ROOT, 'app.log'), filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)

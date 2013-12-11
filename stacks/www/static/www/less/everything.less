@@ -1,4 +1,49 @@
-@import "../../lib/bootstrap-2.3.2/less/bootstrap.less";
+@base-border-radius:    4px;
+@hover-highlight:       #e1473b;
+
+@import "../../lib/bootstrap-3.0.0-less/less/bootstrap.less";
+@import "../../lib/font-awesome-4.0.1/less/font-awesome";
+
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@grayLightest:          #f9f9f9;
+@white:                 #fff;
+
+// Accent colors
+// -------------------------
+@blue:                  #049cdb;
+@blueDark:              #0064cd;
+@green:                 #46a546;
+@red:                   #9d261d;
+@yellow:                #ffc40d;
+@orange:                #f89406;
+@pink:                  #c3325f;
+@purple:                #7a43b6;
+
+@grayHover:             rgb(242, 242, 242);
+
+// Adjust the width of forms controls
+// --------------------------
+
+.form-horizontal-component-offset(@offset) {
+    &.form-horizontal {
+        .controls {
+            margin-left: @offset;
+        }
+        .control-label {
+            width: @offset - 20;
+        }
+    }
+}
+
+// foo2332233
+
 @import "clickybox.less";
 @import "centered-form.less";
 @import "tags.less";
@@ -6,3 +51,38 @@
 @import "login.less";
 @import "join.less";
 @import "stacks.less";
+
+// Orphaned stuff from the old version
+// --------------------------
+
+// Prose text
+.prose {
+    font-family: @font-family-serif;
+    font-weight: @font-family-sans-serif-base-weight;
+    font-size: 17px;
+    line-height: 26px;
+
+}
+
+// Caption text
+.caption {
+    color: @grayLight;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+// Navbar
+// --------------------------
+
+.navbar {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.navbar-brand {
+    padding-left: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
