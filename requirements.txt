@@ -15,4 +15,5 @@ django-social-auth==0.7.28
 python-twitter==1.0
 django-taggit==0.11.1
 python-dateutil==2.2
--e git://github.com/thatjohnmartin/django-crimpycache.git#egg=django-crimpycache
+git+https://github.com/thatjohnmartin/django-crimpycache.git#egg=django-crimpycache
+git+https://github.com/thatjohnmartin/django-crimpyutils.git#egg=django-crimpyutils
