@@ -18,7 +18,6 @@ Note for namespaced urls you have to use quotes eg:
 """
 
 import jinja2
-from compressor.contrib.jinja2ext import CompressorExtension
 from django.template.loader import BaseLoader
 from django.template import TemplateDoesNotExist, Origin
 from django.core.context_processors import csrf as django_csrf
@@ -86,7 +85,6 @@ class Loader(BaseLoader):
     # Set up the jinja env and load any extensions you may have
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(settings.JINJA2_TEMPLATE_DIRS),
-        extensions=(CompressorExtension,)
     )
     env.template_class = Template
     

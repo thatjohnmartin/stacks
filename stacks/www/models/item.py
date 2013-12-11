@@ -1,6 +1,6 @@
+from crimpycache.models import CacheMixin
 from django.db import models
 from django.contrib.auth.models import User
-from stacks.www.models.utils import CacheMixin
 
 class Item(CacheMixin, models.Model):
     user = models.ForeignKey(User, null=True, blank=True, related_name="library_items")

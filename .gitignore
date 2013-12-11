@@ -35,4 +35,5 @@ nosetests.xml
 
 /.idea/
 /stacks-env/
+/env/
 .DS_Store

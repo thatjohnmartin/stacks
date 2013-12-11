@@ -96,7 +96,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -139,11 +138,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'django.contrib.markup',
     'stacks.www',
     'social_auth',
     'taggit',
-    'compressor',
 )
 
 LOGIN_URL = '/login/'
@@ -171,19 +168,6 @@ FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
 FLICKR_API_SECRET = '37f2aa730149f69c'
 
 ENABLE_SCRAPER_CACHE = int(os.environ.get('STACKS_ENABLE_SCRAPER_CACHE', 1))
-
-COMPRESS_ENABLED = os.environ.get('STACKS_COMPRESS_ENABLED', 0)
-COMPRESS_ROOT = '/var/stacks'
-COMPRESS_OUTPUT_DIR = 'cache'
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', '/usr/local/bin/lessc {infile} {outfile}'),
-)
-
-COMPRESS_CSS_FILTERS = (
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-)
 
 LOG_ROOT = os.environ.get('STACKS_LOG_ROOT', '/var/log/stacks')
 ENABLE_SQL_LOGGING = int(os.environ.get('STACKS_ENABLE_SQL_LOGGING', 0))
@@ -237,4 +221,4 @@ from django.conf import settings
 LOG_LEVEL = logging.DEBUG if settings.DEBUG else logging.INFO
 LOG_FORMAT = '%(asctime)s %(process)d %(filename)s(%(lineno)d): %(levelname)s %(message)s'
 
-logging.basicConfig(filename=os.path.join(settings.LOG_ROOT, 'app.log'), filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)
+logging.basicConfig(filename=settings.LOG_FILE, filemode='a', level=LOG_LEVEL, format=LOG_FORMAT)
