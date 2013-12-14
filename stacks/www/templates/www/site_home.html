@@ -1,6 +1,6 @@
-{% extends "www/base_standard.html" %}
+{% extends parent %}
 
-{% block subtitle %}{{ request.site.properties_json.description }}{% endblock %}
+{% block subtitle %} &mdash; {{ request.site.properties_json.description }}{% endblock %}
 
 {% block body_class %}site-home{% endblock %}
 

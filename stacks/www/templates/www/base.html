@@ -12,8 +12,8 @@
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-{#            <script src="/static/lib/bootstrap-3.0.0/js/html5shiv.js"></script>#}
-{#            <script src="/static/lib/bootstrap-3.0.0/js/respond.min.js"></script>#}
+            <script src="/static/lib/bootstrap-3.0.0-less/js/html5shiv.js"></script>
+            <script src="/static/lib/bootstrap-3.0.0-less/js/respond.min.js"></script>
         <![endif]-->
 
         {% if debug %}
@@ -32,7 +32,62 @@
     </head>
 
     <body class="stacks {% block body_class %}{% endblock %}">
-        {% block body %}<p>Empty.</p>{% endblock %}
+
+        {% block navbar %}
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a data-pjax class="navbar-brand" href="/">
+                            <i class="fa fa-star-o" style="margin-right:5px;"></i>Stacks
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                        {% if not request.site.is_home %}
+                            <ul class="nav navbar-nav">
+                                {% if user.is_authenticated() %}
+                                    <li {% if request.path.startswith(url('user_home', kwargs={'username': user.username})) %}class="active"{% endif %}><a data-pjax href="{{ url('user_home', kwargs={'username': user.username}) }}">You</a></li>
+                                {% endif %}
+                                <li {% if request.path.startswith('/tags/') %}class="active"{% endif %}><a href="/tags/" onclick="alert('Coming soon...'); return false">Explore</a></li>
+                                {% if user.is_authenticated() %}
+                                    <li class="divider-vertical"></li>
+                                    <li><a id="create-button" href="#create-modal" role="button" data-toggle="modal">+ New</a></li>
+                                    <li><a href="#">Upload</a></li>
+                                {% endif %}
+                            </ul>
+                        {% endif  %}
+
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated() %}
+                                <li><a data-pjax href="#" class="profile-image-link"><img class="profile-image" src="{{ user.profile.profile_image_url_24px }}" /></a></li>
+                                <li><a href="{{ url('django.contrib.auth.views.logout') }}">Log out</a></li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ url('socialauth_begin', args=('twitter',)) }}">
+                                         <i class="fa fa-twitter"></i> Log in
+                                    </a>
+                                </li>
+                                <li><a href="{{ url('join') }}">Join</a></li>
+                            {% endif %}
+                        </ul>
+
+                    </div>
+
+                </div>
+            </nav>
+        {% endblock %}
+
+        <div class="container" id="pjax-container">
+            {% block content %}Empty{% endblock %}
+        </div>
 
         {% if debug %}
             <script type="text/javascript" src="/static/lib/bootstrap-3.0.0-less/js/bootstrap.js"></script>
@@ -48,8 +103,16 @@
             <script type="text/javascript" src="/static/lib/d3.v3.min.js"></script>
         {% endif %}
 
+        <script type="text/javascript" src="/static/lib/jquery.pjax-1.7.3.js"></script>
         <script type="text/javascript" src="/static/www/js/common.js"></script>
 
         {% block page_scripts %}{% endblock %}
+
+        <script>
+            console.log('hello');
+            $(function() {
+                $(document).pjax('a[data-pjax]', '#pjax-container');
+            });
+        </script>
     </body>
 </html>

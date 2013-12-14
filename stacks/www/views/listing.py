@@ -1,15 +1,20 @@
-from django.shortcuts import render, Http404
+from djpjax import pjaxtend
+from django.shortcuts import Http404
 from django.contrib.auth.models import User
+from django.template.response import TemplateResponse
 from stacks.www.models import Stack
 
+@pjaxtend("www/base.html", "www/pjax.html")
 def stacks_home(request):
     latest_stacks = Stack.objects.filter().order_by('added')[:20]
-    return render(request, 'www/stacks_home.html', {'latest_stacks': latest_stacks})
+    return TemplateResponse(request, 'www/stacks_home.html', {'latest_stacks': latest_stacks})
 
+@pjaxtend("www/base.html", "www/pjax.html")
 def site_home(request):
     latest_stacks = Stack.objects.filter(site=request.site).order_by('added')[:20]
-    return render(request, 'www/site_home.html', {'latest_stacks': latest_stacks})
+    return TemplateResponse(request, 'www/site_home.html', {'latest_stacks': latest_stacks})
 
+@pjaxtend("www/base.html", "www/pjax.html")
 def user_home(request, username):
     try:
         page_user = User.objects.get(username=username)
@@ -22,13 +27,13 @@ def user_home(request, username):
         'stacks': page_user.stacks.all(),
     }
 
-    return render(request, 'www/user_home.html', c)
+    return TemplateResponse(request, 'www/user_home.html', c)
 
 def tag_home(request):
-    return render(request, 'www/tag_home.html')
+    return TemplateResponse(request, 'www/tag_home.html')
 
 def tag_list(request, tag):
-    return render(request, 'www/tag_list.html')
+    return TemplateResponse(request, 'www/tag_list.html')
 
 def test(request):
-    return render(request, 'www/test.html')
+    return TemplateResponse(request, 'www/test.html')

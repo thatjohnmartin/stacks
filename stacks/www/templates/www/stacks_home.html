@@ -1,18 +1,17 @@
-{% extends "www/base_standard.html" %}
+{% extends parent %}
 
-{% block subtitle %}{{ request.site.properties_json.description }}{% endblock %}
+{% block subtitle %} &mdash; {{ request.site.properties_json.description }}{% endblock %}
 
 {% block body_class %}home content{% endblock %}
-{% block navbar %}{% endblock %}
 
 {% block content %}
     <div class="clicky-box-container">
         <p class="intro prose">Welcome to {{ settings.APP_NAME }}, stranger.</p>
-        <a class="clicky-box left" href="{{ url('site_home', kwargs={'site': 'astro'}) }}">
+        <a data-pjax class="clicky-box left" href="{{ url('site_home', kwargs={'site': 'astro'}) }}">
             Astro
         </a>
         <div class="clicky-box-separator">or</div>
-        <a class="clicky-box right" href="{{ url('site_home', kwargs={'site': 'climbing'}) }}">
+        <a data-pjax class="clicky-box right" href="{{ url('site_home', kwargs={'site': 'climbing'}) }}">
             Climbing
         </a>
     </div>

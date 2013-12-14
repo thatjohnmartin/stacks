@@ -95,6 +95,7 @@ class Loader(BaseLoader):
     env.globals['constants'] = constants
     env.globals['settings'] = settings
     env.globals['csrf'] = csrf
+    env.globals['debug'] = settings.DEBUG
 
     # add custom filters
     env.filters['pluralize'] = pluralize
