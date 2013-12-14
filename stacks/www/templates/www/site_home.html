@@ -1,8 +1,6 @@
 {% extends parent %}
 
-{% block subtitle %} &mdash; {{ request.site.properties_json.description }}{% endblock %}
-
-{% block body_class %}site-home{% endblock %}
+{% block title %}{{ request.site.name }} - {{ request.site.properties_json.description }}{% endblock %}
 
 {% block content %}
     <div class="row">

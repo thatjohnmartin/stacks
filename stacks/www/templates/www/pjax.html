@@ -1,1 +1,7 @@
 {% block content %}Empty{% endblock %}
+
+<script>
+    $(document).on('pjax:end', function() {
+        document.title = "{% block title %}{{ request.site.name }}{% endblock %}";
+    })
+</script>

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{{ request.site.name }}{% block subtitle %}{% endblock %}{% endblock %}</title>
+        <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
         <meta name="description" content="{{ request.site.name }} – {{ request.site.properties_json.description }}">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -109,7 +109,6 @@
         {% block page_scripts %}{% endblock %}
 
         <script>
-            console.log('hello');
             $(function() {
                 $(document).pjax('a[data-pjax]', '#pjax-container');
             });
