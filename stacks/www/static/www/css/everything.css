@@ -944,7 +944,7 @@ pre code {
 }
 @media (min-width: 992px) {
   .container {
-    max-width: 970px;
+    max-width: 750px;
   }
   .col-md-1,
   .col-md-2,
@@ -1106,7 +1106,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 750px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -3776,7 +3776,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #e1473b;
+  color: #333333;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
@@ -7379,7 +7379,6 @@ td.visible-print {
   font-size: 12px;
 }
 .navbar-brand {
-  padding-left: 0;
   text-transform: uppercase;
   font-size: 12px;
 }
