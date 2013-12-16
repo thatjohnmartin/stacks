@@ -12,7 +12,7 @@ from django.forms import ModelForm
 from stacks import directory
 from stacks.www.models import Stack
 from stacks import constants
-from stacks.www.scrapers import scrape
+from decentscraper import scrape
 
 def stack(request, slug):
     stack = Stack.get_from_cache(site_id=request.site.id, slug=slug)
@@ -210,7 +210,6 @@ def item(placement_types, data):
 
             return template.render(c)
 
-    # text rendering - supports plain, html, markdown formats and inline
     if data_super_type == 'application' and data_sub_type == 'x-route-topo-json':
 
         # get the image item template
@@ -222,7 +221,6 @@ def item(placement_types, data):
 
         return template.render(c)
 
-    # text rendering - supports plain, html, markdown formats and inline
     if data_super_type == 'application' and data_sub_type == 'x-astro-object-json':
 
         # get the image item template
