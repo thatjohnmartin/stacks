@@ -42,8 +42,6 @@
     }
 }
 
-// foo2332233
-
 @import "clickybox.less";
 @import "centered-form.less";
 @import "tags.less";
@@ -80,9 +78,20 @@
     font-size: 12px;
 }
 
+.navbar-top-bottom-padding {
+    padding-top: 13px;
+    padding-bottom: 10px;
+}
+
 .navbar-brand {
-//    padding-left: 0;
+    .navbar-top-bottom-padding();
     text-transform: uppercase;
     font-size: 12px;
 }
 
+.navbar-nav > li > a {
+    .navbar-top-bottom-padding();
+    &.profile-image-link {
+        padding-top: 11px;
+    }
+}

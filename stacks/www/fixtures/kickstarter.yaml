@@ -11,7 +11,7 @@
 - model: www.site
   pk: 2
   fields:
-    name: Astro Stacks
+    name: Astro
     short_name: astro
     properties_json: >
       {
@@ -21,11 +21,11 @@
 - model: www.site
   pk: 3
   fields:
-    name: Climbing Stacks
+    name: Climbing
     short_name: climbing
     properties_json: >
       {
-        "description": "Spray it with pixels"
+        "description": "Pixel-based spray"
       }
 
 - model: auth.user

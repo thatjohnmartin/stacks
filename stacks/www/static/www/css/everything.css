@@ -7378,7 +7378,20 @@ td.visible-print {
   text-transform: uppercase;
   font-size: 12px;
 }
+.navbar-top-bottom-padding {
+  padding-top: 13px;
+  padding-bottom: 10px;
+}
 .navbar-brand {
+  padding-top: 13px;
+  padding-bottom: 10px;
   text-transform: uppercase;
   font-size: 12px;
+}
+.navbar-nav > li > a {
+  padding-top: 13px;
+  padding-bottom: 10px;
+}
+.navbar-nav > li > a.profile-image-link {
+  padding-top: 11px;
 }
