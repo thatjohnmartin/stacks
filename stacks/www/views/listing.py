@@ -6,13 +6,12 @@ from stacks.www.models import Stack
 
 @pjaxtend("www/base.html", "www/pjax.html")
 def stacks_home(request):
-    latest_stacks = Stack.objects.filter().order_by('added')[:20]
-    return TemplateResponse(request, 'www/stacks_home.html', {'latest_stacks': latest_stacks})
+    return TemplateResponse(request, 'www/stacks_home.html', {})
 
 @pjaxtend("www/base.html", "www/pjax.html")
 def site_home(request):
     latest_stacks = Stack.objects.filter(site=request.site).order_by('added')[:20]
-    return TemplateResponse(request, 'www/site_home.html', {'latest_stacks': latest_stacks})
+    return TemplateResponse(request, 'www/site_home.html', {'stacks': latest_stacks})
 
 @pjaxtend("www/base.html", "www/pjax.html")
 def user_home(request, username):

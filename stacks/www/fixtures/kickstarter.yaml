@@ -5,7 +5,7 @@
     short_name: stacks
     properties_json: >
       {
-        "description": "Lovingly organized pixels"
+        "description": "Lovingly organized pixels."
       }
 
 - model: www.site
@@ -15,7 +15,7 @@
     short_name: astro
     properties_json: >
       {
-        "description": "Stunningly beautiful astrophotography"
+        "description": "Stunningly beautiful astrophotography."
       }
 
 - model: www.site
@@ -25,7 +25,7 @@
     short_name: climbing
     properties_json: >
       {
-        "description": "Pixel-based spray"
+        "description": "Pixel-based spray."
       }
 
 - model: auth.user

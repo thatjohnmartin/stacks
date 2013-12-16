@@ -59,7 +59,9 @@
     font-weight: @font-family-sans-serif-base-weight;
     font-size: 17px;
     line-height: 26px;
-
+    &.intro {
+        text-align: center;
+    }
 }
 
 // Caption text
@@ -87,11 +89,70 @@
     .navbar-top-bottom-padding();
     text-transform: uppercase;
     font-size: 12px;
+    padding-right: 5px;
+    &.site {
+        padding-left: 0;
+    }
 }
 
 .navbar-nav > li > a {
     .navbar-top-bottom-padding();
     &.profile-image-link {
         padding-top: 11px;
+    }
+}
+
+// List pages
+// --------------------------
+
+.row.header-row {
+    margin-bottom: 20px;
+
+    h1 {
+        text-align: center;
+    }
+}
+
+.row.stack-list-item {
+    border-top: 1px solid @gray-lighter;
+    padding: 20px 0;
+}
+
+// Home page site boxes
+// --------------------------
+
+.site-clicky-box {
+    display: block;
+    height: 345px;
+    line-height: 345px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: @white;
+
+    &.astro {
+        background-image: url('http://farm9.staticflickr.com/8075/8400215023_b199816f3d_c.jpg');
+    }
+
+    &.climbing {
+        background-image: url('http://farm8.staticflickr.com/7291/8787002065_0813f26e5f_c.jpg');
+    }
+
+    &.left {
+        &:hover {
+            .rotate(-2deg);
+        }
+    }
+    &.right {
+        &:hover {
+            .rotate(2deg);
+        }
+    }
+
+    &:hover {
+        color: @white;
+        text-decoration: none;
     }
 }

@@ -3,30 +3,24 @@
 {% block title %}{{ request.site.name }} - {{ request.site.properties_json.description }}{% endblock %}
 
 {% block content %}
-
-    <div class="row">
-        <div class="span12">
+    <div class="row header-row">
+        <div class="col-sm-12">
             <h1>{{ request.site.name }}</h1>
-            {% if latest_stacks %}
-                <p>Latest stacks:</p>
-                <ul>
-                    {% for stack in latest_stacks %}
-                        <li><a href="{{ site_url('stack', request.site, kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            <p class="intro prose">{{ request.site.properties_json.description }}</p>
         </div>
     </div>
-
-
-    <div class="clicky-box-container">
-        <p class="intro prose">Welcome to {{ settings.APP_NAME }}, stranger.</p>
-        <a data-pjax class="clicky-box left" href="{{ url('site_home', kwargs={'site': 'astro'}) }}">
-            Astro
-        </a>
-        <div class="clicky-box-separator">or</div>
-        <a data-pjax class="clicky-box right" href="{{ url('site_home', kwargs={'site': 'climbing'}) }}">
-            Climbing
-        </a>
+    <div class="row stack-list-item">
+        <div class="col-sm-12">
+            <a data-pjax href="{{ url('site_home', kwargs={'site': 'astro'}) }}">
+                Astro
+            </a>
+        </div>
+    </div>
+    <div class="row stack-list-item">
+        <div class="col-sm-12">
+            <a data-pjax href="{{ url('site_home', kwargs={'site': 'climbing'}) }}">
+                Climbing
+            </a>
+        </div>
     </div>
 {% endblock %}
