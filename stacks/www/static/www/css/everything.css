@@ -7461,14 +7461,14 @@ td.visible-print {
 .navbar-nav > li > a.profile-image-link {
   padding-top: 11px;
 }
-.row.header-row {
-  margin-bottom: 20px;
+.header-row {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
 }
-.row.header-row h1 {
+.header-row h1 {
   text-align: center;
 }
 .row.stack-list-item {
-  border-top: 1px solid #eeeeee;
   padding: 20px 0;
 }
 .site-clicky-box {
