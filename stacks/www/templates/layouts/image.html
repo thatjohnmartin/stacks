@@ -1,17 +1,17 @@
 <div class="row block">
-    <div class="span8 {% if not caption_table %}go-big{% endif %}">
+    <div class="col-sm-8 {% if not caption_table %}go-big{% endif %}">
         <p>{{ item(['image/*'], image) }}</p>
     </div>
 
     {% block right_col %}
         {% if caption_table %}
-            <div class="span4 table-small">
+            <div class="col-sm-4 table-small">
                 {{ item(['text/csv'], caption_table) }}
             </div>
         {% endif %}
 
         {% if caption_text %}
-            <div class="span4 go-under">
+            <div class="col-sm-4 go-under">
                 <div class="caption">
                     {{ item(['text/html', 'text/x-markdown', 'text/plain'], caption_text) }}
                 </div>

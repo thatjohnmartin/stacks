@@ -1,4 +1,4 @@
-{% extends "www/base_standard.html" %}
+{% extends "www/base_with_navbar.html" %}
 
 {% from "www/macros.html" import follow_button, like_button %}
 
@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="span12">
+        <div class="col-sm-12">
             <h1 class="title">{{ stack.title}}</h1>
             {% if stack.subtitle %}
                 <h2 class="subtitle">{{ stack.subtitle }}</h2>
@@ -23,7 +23,7 @@
 
 
     <div class="row below-stack">
-        <div class="span4">
+        <div class="col-sm-4">
             <div class="media">
                 <img class="profile-image media-object pull-left" src="{{ stack.user.profile.profile_image_url_73px }}" />
                 <div class="media-body">
@@ -38,9 +38,9 @@
             </div>
         </div>
 
-        <div class="span3 offset1">
+        <div class="col-sm-3 col-sm-offset-1">
             <h5 class="media-heading">Tagged in</h5>
-            <ul class="unstyled">
+            <ul class="list-unstyled">
                 {% if stack.tags.exists() %}
                     {% for tag in stack.tags.all() %}
                         <li>#{{ tag }}</li>
@@ -51,12 +51,12 @@
             </ul>
         </div>
 
-        <div class="span3">
+        <div class="col-sm-3">
             <h5 class="media-heading">Posted on</h5>
             <p><span class="post-date">{{ stack.added.strftime('%B %d, %Y') }}</span></p>
         </div>
 
-        <div class="span1 text-center">
+        <div class="col-sm-1 text-center">
             {{ like_button(request, request.user, stack) }}
         </div>
     </div>

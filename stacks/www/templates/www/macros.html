@@ -34,7 +34,7 @@
         </script>
     {% else %}
         <button id="follow_button" class="btn btn-mini btn-success" type="button" href="#">
-            <i class="icon-plus-sign"></i> Follow
+            <i class="fa fa-plus"></i> Follow
         </button>
     {% endif %}
 {%- endmacro %}
@@ -42,7 +42,7 @@
 {% macro like_button(request, user, stack) -%}
     <div class="text-center">
         <a id="like_link" class="like-link" href="#">
-            <i class="icon-heart icon-2x"></i>
+            <i class="fa fa-heart fa-2x"></i>
         </a>
         <p style="margin-top:4px;">
             <span id="like_count">{{ stack.like_count }}</span>
