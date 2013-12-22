@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.forms import ModelForm
 from stacks import directory
-from stacks.www.models import Stack
+from stacks.www.models import Stack, Block
 from stacks import constants
 from decentscraper import scrape
 
@@ -25,24 +25,7 @@ def stack(request, slug):
     # build content, rendering each block in order
     rendered_blocks = []
     for block in stack.blocks.order_by('order'):
-
-        template = env.get_template(block.layout.template_file) # !! this should be cached
-
-        layout_context = {'item': item}
-
-        # grab all of the media items and render
-        # for page_media_item in page.items.all():
-        #     layout_context[page_media_item.placement] = '<img src="%s%s" />' % (settings.MEDIA_URL, page_media_item.item.image_path)
-
-        # grab all of the name/values and render
-        # pairs = block.get_prop('context')
-        pairs = block.properties_json['context']
-        if pairs:
-            for name, value in pairs.iteritems():
-                layout_context[name] = value
-
-        # render the block and add it to the content list
-        rendered_blocks.append({'block': block, 'content': template.render(layout_context)})
+        rendered_blocks.append({'block': block, 'content': render_block(block, env)})
 
     c = {
         'stack': stack,
@@ -51,6 +34,36 @@ def stack(request, slug):
     }
 
     return render(request, 'www/stack.html', c)
+
+def block(request, slug, block_id):
+    block = Block.objects.get(id=block_id)
+    if not block:
+        raise Http404
+
+    # tell Jinja where to look for templates
+    env = Environment(loader=PackageLoader('stacks.www', 'templates/layouts'))
+
+    content = render_block(block, env)
+
+    c = {
+        'block': block,
+        'content': content,
+        'is_you': block.stack.user == request.user,
+    }
+
+    return render(request, 'www/block.html', c)
+
+def render_block(block, template_env):
+    template = template_env.get_template(block.layout.template_file) # !! this should be cached
+
+    layout_context = {'item': item}
+
+    pairs = block.properties_json['context']
+    if pairs:
+        for name, value in pairs.iteritems():
+            layout_context[name] = value
+
+    return template.render(layout_context)
 
 class StackForm(ModelForm):
     class Meta:

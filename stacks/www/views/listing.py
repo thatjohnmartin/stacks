@@ -1,19 +1,32 @@
 from djpjax import pjaxtend
+from jinja2 import Environment, PackageLoader
 from django.shortcuts import Http404
 from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 from stacks.www.models import Stack
+from stacks.www.views.stack import render_block
 
-@pjaxtend("www/base.html", "www/pjax.html")
+@pjaxtend("www/base_with_navbar.html", "www/pjax.html")
 def stacks_home(request):
     return TemplateResponse(request, 'www/stacks_home.html', {})
 
-@pjaxtend("www/base.html", "www/pjax.html")
+@pjaxtend("www/base_with_navbar.html", "www/pjax.html")
 def site_home(request):
     latest_stacks = Stack.objects.filter(site=request.site).order_by('added')[:20]
-    return TemplateResponse(request, 'www/site_home.html', {'stacks': latest_stacks})
 
-@pjaxtend("www/base.html", "www/pjax.html")
+    env = Environment(loader=PackageLoader('stacks.www', 'templates/layouts'))
+
+    stack_list = []
+    for stack in latest_stacks:
+        block = stack.get_featured_block()
+        stack_list.append({
+            'stack': stack,
+            'content': render_block(block, env)
+        })
+
+    return TemplateResponse(request, 'www/site_home.html', {'stack_list': stack_list})
+
+@pjaxtend("www/base_with_navbar.html", "www/pjax.html")
 def user_home(request, username):
     try:
         page_user = User.objects.get(username=username)

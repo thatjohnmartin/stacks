@@ -191,7 +191,7 @@
     modified: 2012-11-10T03:31:02
     properties_json: >
       {
-        "feature_block": 2
+        "featured_block": 2
       }
 
 - model: taggit.taggeditem
@@ -363,7 +363,7 @@
     modified: 2012-11-12T03:31:02
     properties_json: >
       {
-        "feature_block": 5
+        "featured_block": 5
       }
 
 - model: www.block
@@ -489,7 +489,7 @@
     modified: 2012-9-10T03:31:02
     properties_json: >
       {
-        "feature_block": 8
+        "featured_block": 8
       }
 
 - model: www.block
@@ -526,7 +526,7 @@
     modified: 2012-11-11T03:31:02
     properties_json: >
       {
-        "feature_block": 10
+        "featured_block": 9
       }
 
 - model: www.block
@@ -565,7 +565,7 @@
     modified: 2012-11-11T03:31:02
     properties_json: >
       {
-        "feature_block": 10
+        "featured_block": 10
       }
 
 - model: www.block
@@ -604,7 +604,7 @@
     modified: 2012-11-11T03:31:02
     properties_json: >
       {
-        "feature_block": 11
+        "featured_block": 11
       }
 
 - model: www.block
@@ -643,7 +643,7 @@
     modified: 2012-11-11T03:31:02
     properties_json: >
       {
-        "feature_block": 12
+        "featured_block": 12
       }
 
 - model: www.block
@@ -682,7 +682,7 @@
     modified: 2012-11-12T03:31:02
     properties_json: >
       {
-        "feature_block": 13
+        "featured_block": 13
       }
 
 - model: www.block

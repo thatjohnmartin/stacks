@@ -25,6 +25,9 @@ class Stack(PropertiesMixin, CacheMixin, models.Model):
 
     cache_key_fields = ('id', ('slug', 'site_id'),)
 
+    def get_featured_block(self):
+        return self.blocks.get(id=self.properties_json['featured_block'])
+
     # def invalidate_cache(self):
     #     # invalidate collections and individual by ID and by slug + site
     #     incr_version('stacks')

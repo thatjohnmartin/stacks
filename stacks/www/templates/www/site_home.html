@@ -9,9 +9,10 @@
     </div>
 
     <div class="row js-masonry" data-masonry-options='{ "columnWidth": 375, "itemSelector": ".stack-swatch" }'>
-        {% for stack in stacks %}
+        {% for stack in stack_list %}
             <div class="stack-swatch">
-                <a href="{{ site_url('stack', request.site, kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a>
+                {{ stack.content }}
+                <a href="{{ site_url('stack', request.site, kwargs={'slug': stack.stack.slug}) }}">{{ stack.stack.title }}</a>
             </div>
         {% endfor %}
     </div>
