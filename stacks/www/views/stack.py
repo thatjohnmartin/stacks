@@ -53,10 +53,10 @@ def block(request, slug, block_id):
 
     return render(request, 'www/block.html', c)
 
-def render_block(block, template_env):
+def render_block(block, template_env, render_as_feature=False):
     template = template_env.get_template(block.layout.template_file) # !! this should be cached
 
-    layout_context = {'item': item}
+    layout_context = {'item': item, 'render_as_feature': render_as_feature}
 
     pairs = block.properties_json['context']
     if pairs:

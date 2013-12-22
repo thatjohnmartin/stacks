@@ -1,21 +1,25 @@
-<div class="row block">
-    <div class="col-sm-8 {% if not caption_table %}go-big{% endif %}">
-        <p>{{ item(['image/*'], image) }}</p>
-    </div>
+{% if render_as_feature %}
+    {{ item(['image/*'], image) }}
+{% else %}
+    <div class="row block">
+        <div class="col-sm-8 {% if not caption_table %}go-big{% endif %}">
+            <p>{{ item(['image/*'], image) }}</p>
+        </div>
 
-    {% block right_col %}
-        {% if caption_table %}
-            <div class="col-sm-4 table-small">
-                {{ item(['text/csv'], caption_table) }}
-            </div>
-        {% endif %}
-
-        {% if caption_text %}
-            <div class="col-sm-4 go-under">
-                <div class="caption">
-                    {{ item(['text/html', 'text/x-markdown', 'text/plain'], caption_text) }}
+        {% block right_col %}
+            {% if caption_table %}
+                <div class="col-sm-4 table-small">
+                    {{ item(['text/csv'], caption_table) }}
                 </div>
-            </div>
-        {% endif %}
-    {% endblock %}
-</div>
+            {% endif %}
+
+            {% if caption_text %}
+                <div class="col-sm-4 go-under">
+                    <div class="caption">
+                        {{ item(['text/html', 'text/x-markdown', 'text/plain'], caption_text) }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endif %}

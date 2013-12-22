@@ -55,8 +55,10 @@
 
         {% if debug %}
             <script type="text/javascript" src="/static/lib/masonry.pkgd.js"></script>
+            <script type="text/javascript" src="/static/lib/imagesloaded.pkgd.js"></script>
         {% else %}
             <script type="text/javascript" src="/static/lib/masonry.pkgd.min.js"></script>
+            <script type="text/javascript" src="/static/lib/imagesloaded.pkgd.min.js"></script>
         {% endif %}
 
         <script type="text/javascript" src="/static/lib/jquery.pjax-1.7.3.js"></script>
@@ -65,8 +67,20 @@
         {% block page_scripts %}{% endblock %}
 
         <script>
+            // initialize any pjax links
             $(function() {
                 $(document).pjax('a[data-pjax]', '#pjax-container');
+            });
+
+            // initialize any masonry layout
+            $(function() {
+                var $container = $('#stack-swatch-list');
+                $container.imagesLoaded(function() {
+                    $container.masonry({
+                        columnWidth: 375,
+                        itemSelector: ".stack-swatch"
+                    });
+                });
             });
         </script>
     </body>

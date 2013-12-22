@@ -21,7 +21,7 @@ def site_home(request):
         block = stack.get_featured_block()
         stack_list.append({
             'stack': stack,
-            'content': render_block(block, env)
+            'content': render_block(block, env, render_as_feature=True)
         })
 
     return TemplateResponse(request, 'www/site_home.html', {'stack_list': stack_list})
