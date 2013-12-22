@@ -7,21 +7,13 @@
         <h1>{{ request.site.name }}</h1>
         <p class="intro prose">{{ request.site.properties_json.description }}</p>
     </div>
-    {% for stack in stacks %}
-        <div class="row stack-list-item">
-            <div class="col-sm-12">
+
+    <div class="row js-masonry" data-masonry-options='{ "columnWidth": 375, "itemSelector": ".stack-swatch" }'>
+        {% for stack in stacks %}
+            <div class="stack-swatch">
                 <a href="{{ site_url('stack', request.site, kwargs={'slug': stack.slug}) }}">{{ stack.title }}</a>
             </div>
-        </div>
-    {% endfor %}
-
-    <div class="row stack-list-item">
-        <div class="col-sm-6">
-            <div style="background-color: #eee; border: 1px solid #ccc; height: 200px;"></div>
-        </div>
-        <div class="col-sm-6">
-            <div style="background-color: #eee; border: 1px solid #ccc; height: 200px;"></div>
-        </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

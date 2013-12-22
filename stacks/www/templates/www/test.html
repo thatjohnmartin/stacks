@@ -19,8 +19,10 @@
 
         {% if debug %}
             <script src="/static/lib/jquery-1.10.1.js"></script>
+            <script src="/static/lib/masonry.pkgd.js"></script>
         {% else %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+            <script src="/static/lib/masonry.pkgd.min.js"></script>
         {% endif %}
 
         {% block js %}{% endblock %}
@@ -38,15 +40,25 @@
             <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;">
                 <p>This is foo.</p>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div style="background-color: #eee; border: 1px solid #ccc; height: 200px; margin-bottom: 10px;"></div>
-                    <div style="background-color: #eee; border: 1px solid #ccc; height: 100px;"></div>
-                </div>
-                <div class="col-sm-6">
-                    <div style="background-color: #eee; border: 1px solid #ccc; height: 240px; margin-bottom: 10px;"></div>
-                    <div style="background-color: #eee; border: 1px solid #ccc; height: 170px;"></div>
-                </div>
+{#            <div class="row">#}
+{#                <div class="col-sm-6">#}
+{#                    <div style="background-color: #eee; border: 1px solid #ccc; height: 200px; margin-bottom: 10px;"></div>#}
+{#                    <div style="background-color: #eee; border: 1px solid #ccc; height: 100px;"></div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                    <div style="background-color: #eee; border: 1px solid #ccc; height: 240px; margin-bottom: 10px;"></div>#}
+{#                    <div style="background-color: #eee; border: 1px solid #ccc; height: 170px;"></div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="row" id="masonry">
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 200px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 100px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 240px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 170px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 200px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 100px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 240px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.</div>
+                <div class="masonry-item" style="margin-left: 15px; margin-bottom: 15px; padding: 10px; background-color: #eee; border: 1px solid #ccc; width: 200px; height: 170px;">Not sure how wide 200 will go. Foo this is a longer sentence than will fit on a single line.`</div>
             </div>
         </div>
 
@@ -72,6 +84,14 @@
         <script>
             $(function() {
                 $(document).pjax('a[data-pjax]', '#pjax-container');
+
+                var $container = $('#masonry');
+
+                // initialize
+                $container.masonry({
+                    columnWidth: 220,
+                    itemSelector: '.masonry-item'
+                });
             });
         </script>
     </body>

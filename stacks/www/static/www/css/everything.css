@@ -7471,6 +7471,12 @@ td.visible-print {
 .row.stack-list-item {
   padding: 20px 0;
 }
+.stack-swatch {
+  border: 1px solid #ccc;
+  width: 345px;
+  margin: 15px;
+  padding: 10px;
+}
 .site-clicky-box {
   display: block;
   height: 345px;

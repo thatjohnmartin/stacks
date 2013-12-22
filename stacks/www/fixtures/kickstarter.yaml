@@ -15,7 +15,7 @@
     short_name: astro
     properties_json: >
       {
-        "description": "Stunningly beautiful astrophotography."
+        "description": "Cosmically beautiful astrophotography."
       }
 
 - model: www.site
