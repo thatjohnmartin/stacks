@@ -513,3 +513,198 @@
           }
         }
       }
+
+- model: www.stack
+  pk: 4
+  fields:
+    user: 10
+    site: 3
+    title: Exploring Castle Rock
+    subtitle: The crag around the corner
+    slug: exploring-castle-rock
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "feature_block": 10
+      }
+
+- model: www.block
+  pk: 9
+  fields:
+    stack: 4
+    name: 1
+    layout: 2
+    order: 1
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "8797509740"
+          },
+          "caption_text": {
+            "type": "text/x-markdown",
+            "value": "This route is on the arete of the lyme disease rock, I think."
+          }
+        }
+      }
+
+- model: www.stack
+  pk: 5
+  fields:
+    user: 10
+    site: 3
+    title: Climbing Mt Shasta
+    subtitle: A trip up Avalanch Gulch
+    slug: climbing-mt-shasta
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "feature_block": 10
+      }
+
+- model: www.block
+  pk: 10
+  fields:
+    stack: 5
+    name: 1
+    layout: 2
+    order: 1
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "8966259070"
+          },
+          "caption_text": {
+            "type": "text/x-markdown",
+            "value": "Taking a break at high camp."
+          }
+        }
+      }
+
+- model: www.stack
+  pk: 6
+  fields:
+    user: 10
+    site: 3
+    title: The West Ridge of Mt Conness
+    subtitle: A mountain guide, an ER doc, and a programmer enter a bar
+    slug: the-west-ridge-of-my-conness
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "feature_block": 11
+      }
+
+- model: www.block
+  pk: 11
+  fields:
+    stack: 6
+    name: 1
+    layout: 2
+    order: 1
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "9461280362"
+          },
+          "caption_text": {
+            "type": "text/x-markdown",
+            "value": "On the approach to the ridge."
+          }
+        }
+      }
+
+- model: www.stack
+  pk: 7
+  fields:
+    user: 10
+    site: 3
+    title: A weekend in Bishop
+    subtitle: Sharpest rock in the West
+    slug: a-weekend-in-bishop
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "feature_block": 12
+      }
+
+- model: www.block
+  pk: 12
+  fields:
+    stack: 7
+    name: 1
+    layout: 2
+    order: 1
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "10892507363"
+          },
+          "caption_text": {
+            "type": "text/x-markdown",
+            "value": "On top of the Birthday Boulders."
+          }
+        }
+      }
+
+- model: www.stack
+  pk: 8
+  fields:
+    user: 10
+    site: 3
+    title: Lazy Sunday at Panther Beach
+    subtitle: Our local beach crag
+    slug: lazy-sunday-at-panther-beach
+    added: 2012-11-12T03:31:02
+    modified: 2012-11-12T03:31:02
+    properties_json: >
+      {
+        "feature_block": 13
+      }
+
+- model: www.block
+  pk: 13
+  fields:
+    stack: 8
+    name: 1
+    layout: 2
+    order: 1
+    added: 2012-11-11T03:31:02
+    modified: 2012-11-11T03:31:02
+    properties_json: >
+      {
+        "context": {
+          "image": {
+            "type": "image/jpeg",
+            "provider": "flickr",
+            "photo_id": "10892376446"
+          },
+          "caption_text": {
+            "type": "text/x-markdown",
+            "value": "Hanging from the unnamed problem in the archway."
+          }
+        }
+      }
