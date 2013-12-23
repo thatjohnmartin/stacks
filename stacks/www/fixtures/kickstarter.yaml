@@ -25,7 +25,7 @@
     short_name: climbing
     properties_json: >
       {
-        "description": "Pixel-based spray."
+        "description": "The mountains are calling, and I must go."
       }
 
 - model: auth.user

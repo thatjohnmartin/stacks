@@ -7470,19 +7470,50 @@ h2 {
 }
 .header-row {
   padding-bottom: 5px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
 }
 .header-row h1 {
   text-align: center;
 }
 .stack-swatch-col-0 {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #eeeeee;
+}
+.stack-swatch {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
+}
+.stack-swatch.last-in-col {
+  border-bottom: none;
+}
+.stack-swatch h3 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
 }
 .stack-swatch h3 a {
   color: #333333;
 }
 .stack-swatch h3 a:hover {
+  text-decoration: none;
+}
+.stack-swatch p {
+  font-family: 'Archer SSm A', 'Archer SSm B', Georgia, "Times New Roman", Times, serif;
+  font-weight: 500;
+}
+a .stack-swatch h3,
+a .stack-swatch p {
+  color: #333333;
+}
+a .stack-swatch:hover h3,
+a .stack-swatch:hover p {
+  text-decoration: none;
+}
+a:link .stack-swatch h3,
+a:visited .stack-swatch h3,
+a:hover .stack-swatch h3 {
   text-decoration: none;
 }
 .individual-block {

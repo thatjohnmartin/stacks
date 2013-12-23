@@ -116,10 +116,12 @@ h2 {
 // List pages
 // --------------------------
 
+@gridColor: #eee;
+
 .header-row {
     padding-bottom: 5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+    border-bottom: 1px solid @gridColor;
 
     h1 {
         text-align: center;
@@ -127,35 +129,56 @@ h2 {
 }
 
 .stack-swatch-col-0 {
-    border-right: 1px solid #ccc;
-}
-
-#stack-swatch-list {
-//    padding: 0 5px;
+    border-right: 1px solid @gridColor;
 }
 
 .stack-swatch {
-//    .border-top-radius(3px);
-//    .border-bottom-radius(3px);
-//    width: 350px;
-//    margin: 0 5px 10px;
-//    padding: 5px;
-//    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid @gridColor;
 
-//    background: @white;
-
-    .swatch-image {
-//        .border-top-radius(3px);
+    &.last-in-col {
+        border-bottom: none;
     }
 
-    h3 a {
-        color: @text-color;
+    h3 {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 400;
+        a {
+            color: @text-color;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    p {
+        font-family: @font-family-serif;
+        font-weight: @font-family-sans-serif-base-weight;
+    }
+}
 
-        &:hover {
+a .stack-swatch {
+    h3, p {
+        color: @text-color;
+    }
+    &:hover {
+        h3, p {
             text-decoration: none;
         }
     }
 }
+
+a:link .stack-swatch,
+a:visited .stack-swatch,
+a:hover .stack-swatch {
+    h3 {
+        text-decoration: none;
+    }
+}
+
+
 
 // Home page site boxes
 // --------------------------
