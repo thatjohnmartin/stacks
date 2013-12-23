@@ -8,15 +8,32 @@
         <p class="intro prose">{{ request.site.properties_json.description }}</p>
     </div>
 
-    <div class="row" id="stack-swatch-list">
-        {% for stack in stack_list %}
-            <div class="stack-swatch">
-                {{ stack.content }}
-                <p><a href="{{ site_url('stack', request.site, kwargs={'slug': stack.stack.slug}) }}">{{ stack.stack.title }}</a></p>
+{#    <div id="stack-swatch-list" class="">#}
+{#        {% for stack in stack_list %}#}
+{#            <div class="stack-swatch">#}
+{#                {{ stack.content }}#}
+{#                <h3><a href="{{ site_url('stack', request.site, kwargs={'slug': stack.stack.slug}) }}">{{ stack.stack.title }}</a></h3>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+    <div class="row">
+        {% for col in [0, 1] %}
+            <div class="col-sm-6 stack-swatch-col-{{ col }}">
+                {% for stack in stack_list %}
+                    {% if loop.index0 % 2 == col %}
+                        <div class="stack-swatch">
+                            {{ stack.content }}
+                            <h3>
+                                <a href="{{ site_url('stack', request.site, kwargs={'slug': stack.stack.slug}) }}">
+                                    {{ stack.stack.title }}
+                                </a>
+                            </h3>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
-{% endblock %}
 
-{% block page_scripts %}
 {% endblock %}

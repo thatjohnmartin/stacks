@@ -7469,20 +7469,21 @@ h2 {
   padding-top: 11px;
 }
 .header-row {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 .header-row h1 {
   text-align: center;
 }
-.row.stack-list-item {
-  padding: 20px 0;
+.stack-swatch-col-0 {
+  border-right: 1px solid #ccc;
 }
-.stack-swatch {
-  border: 1px solid #ccc;
-  width: 345px;
-  margin: 15px;
-  padding: 10px;
+.stack-swatch h3 a {
+  color: #333333;
+}
+.stack-swatch h3 a:hover {
+  text-decoration: none;
 }
 .individual-block {
   margin-top: 20px;

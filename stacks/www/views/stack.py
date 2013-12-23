@@ -108,7 +108,7 @@ def type_in_list(super_type, sub_type, type_list):
             return True
     return False
 
-def item(placement_types, data):
+def item(placement_types, data, render_as_feature=False):
     """Renders a typed template item."""
 
     def _render_item_error(message):
@@ -140,6 +140,7 @@ def item(placement_types, data):
         env = Environment(loader=PackageLoader('stacks.www', 'templates/items'))
         template = env.get_template('image.html') # !! this should be cached
         c = {}
+        c['render_as_feature'] = render_as_feature
 
         if provider == 'url':
             if 'url' not in data:
