@@ -19,7 +19,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'stacks',                      # Or path to database file if using sqlite3.
         'USER': 'stacksuser',                      # Not used with sqlite3.
-        'PASSWORD': 'stacksuser',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -99,7 +99,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '%%u-6vvmop1@cxqetfbyeg%7g8^k7v#xyb0z+c$6(a7zb0jk6h'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -161,11 +161,11 @@ SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
 
 SOCIAL_AUTH_ENABLED_BACKENDS = ('twitter')
 
-TWITTER_CONSUMER_KEY = 'KGWgTDLPg3srd4BA5zaEg'
-TWITTER_CONSUMER_SECRET = 'TAREqhMLY9Q3wqdtZxKaksmREjjGu1hEgH45srLkSsc'
+TWITTER_CONSUMER_KEY = ''
+TWITTER_CONSUMER_SECRET = ''
 
-FLICKR_API_KEY = 'bd6c2ce4a4d1cd5252aa4f1f6b645100'
-FLICKR_API_SECRET = '37f2aa730149f69c'
+FLICKR_API_KEY = ''
+FLICKR_API_SECRET = ''
 
 ENABLE_SCRAPER_CACHE = int(os.environ.get('STACKS_ENABLE_SCRAPER_CACHE', 1))
 
