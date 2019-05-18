@@ -50,7 +50,8 @@
     uid: 1611959521
     extra_data: >
       {
-        "access_token": "oauth_token_secret=wwTat8ztG7kiwmzexPfu4J30jnpSE6v6Qj7eFY3ulp8&oauth_token=1611959521-u4BFpoLX4QmCiyUTzQFmletTEKHEWr1tWslFoU3", "id": 1611959521}
+        "access_token": "", "id": 1611959521
+      }
 
 - model: auth.user
   pk: 11
@@ -74,7 +75,7 @@
     uid: 1611912330
     extra_data: >
       {
-        "access_token": "oauth_token_secret=opt2XbjAmIXB6WtHBmIEDeY62YZy5p9m8jFGyMJLhRY&oauth_token=1611912330-qHaYh0NvPp5G0Sl5eMN5peretUxxP3Sal82w80I",
+        "access_token": "",
         "id": 1611912330
       }
 
@@ -99,7 +100,7 @@
     uid: 2565221
     extra_data: >
       {
-        "access_token": "oauth_token_secret=JzGlnyQmDxgTJsX7Uc2jx0Ok7UipU9kFD5KRvULTfY&oauth_token=2565221-vY1DrsARohLzeTnPN5HwwF6mgvUWm5R9A86G72R5lo",
+        "access_token": "",
         "id": 2565221
       }
 
